@@ -1,24 +1,6 @@
-# 主要内容
-
-- 你需要知道的一些 JS 知识
-
-- JSX
-
-  - JSX 本质
-
-  - 事件绑定 （this）
-
-  - 条件渲染
-
-  - 列表渲染
-
-  - 注意点
-
-- ReactElement
-
 ## 你需要知道的一些 JS 知识
 
-### 函数相关
+### 函数
 
 函数这一块 我们主要需要掌握的就是箭头函数
 
@@ -67,16 +49,23 @@ obj.bar(); // obj 在编译期发现是obj在调用bar
 数组这一块 我们需要掌握的常用 API 有
 
 - `Array.prototype.map(item,index,array)`
+
   - 我们在列表渲染时 需要依赖此 API 来生成每一个结点
+
 - `Array.prototype.slice([begin[, end]])`
+
   - state 中的状态 我们是不可以修改的 只能用新状态去覆盖旧状态 对于数组 我们就可以使用这个 API 来拷贝一个新状态 同理还有 concat 等也可 (这些方法都只能深拷贝第一层)
+
 - 其他的高阶用法可以参考 MDN 或者我的 JS 小册(TODO)
 
 ### 对象相关
 
 - 同样的对于 状态中的对象 我们也不能直接修改 可以用`Object.assign(target, ...sources)`来拷贝一个新状态(也只能深拷贝第一层)
+
 - 对象字面量 写法
+
   - 如果对象的键值名字相同 在赋值的时候 可以只写一个
+
 - 对象解构
 
 ```javascript
@@ -122,14 +111,18 @@ import getAge, {getName,getParam} from tools
 我们需要在项目中引入
 
 - `<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>`
+
 - `<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>`
+
   - 将组件挂载到根节点上进行渲染
+
 - `<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>`
+
   - 将 JSX 语法转换为 React.createElement
 
 > **注意：在需要使用 babel 的 script 内 加上 style="text/babel"**
 
-### JSX
+## JSX
 
 #### JSX 语法本质
 
@@ -138,7 +131,9 @@ JSX 是 JS 的语法扩展 不能被浏览器直接执行 需要使用 babel 编
 JSX 在 React 中用来描述用户界面 最终被 babel 编译为`React.createElement(type,attrs,children)`
 
 - type：用于标识节点的类型。它可以是类似“h1”“div”这样的标准 HTML 标签字符串，也可以是 React 组件类型或 React fragment 类型。
+
 - config：以对象形式传入，组件所有的属性都会以键值对的形式存储在 config 对象中。
+
 - children：以对象形式传入，它记录的是组件标签之间嵌套的内容，也就是所谓的“子节点”“子元素”。
 
 所以 JSX 本质是只是一种语法糖 最终还是被转化为了`React.createElement`
@@ -293,6 +288,7 @@ export default Counter;
 然后我们分别通过
 
 - 普通函数
+
 - 匿名函数
 
 来绑定事件 并打印出内部的 this 指向
@@ -305,11 +301,13 @@ export default Counter;
 其结果分别是
 
 - `undefined`
+
 - `Counter {props: {…}, context: {…}, refs: {…}, updater: {…}, state: {…}, …}`
 
 通过打印的结果 我们就有了两种 解决 this 指向的方法
 
 - 通过 bind 来改变 this 指向
+
 - 直接使用匿名函数
 
 以下是两种方法的完整代码
@@ -354,9 +352,9 @@ class Counter extends Component {
 export default Counter;
 ```
 
-### 开发规范
+## 开发规范
 
-#### 文件目录
+### 文件目录
 
 | 内容                   | 路径           | 说明                                                                         |
 | :--------------------- | :------------- | :--------------------------------------------------------------------------- |
