@@ -14,37 +14,37 @@
 
 ## Done
 
-- CSS
+### CSS
 
-  - Sass https://www.sass.hk/
+Sass https://www.sass.hk/
 
-  - Less https://less.bootcss.com/
+Less https://less.bootcss.com/
 
-  - 兼容性查询 https://caniuse.com/#home
+兼容性查询 https://caniuse.com/#home
 
-  - PostCSS https://www.postcss.com.cn/
+PostCSS https://www.postcss.com.cn/
 
-  - Tailwind https://www.tailwindcss.cn/
+Tailwind https://www.tailwindcss.cn/
 
-  - 🧐 https://2020.stateofcss.com/en-US/report/
+🧐 https://2020.stateofcss.com/en-US/report/
 
-- JS
+### JS
 
-  - 阮一峰 ECMAScript 6 入门 https://www.bookstack.cn/read/es6-3rd/sidebar.md
+- 阮一峰 ECMAScript 6 入门 https://www.bookstack.cn/read/es6-3rd/sidebar.md
 
-  - 现代 JavaScript 教程 https://zh.javascript.info/
+- 现代 JavaScript 教程 https://zh.javascript.info/
 
-  - Lodash https://www.lodashjs.com/
+- Lodash https://www.lodashjs.com/
 
-  - Http https://www.axios-http.cn/
+- Http https://www.axios-http.cn/
 
-  - Mock数据 http://mockjs.com/
+- Mock数据 http://mockjs.com/
 
-  - 日期 http://momentjs.cn/
+- 日期 http://momentjs.cn/
 
-  - 动画 https://github.com/tweenjs/tween.js/
+- 动画 https://github.com/tweenjs/tween.js/
 
-  - 🎃 https://2020.stateofjs.com/zh-Hans/
+- 🎃 https://2020.stateofjs.com/zh-Hans/
 
 - TS
 
