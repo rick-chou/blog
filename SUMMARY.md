@@ -9,6 +9,12 @@
 - [bind-call-apply](javascript/bind-call-apply.md)
 - [array](javascript/array.md)
 
+## Typescript
+
+- [data-type](typescript/data-type.md)
+- [class](typescript/class.md)
+- [interface](typescript/interface.md)
+
 ## React
 
 - [一点点预备知识](react/javascript.md)
