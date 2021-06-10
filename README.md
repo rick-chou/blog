@@ -1,7 +1,5 @@
 # Hi~~~
 
-> 往者不可谏 来者犹可追
-
 👋 Hi, I’m @LuckyChou
 
 👀 I’m interested in FE
@@ -84,8 +82,8 @@ Dva [https://dvajs.com/](https://dvajs.com/)
 
 React-Router
 
-* [https://react-guide.github.io/react-router-cn/index.html](https://react-guide.github.io/react-router-cn/index.html)
-* [https://reactrouter.com/web/guides/quick-start](https://reactrouter.com/web/guides/quick-start)
+- [https://react-guide.github.io/react-router-cn/index.html](https://react-guide.github.io/react-router-cn/index.html)
+- [https://reactrouter.com/web/guides/quick-start](https://reactrouter.com/web/guides/quick-start)
 
 Next （SSR 同构） [https://www.nextjs.cn/](https://www.nextjs.cn/)
 
@@ -107,8 +105,8 @@ Awesome（Vue 精选） [https://github.com/vuejs/awesome-vue](https://github.co
 
 Icon
 
-* [https://www.iconfont.cn/](https://www.iconfont.cn/)
-* [https://icomoon.io/](https://icomoon.io/)
+- [https://www.iconfont.cn/](https://www.iconfont.cn/)
+- [https://icomoon.io/](https://icomoon.io/)
 
 Antd [https://ant.design/index-cn](https://ant.design/index-cn)
 
@@ -171,4 +169,3 @@ Taro [https://taro-docs.jd.com/taro/docs/README](https://taro-docs.jd.com/taro/d
 Flutter [https://flutterchina.club/](https://flutterchina.club/)
 
 Electron [https://www.electronjs.org/](https://www.electronjs.org/)
-
