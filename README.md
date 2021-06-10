@@ -12,6 +12,14 @@
 
 🍉 Star me –&gt; [https://github.com/LuckyChou710](https://github.com/LuckyChou710)
 
+<img src="https://gitee.com/LuckyChou/blog-images/raw/master/bg-images/CHOU16.jpg" />
+
+在选择要系统地学习一个新的 框架/库 之前，首先至少得学会先去思考以下两点：
+
+• 它是什么？
+
+• 它解决了什么问题？
+
 ## Done
 
 ### CSS
@@ -38,7 +46,7 @@ Lodash https://www.lodashjs.com/
 
 Http https://www.axios-http.cn/
 
-Mock数据 http://mockjs.com/
+Mock 数据 http://mockjs.com/
 
 日期 http://momentjs.cn/
 
@@ -50,11 +58,11 @@ Mock数据 http://mockjs.com/
 
 https://www.tslang.cn/
 
-TS入门教程 https://ts.xcatliu.com/introduction/what-is-typescript.html
+TS 入门教程 https://ts.xcatliu.com/introduction/what-is-typescript.html
 
-深入理解TS https://jkchao.github.io/typescript-book-chinese/
+深入理解 TS https://jkchao.github.io/typescript-book-chinese/
 
-TS学习笔记 https://juejin.cn/post/6872111128135073806
+TS 学习笔记 https://juejin.cn/post/6872111128135073806
 
 ### React
 
@@ -74,9 +82,9 @@ Dva https://dvajs.com/
 
 React-Router
 
-  - https://react-guide.github.io/react-router-cn/index.html
+- https://react-guide.github.io/react-router-cn/index.html
 
-  - https://reactrouter.com/web/guides/quick-start
+- https://reactrouter.com/web/guides/quick-start
 
 Next （SSR 同构） https://www.nextjs.cn/
 
@@ -98,9 +106,9 @@ Awesome（Vue 精选） https://github.com/vuejs/awesome-vue
 
 Icon
 
-  - https://www.iconfont.cn/
+- https://www.iconfont.cn/
 
-  - https://icomoon.io/
+- https://icomoon.io/
 
 Antd https://ant.design/index-cn
 
