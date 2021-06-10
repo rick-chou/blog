@@ -5,13 +5,13 @@
 ## Html
 
 - [iconfont](html/iconfont.md)
-- [url]](javascript/url.md)
+- [url](javascript/url.md)
 - [video](javascript/video.md)
 
 ## CSS
 
 - [一些些积累](css/accumulation.md)
-- [Flex]](css/flex.md)
+- [Flex](css/flex.md)
 
 ## Javascript
 
