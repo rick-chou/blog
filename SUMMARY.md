@@ -7,5 +7,5 @@
 ---
 
 * [防盗链](mockjs.md)
-* [prototype](prototype.md)
+* [prototype](javascript/prototype.md)
 
