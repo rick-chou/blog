@@ -52,6 +52,11 @@
 - [浏览器缓存](browser/cache.md)
 - [cookie / session](browser/cookie-session.md)
 
+## Design-Pattern
+
+- [单例模式](design-pattern/singleton.md)
+- [策略模式](design-pattern/strategy.md)
+
 ## Interview
 
 - [html](interview/html.md)
