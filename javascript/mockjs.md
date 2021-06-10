@@ -1,13 +1,3 @@
----
-title: JavaScript 防盗链
-date: '2020-10-10T00:00:00.000Z'
-tags:
-  - JavaScript
-categories:
-  - JS篇
-description: HTTP Referer
----
-
 # 防盗链
 
 > HTTP Referer是header的一部分， 当浏览器向web服务器发送请求的时候，一般会带上Referer， 告诉服务器我是从哪个页面链接过来的，服务器藉此可以获得一些信息用于处理。 通过该头域的值，我们可以检测到访问目标资源的源地址
