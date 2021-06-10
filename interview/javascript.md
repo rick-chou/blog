@@ -1,4 +1,4 @@
-## 1.异步
+## 异步
 
 JS 语言是单线程的
 
@@ -24,9 +24,7 @@ while (a) {
 
 因为 JS 是单线程语言 所以无法执行到定时器
 
-<!--more-->
-
-## 2.Set && Map
+## Set && Map
 
 Set 和 Map 实例都不允许元素有重复
 
@@ -82,7 +80,7 @@ Map 实例的遍历方法有：
 
 - forEach()：遍历 Map 的所有成员。
 
-## 3.XMLHttpRequest
+## XMLHttpRequest
 
 ```js
 var xhr = new XMLHttpRequest();
@@ -129,7 +127,7 @@ xhr.status 即 HTTP 状态码，有 2xx 3xx 4xx 5xx 这几种，比较常用的�
 
 - 5xx 服务器端出错了
 
-## 4.Fetch
+## Fetch
 
 更简洁的 ajax 并且支持 Promise 的回调
 
@@ -142,7 +140,7 @@ fetch('./demo.json')
   });
 ```
 
-## 5.闭包
+## 闭包
 
 函数 A 中有函数 B
 
@@ -169,7 +167,7 @@ for (var i = 0; i < 10; i++) {
 // 打印 0 - 9
 ```
 
-## 6.深拷贝
+## 深拷贝
 
 JSON.parse(JSON.stringify(obj))
 
@@ -183,9 +181,9 @@ Object.assign({}, obj)
 
 - 浅拷贝 只完成了属性的深拷贝
 
-## 7.防抖 && 节流
+## 防抖 && 节流
 
-## 8.call && apply && bind
+## call && apply && bind
 
 - bind 返回一个改变 this 的函数 强绑定 无法再修改内部 this 的指向
 
@@ -193,7 +191,7 @@ Object.assign({}, obj)
 
 - call 立即执行该函数 接受一个参数列表
 
-## 10.事件的三个阶段
+## 事件的三个阶段
 
 捕获 - 目标 - 冒泡
 
@@ -209,7 +207,7 @@ Object.assign({}, obj)
 
 利用事件冒泡 在父元素处触发事件
 
-## 11.跨域
+## 跨域
 
 JSONP
 
@@ -223,7 +221,7 @@ document.domain
 
   如 a.chou.com && b.chou.com
 
-## 12.Event Loop
+## Event Loop
 
 执行顺序：
 
@@ -253,7 +251,7 @@ document.domain
 
 所以页面的 script 标签要写在页面的最下面 防止页面阻塞
 
-## 13.浏览器渲染机制
+## 浏览器渲染机制
 
 - 处理 HTML 并构建 DOM 树
 
@@ -265,7 +263,7 @@ document.domain
 
 - 调用 GPU 绘制 合成图层 显示在屏幕上
 
-## 14.重绘 && 回流
+## 重绘 && 回流
 
 重绘：不改变外观 只改变例如背景色 透明度等
 
