@@ -1,3 +1,5 @@
+# javascript 基础
+
 ## 你需要知道的一些 JS 知识
 
 ### 函数
@@ -14,17 +16,14 @@
 
 #### 普通函数
 
-- **谁调用函数 this 就指向谁 this 的指向只有在编译期间才能被确认**
-
-- **函数 和 变量 会自动变成全局对象 window 的方法和属性**
-
-- **所以函数的内部的 this 指向全局对象 window**
+* **谁调用函数 this 就指向谁 this 的指向只有在编译期间才能被确认**
+* **函数 和 变量 会自动变成全局对象 window 的方法和属性**
+* **所以函数的内部的 this 指向全局对象 window**
 
 #### 匿名函数
 
-- **箭头函数内的 this，就是箭头函数被定义时所在作用域的 this**
-
-- **不受 apply 等方法修改**
+* **箭头函数内的 this，就是箭头函数被定义时所在作用域的 this**
+* **不受 apply 等方法修改**
 
 ```javascript
 const foo = () => {
@@ -48,25 +47,18 @@ obj.bar(); // obj 在编译期发现是obj在调用bar
 
 数组这一块 我们需要掌握的常用 API 有
 
-- `Array.prototype.map(item,index,array)`
-
-  - 我们在列表渲染时 需要依赖此 API 来生成每一个结点
-
-- `Array.prototype.slice([begin[, end]])`
-
-  - state 中的状态 我们是不可以修改的 只能用新状态去覆盖旧状态 对于数组 我们就可以使用这个 API 来拷贝一个新状态 同理还有 concat 等也可 (这些方法都只能深拷贝第一层)
-
-- 其他的高阶用法可以参考 MDN 或者我的 JS 小册(TODO)
+* `Array.prototype.map(item,index,array)`
+  * 我们在列表渲染时 需要依赖此 API 来生成每一个结点
+* `Array.prototype.slice([begin[, end]])`
+  * state 中的状态 我们是不可以修改的 只能用新状态去覆盖旧状态 对于数组 我们就可以使用这个 API 来拷贝一个新状态 同理还有 concat 等也可 \(这些方法都只能深拷贝第一层\)
+* 其他的高阶用法可以参考 MDN 或者我的 JS 小册\(TODO\)
 
 ### 对象相关
 
-- 同样的对于 状态中的对象 我们也不能直接修改 可以用`Object.assign(target, ...sources)`来拷贝一个新状态(也只能深拷贝第一层)
-
-- 对象字面量 写法
-
-  - 如果对象的键值名字相同 在赋值的时候 可以只写一个
-
-- 对象解构
+* 同样的对于 状态中的对象 我们也不能直接修改 可以用`Object.assign(target, ...sources)`来拷贝一个新状态\(也只能深拷贝第一层\)
+* 对象字面量 写法
+  * 如果对象的键值名字相同 在赋值的时候 可以只写一个
+* 对象解构
 
 ```javascript
 let result = {
@@ -110,15 +102,11 @@ import getAge, {getName,getParam} from tools
 
 我们需要在项目中引入
 
-- `<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>`
-
-- `<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>`
-
-  - 将组件挂载到根节点上进行渲染
-
-- `<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>`
-
-  - 将 JSX 语法转换为 React.createElement
+* `<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>`
+* `<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>`
+  * 将组件挂载到根节点上进行渲染
+* `<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>`
+  * 将 JSX 语法转换为 React.createElement
 
 > **注意：在需要使用 babel 的 script 内 加上 style="text/babel"**
 
@@ -130,11 +118,9 @@ JSX 是 JS 的语法扩展 不能被浏览器直接执行 需要使用 babel 编
 
 JSX 在 React 中用来描述用户界面 最终被 babel 编译为`React.createElement(type,attrs,children)`
 
-- type：用于标识节点的类型。它可以是类似“h1”“div”这样的标准 HTML 标签字符串，也可以是 React 组件类型或 React fragment 类型。
-
-- config：以对象形式传入，组件所有的属性都会以键值对的形式存储在 config 对象中。
-
-- children：以对象形式传入，它记录的是组件标签之间嵌套的内容，也就是所谓的“子节点”“子元素”。
+* type：用于标识节点的类型。它可以是类似“h1”“div”这样的标准 HTML 标签字符串，也可以是 React 组件类型或 React fragment 类型。
+* config：以对象形式传入，组件所有的属性都会以键值对的形式存储在 config 对象中。
+* children：以对象形式传入，它记录的是组件标签之间嵌套的内容，也就是所谓的“子节点”“子元素”。
 
 所以 JSX 本质是只是一种语法糖 最终还是被转化为了`React.createElement`
 
@@ -198,12 +184,12 @@ JSX 有特殊的注释方法
 
 #### 特殊点
 
-- 由于 JSX 是 JS 的语法扩展 但是在里面我们又可以书写类似 HTML 的东西 所以为了避免冲突
-  - HTML 中 class 在 JS 中表示类 在 JSX 中 我们用**className**来代替
-  - HTML 中 label 标签的 for 在 JS 中表示循环 在 JSX 中用**htmlFor**来代替
-- undefined / boolean / null
-  - 对于以上几种数据类型 JSX 不会将其渲染到页面上
-  - 利用这个特性 我们可以实现条件渲染
+* 由于 JSX 是 JS 的语法扩展 但是在里面我们又可以书写类似 HTML 的东西 所以为了避免冲突
+  * HTML 中 class 在 JS 中表示类 在 JSX 中 我们用**className**来代替
+  * HTML 中 label 标签的 for 在 JS 中表示循环 在 JSX 中用**htmlFor**来代替
+* undefined / boolean / null
+  * 对于以上几种数据类型 JSX 不会将其渲染到页面上
+  * 利用这个特性 我们可以实现条件渲染
 
 ```javascript
 let flag = true
@@ -287,9 +273,8 @@ export default Counter;
 
 然后我们分别通过
 
-- 普通函数
-
-- 匿名函数
+* 普通函数
+* 匿名函数
 
 来绑定事件 并打印出内部的 this 指向
 
@@ -300,15 +285,13 @@ export default Counter;
 
 其结果分别是
 
-- `undefined`
-
-- `Counter {props: {…}, context: {…}, refs: {…}, updater: {…}, state: {…}, …}`
+* `undefined`
+* `Counter {props: {…}, context: {…}, refs: {…}, updater: {…}, state: {…}, …}`
 
 通过打印的结果 我们就有了两种 解决 this 指向的方法
 
-- 通过 bind 来改变 this 指向
-
-- 直接使用匿名函数
+* 通过 bind 来改变 this 指向
+* 直接使用匿名函数
 
 以下是两种方法的完整代码
 
@@ -356,15 +339,16 @@ export default Counter;
 
 ### 文件目录
 
-| 内容                   | 路径           | 说明                                                                         |
-| :--------------------- | :------------- | :--------------------------------------------------------------------------- |
-| 存放静态资源，例如图片 | src/assets     | 根据模块可以在 assets 下再新建文件夹                                         |
-| 业务页面               | src/containers | 对应需求事实际页面                                                           |
-| 业务组件               | src/components | 业务公共组件，有些组件在封装的时候可以考虑后期的可扩展性，及通用性           |
-| 页面路径               | src/routes     | 页面路径                                                                     |
-| 业务公共样式           | src/styles     | 全局公共样式，可以在其他地方引用                                             |
-| 实用公共函数           | src/utils      | 例如网络请求 request，公共函数等                                             |
-| redux 状态             | src/store      | 根据模块在划分文件                                                           |
-| 业务封装的钩子函数     | src/hooks      | 与 components 思路类似，有些组件如果业务中多个地方在用，可以考虑后期抽离出来 |
-| 服务端接口             | src/api        | 存放所有的服务端接口                                                         |
-| mock 数据              | src/mock       | 存放一些 mock 数据                                                           |
+| 内容 | 路径 | 说明 |
+| :--- | :--- | :--- |
+| 存放静态资源，例如图片 | src/assets | 根据模块可以在 assets 下再新建文件夹 |
+| 业务页面 | src/containers | 对应需求事实际页面 |
+| 业务组件 | src/components | 业务公共组件，有些组件在封装的时候可以考虑后期的可扩展性，及通用性 |
+| 页面路径 | src/routes | 页面路径 |
+| 业务公共样式 | src/styles | 全局公共样式，可以在其他地方引用 |
+| 实用公共函数 | src/utils | 例如网络请求 request，公共函数等 |
+| redux 状态 | src/store | 根据模块在划分文件 |
+| 业务封装的钩子函数 | src/hooks | 与 components 思路类似，有些组件如果业务中多个地方在用，可以考虑后期抽离出来 |
+| 服务端接口 | src/api | 存放所有的服务端接口 |
+| mock 数据 | src/mock | 存放一些 mock 数据 |
+

@@ -1,12 +1,12 @@
+# bind-call-apply
+
 ## 手写call
 
 ### 原生call
 
 我们首先来看看call方法实现了什么
 
-<!--more-->
-
-```js
+```javascript
 var foo = {
   name: 'chou',
 }
@@ -20,13 +20,12 @@ sayName.call(foo) // chou
 
 不难看出
 
-- call改变了this的指向，指向到foo对象
-
-- sayName方法执行了
+* call改变了this的指向，指向到foo对象
+* sayName方法执行了
 
 ### 实现
 
-```js
+```javascript
 var foo = {
   name: 'chou',
 }
@@ -49,15 +48,13 @@ foo.sayName() // chou
 
 所以 如果我们
 
-- 将函数设置为对象的属性
-
-- 执行该函数
-
-- 删除该函数
+* 将函数设置为对象的属性
+* 执行该函数
+* 删除该函数
 
 好啦 动手实现吧
 
-```js
+```javascript
 Function.prototype._call = function (context) {
   context.fn = this
   context.fn()
@@ -65,13 +62,13 @@ Function.prototype._call = function (context) {
 }
 ```
 
-但是call的第二个参数可以接收一个变量 
+但是call的第二个参数可以接收一个变量
 
 同时 如果不传递参数 默认会绑定window
 
 好啦 我们继续模拟
 
-```js
+```javascript
 Function.prototype._call = function (context) {
   var args = []
   // 从第二个参数开始 因为第一个存放的是我们的函数
@@ -85,7 +82,6 @@ Function.prototype._call = function (context) {
 }
 ```
 
-
 ## 手写apply
 
 ### 思路
@@ -94,17 +90,15 @@ apply和call的区别在于 apply 的参数接收一个数组参数 而 call 则
 
 我们可以取argument的第一个元素 因为如果正确的传递 则argument的第一个元素应该是我们想要的 那个作为参数的数组
 
-我们可以对这个值进行校验 
+我们可以对这个值进行校验
 
-- 如果不是数组 则抛出异常
-
-- 如果不传 则默认只调用该方法
-
-- 如果是数组 则按正确的处理
+* 如果不是数组 则抛出异常
+* 如果不传 则默认只调用该方法
+* 如果是数组 则按正确的处理
 
 ### 实现
 
-```js
+```javascript
 Function.prototype._apply = function (context) {
   var args = arguments[1]
   context = context || window
@@ -132,7 +126,7 @@ Function.prototype._apply = function (context) {
 
 我们借用 apply 或 call 返回一个新的函数即可
 
-```js
+```javascript
 Function.prototype._bind = function (context) {
     var self = this;
     return function () {
@@ -146,7 +140,7 @@ Function.prototype._bind = function (context) {
 
 我们模拟bind调用中可以传递参数的形式
 
-```js
+```javascript
 Function.prototype._bind = function (context) {
 
     var self = this;
@@ -168,3 +162,4 @@ Function.prototype._bind = function (context) {
 bind绑定的函数 还能用 new 关键字 来创建对象
 
 TODO 此部分探索中
+
