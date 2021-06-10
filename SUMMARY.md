@@ -8,4 +8,6 @@
 
 * [防盗链](javascript/mockjs.md)
 * [prototype](javascript/prototype.md)
+* [bind-call-apply](javascript/bind-call-apply.md)
+* [array](javascript/array.md)
 
