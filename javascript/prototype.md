@@ -1,13 +1,3 @@
----
-title: JavaScript 原型
-date: '2020-09-29T00:00:00.000Z'
-tags:
-  - JavaScript
-categories:
-  - JS篇
-description: 原型链
----
-
 # prototype
 
 在ES2019中 对于prototype的定义为
