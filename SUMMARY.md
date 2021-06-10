@@ -6,6 +6,6 @@
 
 ---
 
-* [防盗链](mockjs.md)
+* [防盗链](javascript/mockjs.md)
 * [prototype](javascript/prototype.md)
 
