@@ -22,8 +22,6 @@ Object 的原型对象的 constructor 指向 Object
 
 <img src="https://gitee.com/LuckyChou/blog-images/raw/master/js/prototypeChain.png" />
 
-
-
 ## MVVM
 
 M Model 数据层
@@ -396,3 +394,5 @@ console.log(s instanceof Son); // true
 - 并且可以返回一个函数 用来消除副作用 类似 componentWillUnmount 可以做一些事件的解绑 定时器的关闭等
 
 - 第二个参数 数组 状态依赖项 实现性能优化 如果传[] 则等同于不开启 shouldComponentUpdate
+
+## 如何提升 webpack 的打包速度

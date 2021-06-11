@@ -5,7 +5,7 @@
 ## Html
 
 - [Iconfont](html/iconfont.md)
-- [从一个 url 地址到最终页面渲染完成 发生了什么](html/url.md)
+- [url 地址到最终页面渲染完成 发生了什么](html/url.md)
 - [Video](html/video.md)
 
 ## CSS
