@@ -26,7 +26,7 @@
 - [Reduce](javascript/reduce.md)
 - [Prototype](javascript/prototype.md)
 - [Bind / Call / Apply](javascript/bind-call-apply.md)
-- [DefineProperty / Proxy](javascript/defineProperty-proxy.md)
+- [DefineProperty / Proxy](javascript/defineProperty&proxy.md)
 - [防盗链](javascript/referer.md)
 - [模块化](javascript/modular.md)
 - [节流防抖](javascript/debounce-throttle.md)
