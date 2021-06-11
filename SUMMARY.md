@@ -19,18 +19,19 @@
 - [prototype](javascript/prototype.md)
 - [bind-call-apply](javascript/bind-call-apply.md)
 - [array](javascript/array.md)
+- [闭包](javascript/closure.md)
 
 ## Typescript
 
-- [data-type](typescript/data-type.md)
-- [class](typescript/class.md)
-- [interface](typescript/interface.md)
+- [数据类型](typescript/data-type.md)
+- [Class](typescript/class.md)
+- [Interface](typescript/interface.md)
 
 ## React
 
 - [一点点预备知识](react/javascript.md)
 - [扬帆起航](react/basic.md)
-- [props-state](react/props-state.md)
+- [Props-State](react/props-state.md)
 - [CSS 解决方案](react/css.md)
 - [17 为什么改写生命周期](react/lifecycle.md)
 - [Redux 状态管理器](react/redux.md)
@@ -59,10 +60,10 @@
 
 ## Interview
 
-- [html](interview/html.md)
-- [css](interview/css.md)
-- [javascript](interview/javascript.md)
-- [security](interview/security.md)
-- [vue](interview/vue.md)
-- [interview](interview/interview.md)
-- [question](interview/question.md)
+- [Html](interview/html.md)
+- [CSS](interview/css.md)
+- [Javascript](interview/javascript.md)
+- [Security](interview/security.md)
+- [Vue](interview/vue.md)
+- [Interview](interview/interview.md)
+- [Question](interview/question.md)
