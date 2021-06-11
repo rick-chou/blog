@@ -1,12 +1,3 @@
----
-title: JavaScript 模块化
-date: 2020-08-24
-tags:
-  - JavaScript
-categories:
-  - JS篇
----
-
 ## commonjs
 
 require / exports
