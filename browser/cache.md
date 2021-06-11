@@ -24,8 +24,6 @@ response header 里的过期时间，浏览器再次加载资源时，如果在�
 
 ![image](https://gitee.com/LuckyChou/blog-images/raw/master/browser/browser1.png)
 
-<!--more-->
-
 #### Expires 和 Cache-Control 的区别
 
 1. Expires 是 http1.0 的产物，Cache-Control 是 http1.1 的产物

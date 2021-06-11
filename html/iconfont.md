@@ -20,8 +20,6 @@
 
 进入 <a href="https://caniuse.com/">can i use</a> 可以查看这些字体的浏览器兼容情况
 
-<!--more-->
-
 ## 使用
 
 将下载的文件引入到项目中 然后可以在入口文件引入 iconfont.css

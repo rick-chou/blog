@@ -2,19 +2,14 @@
 title: JavaScript 模块化
 date: 2020-08-24
 tags:
- - JavaScript
+  - JavaScript
 categories:
- - JS篇
+  - JS篇
 ---
-
 
 ## commonjs
 
-
 require / exports
-
-
-<!--more-->
 
 ### exports
 
@@ -22,78 +17,78 @@ require / exports
 const Tool = {
   agent: {
     getActivityList: () => {
-      console.log("activityList...")
+      console.log('activityList...');
     },
     updateActivityList: () => {
-      console.log("updateActivityList...")
-    }
+      console.log('updateActivityList...');
+    },
   },
   serve: {
     sendMeg: (data) => {
-      console.log(data)
-    }
-  }
-}
+      console.log(data);
+    },
+  },
+};
 
-exports.Tool = Tool
+exports.Tool = Tool;
 ```
 
 ### require
 
 ```js
-const { Tool } = require('./commonjs exports')
+const { Tool } = require('./commonjs exports');
 
-Tool.serve.sendMeg('Hello')
+Tool.serve.sendMeg('Hello');
 
-console.log(Tool.agent.getActivityList)
+console.log(Tool.agent.getActivityList);
 ```
 
 ## ES6
 
 ### export
+
 ```js
 const Tool = {
   agent: {
     getActivityList: () => {
-      console.log("activityList...")
+      console.log('activityList...');
     },
     updateActivityList: () => {
-      console.log("updateActivityList...")
-    }
+      console.log('updateActivityList...');
+    },
   },
   serve: {
     sendMeg: (data) => {
-      console.log(data)
-    }
-  }
-}
+      console.log(data);
+    },
+  },
+};
 
-export default Tool
+export default Tool;
 ```
 
 ### require
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ES6 Module</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ES6 Module</title>
-</head>
-
-<body>
-  <script type="module">
-    import Tool from './ES6 export.js'
-    console.log(Tool)
-  </script>
-</body>
-
+  <body>
+    <script type="module">
+      import Tool from './ES6 export.js';
+      console.log(Tool);
+    </script>
+  </body>
 </html>
 ```
 
-浏览器还未很好的支持ES6 Module
+浏览器还未很好的支持 ES6 Module
 
-script标签默认type属性为javascript
+script 标签默认 type 属性为 javascript
 
-在引入module时 需要告知浏览器这是module
+在引入 module 时 需要告知浏览器这是 module

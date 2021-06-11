@@ -22,7 +22,7 @@ MVVM 利用数据的双向绑定
 
 而 ViewModel 变化时，View 也会自动变化
 
-<!--more-->
+
 
 ## Vue 生命周期
 

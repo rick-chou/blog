@@ -35,8 +35,6 @@ categories:
 
   - get
 
-<!--more-->
-
 **注意：value/writable 和 set/get 不能同时出现**
 
 **可理解为既然可以手动修改 则 value 必定会有值 且是可读写的**

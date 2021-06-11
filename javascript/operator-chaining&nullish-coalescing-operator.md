@@ -2,46 +2,42 @@
 title: JavaScript 可选链操作符&&空值合并操作符
 date: 2020-10-26
 tags:
- - JS
+  - JS
 categories:
- - JS
+  - JS
 description: 从该篇开始 我会陆续探索一些ES6之后的新特性 新语法
 ---
 
-
 ## 背景
 
-最近 开始接触到一些ES6以后的新特性 使用起来确实方便了不少
+最近 开始接触到一些 ES6 以后的新特性 使用起来确实方便了不少
 
-尤其是最近有一个项目 在方法中需要传入index 但是在做非空验证的时候 如果传入的index是0 也会被判断为false 这就十分头疼了 
+尤其是最近有一个项目 在方法中需要传入 index 但是在做非空验证的时候 如果传入的 index 是 0 也会被判断为 false 这就十分头疼了
 
 冗余的判断不仅使代码的可读性变差 而且会使代码变得不简洁
 
 但是在接触到可选链操作符后 emmmmm 这也太香了 避免了 && 和 多余的非空校验
 
-所以决定以此为开始  陆续的写一些ES6 ES7...之后的新特性
-
-<!--more-->
+所以决定以此为开始 陆续的写一些 ES6 ES7...之后的新特性
 
 ## 可选链操作符
 
 ### 初识
 
-这里我引用一段MDN上的解释
+这里我引用一段 MDN 上的解释
 
 > 可选链操作符( ?. )允许读取位于连接对象链深处的属性的值，而不必明确验证链中的每个引用是否有效。?. 操作符的功能类似于 . 链式操作符，不同之处在于，在引用为空(nullish ) (null 或者 undefined) 的情况下不会引起错误，该表达式短路返回值是 undefined。与函数调用一起使用时，如果给定的函数不存在，则返回 undefined。
 
-
 或许 你还是?????
 
-不要急  我们来看一道例题
+不要急 我们来看一道例题
 
 ```js
 const adventurer = {
   name: '林克',
   weapon: {
-    name: '大师剑'
-  }
+    name: '大师剑',
+  },
 };
 
 const weaponName = adventurer.weapon?.name;
@@ -58,17 +54,17 @@ console.log(shieldName);
 
 上述例子`adventurer.weapon?.name`
 
-我们试图去寻找adventurer对象下的weapon属性下的name属性
+我们试图去寻找 adventurer 对象下的 weapon 属性下的 name 属性
 
-adventurer对象有weapon属性 所以返回我们可以取出我们的大师剑
+adventurer 对象有 weapon 属性 所以返回我们可以取出我们的大师剑
 
 然后是`adventurer.savePrincess?.()`
 
-显然adventurer下没有savePrincess这个方法 所以救公主？？？ 不存在的 直接返回undefined
+显然 adventurer 下没有 savePrincess 这个方法 所以救公主？？？ 不存在的 直接返回 undefined
 
 最后是`adventurer.shield?.name`
 
-同样的 我们发现 adventurer对象下也没有shield属性 所以直接返回undefined
+同样的 我们发现 adventurer 对象下也没有 shield 属性 所以直接返回 undefined
 
 好啦 至此 我们大概理解了可选链是怎么一回事
 
@@ -97,18 +93,17 @@ console.log(x); // x 将不会被递增，依旧输出 0
 
 最后再举一个自己在实际开发中的例子
 
-假如有一个方法`setStudentResult(action)` 它接收一个对象action
+假如有一个方法`setStudentResult(action)` 它接收一个对象 action
 
 为了让我们的代码健壮 我们必须在方法内部做出参数的非空校验 显然下面这样是不行的
 
 ```js
-
 const list = {};
 
 /**
  * @param {*} action
  */
-function setStudent (action) {
+function setStudent(action) {
   list[action.index] = action.student;
 }
 ```
@@ -131,7 +126,7 @@ function setStudent(action) {
 但是 如果使用可选链操作符 我们就可以将方法定义成如下
 
 ```js
-function setStudent (action) {
+function setStudent(action) {
   if (action?.index && action?.student) {
     list[action.index] = action.student;
   }
@@ -142,17 +137,17 @@ function setStudent (action) {
 
 ## 空值合并操作符
 
-还是引用一段MDN上解释
+还是引用一段 MDN 上解释
 
 > 空值合并操作符（??）是一个逻辑操作符，当左侧的操作数为 null 或者 undefined 时，返回其右侧操作数，否则返回左侧操作数。
 
-### 对比 || 
+### 对比 ||
 
 我们知道 || 逻辑或运算符 也具有相似的功能
 
 也就是在 || 左侧操作数为假值时 会返回右侧 操作数
 
-JS中的假值有
+JS 中的假值有
 
 - 0
 
@@ -164,26 +159,25 @@ JS中的假值有
 
 - undefined
 
-所以设想一个场景 我们对一个function中的参数使用 || 运算符 来判断用户是否输入
+所以设想一个场景 我们对一个 function 中的参数使用 || 运算符 来判断用户是否输入
 
 ```js
-function addNum(a,b) {
-  var a = a || 0
-  var b = b || 0
-  return a + b 
+function addNum(a, b) {
+  var a = a || 0;
+  var b = b || 0;
+  return a + b;
 }
 ```
 
-上述代码我们用 || 运算符来判断用户 用户输入的合法性 
+上述代码我们用 || 运算符来判断用户 用户输入的合法性
 
 但是这样我们就无法排除 0 这种情况
 
-如果用户就是输入了0 但是0依旧是一个假值 所以还是会返回 || 操作符右侧是操作数
+如果用户就是输入了 0 但是 0 依旧是一个假值 所以还是会返回 || 操作符右侧是操作数
 
 这就与我们的预期不一致了
 
 而 ?? 空值合并操作符就只是检验了 null 和 undefined
-
 
 ### 注意点
 
@@ -216,9 +210,9 @@ true || undefined ?? "foo"; // 抛出 SyntaxError
 
 ```js
 let customer = {
-  name: "chou",
-  details: { age: 100 }
+  name: 'chou',
+  details: { age: 100 },
 };
-let customerCity = customer?.city ?? "荒野之息";
+let customerCity = customer?.city ?? '荒野之息';
 console.log(customerCity); // 荒野之息
 ```

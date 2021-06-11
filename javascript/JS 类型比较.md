@@ -2,9 +2,9 @@
 title: JavaScript [] ==! []
 date: 2020-10-10
 tags:
- - JavaScript
+  - JavaScript
 categories:
- - JS篇
+  - JS篇
 ---
 
 首先，== 的定义是：
@@ -14,8 +14,6 @@ categories:
 <img src="https://pic1.zhimg.com/cf1e9188f66186ecd77fb31ac0c5400f_r.jpg?source=1940ef5c" />
 
 <br />
-
-<!--more-->
 
 GetValue 会获取一个子表达式的值（消除掉左值引用），在表达式 [] == ![] 中，[] 的结果就是一个空数组的引用，而 ![] 就有意思了，它会按照 11.4.9 和 9.2 节的要求得到 false。比较的行为在 11.9.3 节里，所以翻到 11.9.3：
 
@@ -36,5 +34,3 @@ ToPrimitive 默认是调用 toString 方法的（依 8.2.8），于是 ToPrimiti
 结果，[] == ![] 的比较最后落到了 ''==false 上，
 
 按照 11.9.3 中的定义会依分支 5 比较 「ToNumber('')==0」，ToNumber('') 依 9.3.1 等于 0，所以结果为 true。
-
-

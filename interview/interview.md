@@ -22,7 +22,7 @@ Object 的原型对象的 constructor 指向 Object
 
 <img src="https://gitee.com/LuckyChou/blog-images/raw/master/js/prototypeChain.png" />
 
-<!--more-->
+
 
 ## MVVM
 

@@ -13,8 +13,6 @@ JS 中除了基础类型 就是 Object 类型 近期也打算再学习一下 Vue
 
 所以本篇主要是盘点一下 Object 的 api 更详细的文档请移步<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object">MDN</a>
 
-<!--more-->
-
 ### 创建
 
 - 对象字面量
@@ -28,7 +26,7 @@ const obj = {
 
 - Object.create()
 
-使用现有的对象来提供新创建的对象的__proto__
+使用现有的对象来提供新创建的对象的**proto**
 
 - new Object()
 

@@ -1,12 +1,3 @@
----
-title: JavaScript 深浅拷贝
-date: 2020-10-23
-tags:
-  - JavaScript
-categories:
-  - JS篇
----
-
 ## concat / slice
 
 使用 concat / slice 可以实现对一个数组的浅拷贝
@@ -24,8 +15,6 @@ categories:
 然后我们来修改拷贝后的数组
 
 通过原数组是否会被影响 来验证是否为深拷贝
-
-<!--more-->
 
 ```js
 var arr1 = [1, 2, 4, 5, 6, 7, 8, 9];

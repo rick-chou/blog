@@ -11,13 +11,11 @@ categories:
 
 以前只知道 reduce 可以拿来做数组求和
 
-但其实 reduce 的功能远不于此  所以在此做个总结
+但其实 reduce 的功能远不于此 所以在此做个总结
 
 ## 用法
 
 array.reduce(function(accumulator, currentValue, currentIndex, array), initialValue)；
-
-<!--more-->
 
 - accumulator: 累加器 即函数上一次调用的返回值。
 
@@ -41,9 +39,9 @@ array.reduce(function(accumulator, currentValue, currentIndex, array), initialVa
 
 ```js
 //有初始值
-;[1, 2, 3, 4].reduce(function (accumulator, currentValue, currentIndex, array) {
-  return accumulator + currentValue
-}, 10) // 20
+[1, 2, 3, 4].reduce(function (accumulator, currentValue, currentIndex, array) {
+  return accumulator + currentValue;
+}, 10); // 20
 ```
 
 | callback    | accumulator | currentValue      | currentIndex    | array        | return value |
@@ -60,7 +58,7 @@ array.reduce(function(accumulator, currentValue, currentIndex, array), initialVa
 可以做一个简单的数组求和
 
 ```js
-[1, 2, 3, 4].reduce((a, b) => a + b) // 10
+[1, 2, 3, 4].reduce((a, b) => a + b); // 10
 ```
 
 ### case2
@@ -72,24 +70,24 @@ array.reduce(function(accumulator, currentValue, currentIndex, array), initialVa
   [1, 2],
   [3, 4],
   [5, 6],
-].reduce((a, b) => a.concat(b), []) // [1, 2, 3, 4, 5, 6]
+].reduce((a, b) => a.concat(b), []); // [1, 2, 3, 4, 5, 6]
 ```
 
 ### case3
 
 可以计算数组中每个元素出现的次数
 
-思路: 初始值设置为{} 用作我们放结果的容器 然后如果容器中有这个元素 就value+1 没有就初始化key
+思路: 初始值设置为{} 用作我们放结果的容器 然后如果容器中有这个元素 就 value+1 没有就初始化 key
 
 ```js
 [1, 2, 3, 1, 2, 3, 4].reduce((items, item) => {
   if (item in items) {
-    items[item]++
+    items[item]++;
   } else {
-    items[item] = 1
+    items[item] = 1;
   }
-  return items
-}, {}) // {1: 2, 2: 2, 3: 2, 4: 1}
+  return items;
+}, {}); // {1: 2, 2: 2, 3: 2, 4: 1}
 ```
 
 ### case4
@@ -98,17 +96,15 @@ array.reduce(function(accumulator, currentValue, currentIndex, array), initialVa
 
 ```js
 // 方法一
-[
-  1, 2, 3, 1, 2, 3, 4, 4, 5
-].reduce((init, current) => {
-  // 第一次的时候 init为空 将第一个元素push进init 
+[1, 2, 3, 1, 2, 3, 4, 4, 5].reduce((init, current) => {
+  // 第一次的时候 init为空 将第一个元素push进init
   // 然后以后每次的current都在init中找是否已经存在相同的元素
   // 没找到就继续push
   if (init.length === 0 || init.indexOf(current) === -1) {
-    init.push(current)
+    init.push(current);
   }
-  return init
-}, []) //[1, 2, 3, 4, 5]
+  return init;
+}, []); //[1, 2, 3, 4, 5]
 ```
 
 ```js
@@ -119,8 +115,8 @@ array.reduce(function(accumulator, currentValue, currentIndex, array), initialVa
   // 判断以后的每一个元素是否和init中最后一个元素相同
   // 如同不同就继续push
   if (init.length === 0 || init[init.length - 1] !== current) {
-    init.push(current)
+    init.push(current);
   }
-  return init
-}, []) //[1, 2, 3, 4, 5]
+  return init;
+}, []); //[1, 2, 3, 4, 5]
 ```
