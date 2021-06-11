@@ -1,15 +1,6 @@
----
-title: 手动搭建一个 React / Vue 项目
-date: 2021-04-21
-tags:
-  - Tools
-categories:
-  - Tools
----
-
 项目地址：https://github.com/LuckyChou710/ReStart-FE/tree/main/webpack-demo
 
-{% folding yellow, React dev %}
+## React dev
 
 ```js
 const path = require('path');
@@ -44,9 +35,7 @@ module.exports = {
 };
 ```
 
-{% endfolding %}
-
-{% folding yellow, React prod %}
+## React prod
 
 ```js
 const path = require('path');
@@ -82,9 +71,7 @@ module.exports = {
 };
 ```
 
-{% endfolding %}
-
-{% folding yellow, Vue dev %}
+## Vue dev
 
 ```js
 const path = require('path');
@@ -121,9 +108,7 @@ module.exports = {
 };
 ```
 
-{% endfolding %}
-
-{% folding yellow, Vue prod %}
+## Vue prod
 
 ```js
 const path = require('path');
@@ -159,10 +144,7 @@ module.exports = {
 };
 ```
 
-{% endfolding %}
-
-
-{% folding yellow, package.json %}
+## package.json
 
 ```json
 {
@@ -194,5 +176,3 @@ module.exports = {
   }
 }
 ```
-
-{% endfolding %}
