@@ -79,7 +79,7 @@ console.log(Math.abs(a - b - c) < Number.EPSILON); // true
 
 本质上还是 number
 
-## String
+## string
 
 - 无法改变字符串之中的单个字符
 
@@ -142,7 +142,7 @@ username[0] = 'z';
 | undefined / null | boolean  | false                    |
 | 引用类型         | boolean  | true                     |
 
-## Object
+## object
 
 - 对象就是一组键值对（key - value）的集合
 
@@ -152,7 +152,7 @@ username[0] = 'z';
 
 具体可以参考 https://luckychou.gitee.io/FE/JS/object/
 
-## Function
+## function
 
 - 函数是一等公民
 
@@ -160,7 +160,7 @@ username[0] = 'z';
 
 具体可以参考 https://luckychou.gitee.io/FE/JS/function/
 
-## Array
+## array
 
 - 数组是一种特殊的对象
 
@@ -311,7 +311,7 @@ BigInt 可以表示任意大的整数
 
 BigInt 和 Number 不能混合运算
 
-## 四组运算
+### 四组运算
 
 在进行四则运算的时候 都会转成基础数据类型再进行运算
 
