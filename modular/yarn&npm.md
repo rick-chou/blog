@@ -1,7 +1,6 @@
 |              yarn              |                 npm                  | 命令功能                            |
 | :----------------------------: | :----------------------------------: | :---------------------------------- |
 |         `yarn install`         |            `npm install`             | 根据`pack.json`安装项目所需的依赖包 |
-|     `yarn install --flat`      |                 `--`                 | 注释 1                              |
 |  `yarn install --no-lockfile`  |   `npm install --no-package-lock`    | 不读取或生成`yarn.lock`锁文件       |
 | `yarn install --pure-lockfile` |                 `--`                 | 不要生成`yarn.lock`锁文件           |
 |      `yarn add [package]`      |       `npm install [package]`        | 安装需要的依赖包                    |
