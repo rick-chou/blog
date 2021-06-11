@@ -1,19 +1,10 @@
----
-title: JavaScript 事件
-date: 2020-08-11
-tags:
-  - JavaScript
-categories:
-  - JS篇
----
-
 ## JS 事件的三个阶段
 
-### 捕获
+- 捕获
 
-### 目标
+- 目标
 
-### 冒泡
+- 冒泡
 
 ```html
 <!DOCTYPE html>
@@ -82,17 +73,13 @@ categories:
 
 同理 事件捕获 为自顶向下传递事件
 
-<hr />
-
 addEventListener("click",function,"true")方法
 
 若第三参数为 true,则采用事件捕获。若为 false，则采用事件冒泡。
 
 IE 浏览器不支持事件捕获 只支持事件冒泡
 
-## 阻止事件传播
-
-### 阻止冒泡
+## 阻止冒泡
 
 在 W3C 中，使用 stopPropagation()方法
 
