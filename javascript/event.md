@@ -108,15 +108,14 @@ JS 事件委托
 ```html
 <ul class="_ul">
   <input type="text" name="" id="1" />
-  <br />
+
   <input type="text" name="" id="2" />
-  <br />
+
   <input type="text" name="" id="3" />
-  <br />
+
   <input type="text" name="" id="4" />
-  <br />
+
   <input type="text" name="" id="5" />
-  <br />
 </ul>
 ```
 
@@ -125,7 +124,5 @@ document.querySelector('._ul').onchange = (e) => {
   console.log(e.target);
 };
 ```
-
-<br />
 
 <img src="https://gitee.com/LuckyChou/blog-images/raw/master/js/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98.gif" alt="Event Table" style="zoom:80%;" />

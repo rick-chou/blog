@@ -9,19 +9,11 @@ categories:
 
 首先，== 的定义是：
 
-<br />
-
 <img src="https://pic1.zhimg.com/cf1e9188f66186ecd77fb31ac0c5400f_r.jpg?source=1940ef5c" />
-
-<br />
 
 GetValue 会获取一个子表达式的值（消除掉左值引用），在表达式 [] == ![] 中，[] 的结果就是一个空数组的引用，而 ![] 就有意思了，它会按照 11.4.9 和 9.2 节的要求得到 false。比较的行为在 11.9.3 节里，所以翻到 11.9.3：
 
-<br />
-
 <img src="https://pic4.zhimg.com/2d0d90f2d9549f5f13ad53be3f75ace8_r.jpg?source=1940ef5c" />
-
-<br />
 
 在这段算法里，和「[] == ![]」匹配的是条件 7，所以会递归地调用「[] == ToNumber(false)」进行比较。
 
