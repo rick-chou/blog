@@ -4,7 +4,7 @@
 
 - https://icomoon.io/
 
-- https://www.iconfont.cn/
+- https://www.iconfont.cn/ （主推）
 
 在网站内选好想要的 icon 后 点击下载 就可以得到如下文件
 
@@ -54,3 +54,5 @@ export default Iconfont;
 如果原有项目中有 iconfont 的相关文件 为了扩充新字体图标 我们可以登录 https://icomoon.io/
 
 点击 Import Icons 选中 iconfont.svg 再重新下载即可
+
+或者在 iconfont 重新下载即可
