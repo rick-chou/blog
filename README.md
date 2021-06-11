@@ -132,7 +132,7 @@ Egg [https://eggjs.org/zh-cn/](https://eggjs.org/zh-cn/)
 
 cheerio\(爬虫\) [https://github.com/cheeriojs/cheerio/wiki/Chinese-README](https://github.com/cheeriojs/cheerio/wiki/Chinese-README)
 
-### 工程化
+### Modular
 
 Webpack [https://www.webpackjs.com/](https://www.webpackjs.com/)
 
@@ -140,7 +140,7 @@ Vite [https://cn.vitejs.dev/](https://cn.vitejs.dev/)
 
 Snowpack [https://www.snowpack.dev/](https://www.snowpack.dev/)
 
-### 面试
+### Interview
 
 前端面试之道 [http://caibaojian.com/interview-map/](http://caibaojian.com/interview-map/)
 
