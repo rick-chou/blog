@@ -15,11 +15,27 @@
 
 ## Javascript
 
-- [防盗链](javascript/mockjs.md)
-- [prototype](javascript/prototype.md)
-- [bind-call-apply](javascript/bind-call-apply.md)
-- [array](javascript/array.md)
+- [数据类型](javascript/data-type.md)
+- [Array](javascript/array.md)
+- [Function](javascript/function.md)
+- [Object](javascript/object.md)
 - [闭包](javascript/closure.md)
+- [This](javascript/this.md)
+- [JS 事件](javascript/event.md)
+- [ES6 笔记](javascript/es6.md)
+- [Reduce](javascript/reduce.md)
+- [Prototype](javascript/prototype.md)
+- [Bind / Call / Apply](javascript/bind-call-apply.md)
+- [DefineProperty / Proxy](javascript/defineProperty-proxy.md)
+- [防盗链](javascript/referer.md)
+- [模块化](javascript/modular.md)
+- [节流防抖](javascript/debounce-throttle.md)
+- [深拷贝](javascript/deep-clone.md)
+- [JS 错误类](javascript/error.md)
+- [===](javascript/===.md)
+- [浏览器事件循环](javascript/event-loop.md)
+- [可选链操作符 / 空值合并操作符](javascript/operator-chaining&nullish-coalescing-operator.md)
+- [Mock](javascript/mockjs.md)
 
 ## Typescript
 
