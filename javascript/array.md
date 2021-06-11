@@ -47,38 +47,6 @@ console.log(arr); // [ 1, 2, 3, a: 6 ]
 
 但是数组 length 依然为 5 因为 length = Max（key） + 1
 
-## in
-
-也适用于数组 因为它是对象
-
-### for……in
-
-循环遍历数组
-
-```javascript
-var arr = ['a', 'b', 'c', 'd'];
-for (var i in arr) {
-  console.log(arr[i]);
-}
-```
-
-注意 for……in 循环遍历 会获取所有 key 包括非数字 key
-
-## delete
-
-注意
-
-```javascript
-var arr = [1, 2, 3];
-delete arr[0];
-console.log(arr[0]); //undefined
-console.log(arr.length); //3
-```
-
-delete 不会影响数组的长度 只是删除了数组对应 key 的 value 变成 undefined
-
-但是遍历的时候会跳过这个空位 不会产生任何输出
-
 ## 伪数组
 
 伪数组不具备任何数组的方法 如果调用会报错
@@ -116,7 +84,7 @@ delete 不会影响数组的长度 只是删除了数组对应 key 的 value 变
 例如 快速生成一个 1-10 的数组
 
 ```javascript
-Array.from(Array(10), (val, index) => index + 1); // [1,2....,10]
+Array.from({ length: 10 }, (val, index) => index + 1); // [1,2....,10]
 ```
 
 因为伪数组也有 length 属性 所以我们也可以改写成如下
