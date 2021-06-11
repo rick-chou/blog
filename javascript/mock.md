@@ -1,13 +1,4 @@
----
-title: JavaScript Mock.js
-date: 2021-04-12
-tags:
-  - JavaScript
-categories:
-  - JS篇
----
-
-### 生成随机 json
+## 生成随机 json
 
 ```js
 import Mock from 'mockjs';
@@ -30,7 +21,7 @@ Mock.mock({
 });
 ```
 
-### 拦截请求 （不会真的发送请求）
+## 拦截请求 （不会真的发送请求）
 
 ```js
 import Mock from 'mockjs';
