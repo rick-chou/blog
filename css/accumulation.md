@@ -1,24 +1,16 @@
-## 锚点链接平滑滚动
-
-```js
-$(function () {
-  $('a').click(function () {
-    //根据a标签的href转换为id选择器，获取id元素所处的位置，并高度减50px（这里根据需要自由设置）
-    $('html,body').animate(
-      { scrollTop: $($(this).attr('href')).offset().top - 50 },
-      1000
-    );
-  });
-});
-```
-
 ## 顶部导航栏吸附
 
-可以用 position：sticky
+不考虑兼容性的话可以使用 sticky 属性
+
+`position：sticky`
 
 必须给一个 top 值 确定最终吸附的位置
 
 可以配合背景颜色 或 z-index 置顶 来达到效果
+
+如果考虑兼容性的话 需要使用 将元素改为 absolute 然后用 offset 计算元素距离页面顶部的距离
+
+最后添加滚动事件 动态修改元素的 top 属性
 
 ## 美化导航栏样式
 
@@ -69,26 +61,3 @@ $(function () {
 `[input].select()`
 
 `document.execCommand("copy")`
-
-## 无限滚动的列表
-
-基本思路
-
-需要两个一模一样的容器 然后用 animation 动画 在第一个容器结束时 第二个容器开始时 的 瞬间
-
-重叠到 动画结束 闪动的瞬间 即可
-
-```css
-@keyframes picmove {
-  from {
-    transform: translate(0);
-  }
-  to {
-    transform: translate(-1126px);
-  }
-}
-
-.menu_box_con {
-  animation: picmove 18s linear infinite forwards;
-}
-```
