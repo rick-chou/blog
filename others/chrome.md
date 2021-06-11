@@ -18,7 +18,10 @@ open -n -a '/Applications/Google Chrome.app' --args --user-data-dir="/tmp/chrome
 
 浏览器发送请求 但是无法带上 cookie 导致 页面一直重定向
 
-1、在谷歌浏览器中搜索 chrome://flags/
-2、在出现的页面搜索框中搜索 SameSite
-3、把第一个改为 disable
-4、然后重启浏览器
+(1) 在谷歌浏览器中搜索 chrome://flags/
+
+(2) 在出现的页面搜索框中搜索 SameSite
+
+(3) 把第一个改为 disable
+
+(4) 然后重启浏览器
