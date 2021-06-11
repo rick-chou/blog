@@ -1,3 +1,13 @@
 {
-  "plugins": ["back-to-top-button"]
+  "plugins": [
+    "hide-element",
+    "back-to-top-button",
+    "splitter",
+    "pageview-count"
+  ],
+  "pluginsConfig": {
+    "hide-element": {
+      "elements": [".gitbook-link"]
+    }
+  }
 }
