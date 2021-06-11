@@ -12,7 +12,7 @@ npm config set registry https://registry.npm.taobao.org
 
 ## Redux 简介
 
-![](https://cdn.nlark.com/yuque/0/2021/png/12573487/1620146663172-fb0a18e6-e322-466a-addb-35423cd894ab.png#align=left&display=inline&height=594&margin=%5Bobject%20Object%5D&originHeight=594&originWidth=1078&size=0&status=done&style=none&width=1078)
+![](https://gitee.com/LuckyChou/blog-images/raw/master/react/redux.png)
 
 Redux 是一套管理公共状态的第三方工具 虽然不是 React 官方开发 但已经成为 React 管理状态事实上的标准
 
@@ -40,7 +40,7 @@ Redux 是一套管理公共状态的第三方工具 虽然不是 React 官方开
 
 上面写了借书有关的信息 action
 
-![](https://cdn.nlark.com/yuque/0/2021/png/12573487/1620146663168-d8f141a4-b2ef-46ae-b9a1-dc19ba1e5e44.png#align=left&display=inline&height=569&margin=%5Bobject%20Object%5D&originHeight=569&originWidth=1016&size=0&status=done&style=none&width=1016)
+![](https://gitee.com/LuckyChou/blog-images/raw/master/react/redux-store.png)
 
 ### React Components
 
