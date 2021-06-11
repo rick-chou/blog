@@ -10,15 +10,15 @@
 
 - accumulator: 累加器 即函数上一次调用的返回值
 
-第一次的时候为 initialValue || arr[0]
+  第一次的时候为 initialValue || arr[0]
 
 - currentValue: 数组中函数正在处理的的值
 
-第一次的时候 initialValue || arr[1]
+  第一次的时候 initialValue || arr[1]
 
 - currentIndex: (可选)数据中正在处理的元素索引
 
-如果提供了 initialValue 从 0 开始 否则从 1 开始
+  如果提供了 initialValue 从 0 开始 否则从 1 开始
 
 - array: (可选)调用 reduce 的数组
 
