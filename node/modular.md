@@ -19,29 +19,3 @@ node 模块化采用 commonjs 的方式 即 require / module.export 的形式
 ## 循环引用
 
 TODO
-
-## 模块导入
-
-### 有后缀名
-
-### 无后缀名
-
-按如下循序查找
-
-- 把 x 当作文件
-
-  - x
-
-  - x.js
-
-  - x.json
-
-  - x.node
-
-- 把 x 当作文件夹
-
-  - x/index.js
-
-  - x/index.json
-
-  - x/index.node
