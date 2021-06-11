@@ -1,12 +1,3 @@
----
-title: JavaScript defineProperty 与 proxy
-date: 2020-10-23
-tags:
-  - JS
-categories:
-  - JS篇
----
-
 我们可以对一个对象进行赋值和取值
 
 但是如果我们在赋值或取值的时候 需要进行一些操作
