@@ -1,10 +1,14 @@
-# array
+数组的本质是一个对象 我们使用 typeof 关键字便可验证这一点
 
-我们知道数组的本质是一个对象 假设我们有以下数组 来获取它的键名试试
+```js
+typeof []; // object
+```
+
+假设我们有以下数组 来获取它的键名试试
 
 ```javascript
-var arr = ['a', 'b', 'c', 'd']
-console.log(Object.keys(arr))
+var arr = ['a', 'b', 'c', 'd'];
+console.log(Object.keys(arr));
 
 //[ '0', '1', '2', '3' ]
 ```
@@ -15,17 +19,17 @@ console.log(Object.keys(arr))
 
 本质上是 Object\[key\]的形式获取了 value
 
-而 arr\[0\]会被转换成 arr\['0'\] 因为对象的键名都是string类型
+而 arr\[0\]会被转换成 arr\['0'\] 因为对象的键名都是 string 类型
 
 ## length 属性
 
-我们思考一个问题 arr.length得到的一定是数组的实际长度吗
+我们思考一个问题 arr.length 得到的一定是数组的实际长度吗
 
 ```javascript
-var arr = ['a', 'b', 'c', 'd']
-console.log(arr.length) //4
-arr[100] = 'z'
-console.log(arr.length) //101
+var arr = ['a', 'b', 'c', 'd'];
+console.log(arr.length); //4
+arr[100] = 'z';
+console.log(arr.length); //101
 ```
 
 **length 属性永远比 key 最大值 大一个**
@@ -33,10 +37,10 @@ console.log(arr.length) //101
 注意 因为数组本质上是一个对象 所以我们可以进行如下赋值
 
 ```javascript
-const arr = [1,2,3,4,5];
-arr['a'] = '6'
+const arr = [1, 2, 3, 4, 5];
+arr['a'] = '6';
 
-console.log(arr) // [ 1, 2, 3, a: 6 ]
+console.log(arr); // [ 1, 2, 3, a: 6 ]
 ```
 
 上述操作会增加一个元素 a
@@ -52,9 +56,9 @@ console.log(arr) // [ 1, 2, 3, a: 6 ]
 循环遍历数组
 
 ```javascript
-var arr = ['a', 'b', 'c', 'd']
+var arr = ['a', 'b', 'c', 'd'];
 for (var i in arr) {
-  console.log(arr[i])
+  console.log(arr[i]);
 }
 ```
 
@@ -65,10 +69,10 @@ for (var i in arr) {
 注意
 
 ```javascript
-var arr = [1, 2, 3]
-delete arr[0]
-console.log(arr[0]) //undefined
-console.log(arr.length) //3
+var arr = [1, 2, 3];
+delete arr[0];
+console.log(arr[0]); //undefined
+console.log(arr.length); //3
 ```
 
 delete 不会影响数组的长度 只是删除了数组对应 key 的 value 变成 undefined
@@ -81,8 +85,8 @@ delete 不会影响数组的长度 只是删除了数组对应 key 的 value 变
 
 常见的伪数组有
 
-* 函数内部的arguments
-* 通过选择器获取到的nodeList
+- 函数内部的 arguments
+- 通过选择器获取到的 nodeList
 
 但是伪数组有 length 属性
 
@@ -92,7 +96,7 @@ delete 不会影响数组的长度 只是删除了数组对应 key 的 value 变
 
 `Array.from ( arrayLike )`
 
-## 数组API
+## 数组 API
 
 ### 静态方法
 
@@ -100,25 +104,25 @@ delete 不会影响数组的长度 只是删除了数组对应 key 的 value 变
 
 方法从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例
 
-* arrayLike
-  * 想要转换成数组的伪数组对象或可迭代对象。
-* mapFn 可选
-  * 如果指定了该参数，新数组中的每个元素会执行该回调函数。
-* thisArg 可选
-  * 可选参数，执行回调函数 mapFn 时 this 对象。
+- arrayLike
+  - 想要转换成数组的伪数组对象或可迭代对象。
+- mapFn 可选
+  - 如果指定了该参数，新数组中的每个元素会执行该回调函数。
+- thisArg 可选
+  - 可选参数，执行回调函数 mapFn 时 this 对象。
 
 功能：将类数组变成真正的数组 快速生成有序数组
 
-例如 快速生成一个1-10的数组
+例如 快速生成一个 1-10 的数组
 
 ```javascript
 Array.from(Array(10), (val, index) => index + 1); // [1,2....,10]
 ```
 
-因为伪数组也有length属性 所以我们也可以改写成如下
+因为伪数组也有 length 属性 所以我们也可以改写成如下
 
 ```javascript
-Array.from({ length: 10 }, (val, index) => index + 1)
+Array.from({ length: 10 }, (val, index) => index + 1);
 ```
 
 #### Array.isArray\(\)
@@ -135,53 +139,54 @@ Array.from({ length: 10 }, (val, index) => index + 1)
 
 ```javascript
 // 浅拷贝 只拷贝最外层
-const NewArray = orgArray.concat()
+const NewArray = orgArray.concat();
 ```
 
 #### arr.every\(callback\(element\[, index\[, array\]\]\)\[, thisArg\]\)
 
-* callback
+- callback
 
   用来测试每个元素的函数，它可以接收三个参数：
 
-  * element
+  - element
 
     用于测试的当前值。
 
-  * index可选
+  - index 可选
 
     用于测试的当前值的索引。
 
-  * array可选
+  - array 可选
 
     调用 every 的当前数组。
 
 返回值: 如果回调函数的每一次返回都为 truthy 值，返回 true ，否则返回 false。
 
 ```javascript
-[1,2,3,4,5].every(x => x > 0) // true
-[1,2,3,4,5].every(x => x > 1) // false
+[1, 2, 3, 4, 5]
+  .every((x) => x > 0) // true
+  [(1, 2, 3, 4, 5)].every((x) => x > 1); // false
 ```
 
 #### arr.some\(\)
 
-同every
+同 every
 
-返回值: 有一个通过就返回true
+返回值: 有一个通过就返回 true
 
 #### arr.fill\(\)
 
 参数: arr.fill\(value\[, start\[, end\]\]\)
 
-* value
+- value
 
   用来填充数组元素的值。
 
-* start 可选
+- start 可选
 
-  起始索引，默认值为0。
+  起始索引，默认值为 0。
 
-* end 可选
+- end 可选
 
   终止索引，默认值为 this.length。
 
@@ -189,7 +194,7 @@ const NewArray = orgArray.concat()
 
 ```javascript
 // 可用于初始化数组
-Array(3).fill(0);   // [0, 0, 0]
+Array(3).fill(0); // [0, 0, 0]
 ```
 
 #### arr.filter\(callback\(element\[, index\[, array\]\]\)\[, thisArg\]\)
@@ -197,8 +202,9 @@ Array(3).fill(0);   // [0, 0, 0]
 返回值: 一个新的、由通过测试的元素组成的数组，如果没有任何数组元素通过测试，则返回空数组。
 
 ```javascript
-[1,2,3,4,5].filter(x => x > 1) // [2, 3, 4, 5]
-[1,2,3,4,5].filter(x => x > 6) // []
+[1, 2, 3, 4, 5]
+  .filter((x) => x > 1) // [2, 3, 4, 5]
+  [(1, 2, 3, 4, 5)].filter((x) => x > 6); // []
 ```
 
 #### arr.find\(callback\[, thisArg\]\)
@@ -206,19 +212,20 @@ Array(3).fill(0);   // [0, 0, 0]
 返回值: 数组中**第一个**满足所提供测试函数的元素的值，否则返回 undefined。
 
 ```javascript
-[1,2,3,4,5].find(x => x > 6) //undefined
-[1,2,3,4,5].find(x => x > 2) //3
+[1, 2, 3, 4, 5]
+  .find((x) => x > 6) //undefined
+  [(1, 2, 3, 4, 5)].find((x) => x > 2); //3
 ```
 
 #### arr.findIndex\(\)
 
-同find 区别在于返回值
+同 find 区别在于返回值
 
 数组中通过提供测试函数的**第一个**元素的索引。否则，返回-1。
 
 #### arr.flat\(\[depth\]\)
 
-* depth: 深度 默认为1
+- depth: 深度 默认为 1
 
 将数组扁平化
 
@@ -234,7 +241,7 @@ flatMap\(\) = map\(\) + flat\(1\)
 
 #### arr.map\(\)
 
-效果同forEach\(\) 区别在于map\(\)有返回值
+效果同 forEach\(\) 区别在于 map\(\)有返回值
 
 返回值: 原数组每个元素执行回调函数的结果组成的新数组
 
@@ -243,22 +250,22 @@ flatMap\(\) = map\(\) + flat\(1\)
 返回值: boolean
 
 ```javascript
-[1, 2, 3].includes(2);     // true
-[1, 2, 3].includes(4);     // false
+[1, 2, 3].includes(2); // true
+[1, 2, 3].includes(4); // false
 ```
 
 #### arr.indexOf\(searchElement\[, fromIndex\]\)
 
-* fromIndex\(可选\)
-  * 指定开始查找的位置
+- fromIndex\(可选\)
+  - 指定开始查找的位置
 
 返回值: 查找元素的索引下标 若找不到则为-1
 
 ```javascript
 var array = [2, 5, 9];
-array.indexOf(2);     // 0
-array.indexOf(7);     // -1
-array.indexOf(9, 2);  // 2
+array.indexOf(2); // 0
+array.indexOf(7); // -1
+array.indexOf(9, 2); // 2
 array.indexOf(2, -1); // -1
 array.indexOf(2, -3); // 0
 ```
@@ -267,28 +274,28 @@ array.indexOf(2, -3); // 0
 
 ```javascript
 var a = ['Wind', 'Rain', 'Fire'];
-var myVar1 = a.join();      // myVar1的值变为"Wind,Rain,Fire"
-var myVar2 = a.join(', ');  // myVar2的值变为"Wind, Rain, Fire"
+var myVar1 = a.join(); // myVar1的值变为"Wind,Rain,Fire"
+var myVar2 = a.join(', '); // myVar2的值变为"Wind, Rain, Fire"
 var myVar3 = a.join(' + '); // myVar3的值变为"Wind + Rain + Fire"
-var myVar4 = a.join('');    // myVar4的值变为"WindRainFire"
+var myVar4 = a.join(''); // myVar4的值变为"WindRainFire"
 ```
 
 #### arr.reduce\(callback\(accumulator, currentValue\[, index\[, array\]\]\)\[, initialValue\]\)
 
-* accumulator: 累加器 即函数上一次调用的返回值。
+- accumulator: 累加器 即函数上一次调用的返回值。
 
   第一次的时候为 initialValue \|\| arr\[0\]
 
-* currentValue: 数组中函数正在处理的的值。
+- currentValue: 数组中函数正在处理的的值。
 
   第一次的时候 initialValue \|\| arr\[1\]
 
-* currentIndex: \(可选\)数据中正在处理的元素索引
+- currentIndex: \(可选\)数据中正在处理的元素索引
 
   如果提供了 initialValue 从 0 开始 否则从 1 开始
 
-* array: \(可选\)调用 reduce 的数组
-* initialValue: \(可选\)累加器的初始值。没有时 累加器第一次的值为 currentValue
+- array: \(可选\)调用 reduce 的数组
+- initialValue: \(可选\)累加器的初始值。没有时 累加器第一次的值为 currentValue
 
   注意: 在对没有设置初始值的空数组调用 reduce 方法时会报错。
 
@@ -299,16 +306,16 @@ var myVar4 = a.join('');    // myVar4的值变为"WindRainFire"
 ```javascript
 //有初始值
 [1, 2, 3, 4].reduce(function (accumulator, currentValue, currentIndex, array) {
-  return accumulator + currentValue
-}, 10) // 20
+  return accumulator + currentValue;
+}, 10); // 20
 ```
 
-| callback | accumulator | currentValue | currentIndex | array | return value |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| first call | 10\(初始值\) | 1\(数组第一个元素\) | 0\(有初始值为 0\) | \[1, 2, 3, 4\] | 11 |
-| second call | 11 | 2 | 1 | \[1, 2, 3, 4\] | 13 |
-| third call | 13 | 3 | 2 | \[1, 2, 3, 4\] | 16 |
-| fourth call | 16 | 4 | 3 | \[1, 2, 3, 4\] | 20 |
+| callback    | accumulator  | currentValue        | currentIndex      | array          | return value |
+| :---------- | :----------- | :------------------ | :---------------- | :------------- | :----------- |
+| first call  | 10\(初始值\) | 1\(数组第一个元素\) | 0\(有初始值为 0\) | \[1, 2, 3, 4\] | 11           |
+| second call | 11           | 2                   | 1                 | \[1, 2, 3, 4\] | 13           |
+| third call  | 13           | 3                   | 2                 | \[1, 2, 3, 4\] | 16           |
+| fourth call | 16           | 4                   | 3                 | \[1, 2, 3, 4\] | 20           |
 
 #### arr.reverse\(\)
 
@@ -316,21 +323,21 @@ var myVar4 = a.join('');    // myVar4的值变为"WindRainFire"
 
 #### arr.slice\(\[begin\[, end\]\]\)
 
-若省略 则默认从0开始
+若省略 则默认从 0 开始
 
 返回值: 一个新的数组实例\(不会修改原数组\)
 
 功能: 切割数组/浅拷贝/转化为真正的数组
 
 ```javascript
-Array.prototype.slice.call(arguments)
+Array.prototype.slice.call(arguments);
 ```
 
 #### arr.sort\(\[compareFunction\]\)
 
 ```javascript
-var numbers = [4, 2, 5, 1, 3]; 
-numbers.sort((a, b) => a - b); // 升序 
+var numbers = [4, 2, 5, 1, 3];
+numbers.sort((a, b) => a - b); // 升序
 numbers.sort((a, b) => b - a); // 降序
 ```
 
@@ -338,19 +345,19 @@ numbers.sort((a, b) => b - a); // 降序
 
 #### array.splice\(start\[, deleteCount\[, item1\[, item2\[, ...\]\]\]\]\)
 
-* deleteCount\(可选\)
+- deleteCount\(可选\)
 
   整数，表示要移除的数组元素的个数。
 
-  * `>0 删除元素`
-  * `<0 添加元素`
+  - `>0 删除元素`
+  - `<0 添加元素`
 
 #### 增加/删除
 
-* pop\(\) 删除最后一个元素 返回值为被删除元素
-* push\(\) 在数组最后添加一个元素 返回值为新数组的长度
-* shift\(\) 删除第一个元素 返回值为被删除的元素
-* unshift\(\) 在数组开头添加一个元素 返回值为新数组的长度
+- pop\(\) 删除最后一个元素 返回值为被删除元素
+- push\(\) 在数组最后添加一个元素 返回值为新数组的长度
+- shift\(\) 删除第一个元素 返回值为被删除的元素
+- unshift\(\) 在数组开头添加一个元素 返回值为新数组的长度
 
 ## 总结
 
@@ -360,22 +367,22 @@ numbers.sort((a, b) => b - a); // 降序
 
 ```javascript
 // 升序
-arr.sort((x,y) => x-y)
+arr.sort((x, y) => x - y);
 // 降序
-arr.sort((x,y) => y-x)
+arr.sort((x, y) => y - x);
 ```
 
 ## 数组反转
 
 ```javascript
 // 实现一
-arr.reverse()
+arr.reverse();
 
 // 实现二
 arr.reduce((prev, curr) => {
-    prev.unshift(curr);
-    return prev;
-  }, [])
+  prev.unshift(curr);
+  return prev;
+}, []);
 ```
 
 ## 数组去重
@@ -390,7 +397,7 @@ arr.reduce((prev, curr) => {
 
 ### 实现三
 
-双重for循环
+双重 for 循环
 
 ### 比较
 
@@ -398,53 +405,52 @@ arr.reduce((prev, curr) => {
 
 ```javascript
 function getArr(arr) {
-  const timer = 10000
+  const timer = 10000;
   for (let i = 0; i < timer; i++) {
-    arr[i] = Math.floor(Math.random() * 100)
+    arr[i] = Math.floor(Math.random() * 100);
   }
-  return arr
+  return arr;
 }
 
-let arr1 = []
-let arr2 = []
-let arr3 = []
+let arr1 = [];
+let arr2 = [];
+let arr3 = [];
 
 // 生成了 3个 数组长度为timer的数组
-arr1 = getArr(arr1)
-arr2 = getArr(arr2)
-arr3 = getArr(arr3)
-
+arr1 = getArr(arr1);
+arr2 = getArr(arr2);
+arr3 = getArr(arr3);
 
 // case 1
-console.time('case1')
-arr = [...new Set(arr1)]
-console.timeEnd('case1')
+console.time('case1');
+arr = [...new Set(arr1)];
+console.timeEnd('case1');
 
 // case 2
-console.time('case2')
-arr2 = arr2.sort((x, y) => x - y)
-const res2 = []
+console.time('case2');
+arr2 = arr2.sort((x, y) => x - y);
+const res2 = [];
 for (let i = 0; i < arr2.length; i++) {
   if (arr2[i] !== arr2[i + 1]) {
-    res2.push(arr2[i])
+    res2.push(arr2[i]);
   }
 }
-console.timeEnd('case2')
+console.timeEnd('case2');
 
 // case3
-console.time('case3')
-const res3 = []
+console.time('case3');
+const res3 = [];
 for (let i = 0; i < arr3.length; i++) {
   for (let j = i + 1; j < arr3.length; j++) {
     if (arr3[i] == arr3[j]) {
-      break
+      break;
     }
     if (j == arr3.length - 1) {
-      res3.push(arr3[i])
+      res3.push(arr3[i]);
     }
   }
 }
-console.timeEnd('case3')
+console.timeEnd('case3');
 
 // output
 // case1: 0.467ms
@@ -452,7 +458,7 @@ console.timeEnd('case3')
 // case3: 11.034ms
 ```
 
-可见 利用ES6的Set是效率最高的一种方法
+可见 利用 ES6 的 Set 是效率最高的一种方法
 
 ## 数组乱序
 
@@ -461,21 +467,21 @@ console.timeEnd('case3')
 取两个数组长度范围内的下标 交换位置
 
 ```javascript
-var arr = [1, 2, 3, 4, 5, 6, 7, 8]
+var arr = [1, 2, 3, 4, 5, 6, 7, 8];
 
 function random(arr) {
-  const timer = 1000
-  var x, y, temp
+  const timer = 1000;
+  var x, y, temp;
   for (let i = 0; i < timer; i++) {
-    x = Math.floor(Math.random() * arr.length)
-    y = Math.floor(Math.random() * arr.length)
-    temp = arr[x]
-    arr[x] = arr[y]
-    arr[y] = temp
+    x = Math.floor(Math.random() * arr.length);
+    y = Math.floor(Math.random() * arr.length);
+    temp = arr[x];
+    arr[x] = arr[y];
+    arr[y] = temp;
     // ES6 写法
     // ;[arr[x], arr[y]] = [arr[y], arr[x]]
   }
-  return arr
+  return arr;
 }
 ```
 
@@ -494,18 +500,16 @@ function random(arr) {
 递归调用
 
 ```javascript
-var arr = [1, [1, 2, 3], 4, 5]
-var res = []
+var arr = [1, [1, 2, 3], 4, 5];
+var res = [];
 function flat(arr) {
   // case 1
   // return arr.flat()
-
   // case 2
   // return arr
   //   .toString()
   //   .split(',')
   //   .map((item) => +item)
-
   // case 3
   // for (var i = 0; i < arr.length; i++) {
   //   if (arr[i] instanceof Array) {
@@ -514,8 +518,6 @@ function flat(arr) {
   //     res.push(arr[i])
   //   }
   // }
-
   // return res
 }
 ```
-
