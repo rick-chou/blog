@@ -1,12 +1,3 @@
----
-title: JavaScript 函数节流 防抖
-date: 2021-03-31
-tags:
-  - JavaScript
-categories:
-  - JS
----
-
 ## 函数防抖
 
 ```js
