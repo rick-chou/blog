@@ -5,7 +5,7 @@
 ## Html
 
 - [Iconfont](html/iconfont.md)
-- [url 地址到最终页面渲染完成 发生了什么](html/url.md)
+- [URL 地址到最终页面渲染完成](html/url.md)
 - [Video](html/video.md)
 
 ## CSS
@@ -83,3 +83,10 @@
 - [Vue](interview/vue.md)
 - [Interview](interview/interview.md)
 - [Question](interview/question.md)
+
+## Other
+
+- [Chrome 配置跨域](others/chrome.md)
+- [Git](others/git.md)
+- [Oh-My-ZSH](others/oh-my-zsh.md)
+- [Vim](others/vim.md)
