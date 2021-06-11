@@ -1,13 +1,3 @@
----
-title: JavaScript Function
-date: 2020-10-25
-tags:
- - JavaScript
-categories:
- - JS篇
----
-## Function
-
 - 函数是一等公民
 
   - 由于函数与其他数据类型地位平等，所以在 js 中又称函数为第一公民
@@ -20,9 +10,7 @@ categories:
 
   - var foo = function() {......}
 
-<!-- more -->
-
-### 函数的属性和方法
+## 函数的属性和方法
 
 name 返回函数的名字
 
@@ -31,11 +19,11 @@ length 返回函数预计参数的个数
 ```js
 const foo = function (name) {};
 
-console.log(foo.name);  // foo
+console.log(foo.name); // foo
 console.log(foo.length); // 1
 ```
 
-### 函数作用域
+## 函数作用域
 
 ES5 中 js 只有两种作用域
 
@@ -51,19 +39,19 @@ ES5 中 js 只有两种作用域
 
 ```js
 // 代码块
-printf()
+printf();
 function printf() {
-  console.log(a)
-  var a = 123
+  console.log(a);
+  var a = 123;
 }
 
 // 解析成
 function printf() {
-  var a = undefined
-  console.log(a)
-  a = 123
+  var a = undefined;
+  console.log(a);
+  a = 123;
 }
-printf()
+printf();
 ```
 
 - 函数外部无法访问函数内部的变量
@@ -80,13 +68,13 @@ printf()
 
   - `arguments.length`可以获取参数的个数
 
-### 闭包
+## 闭包
 
 闭包就是将函数内部和函数外部连接起来的一座桥梁
 
 - 可以延长变量的作用域
 
-### 立即调用函数（IIFE）
+## 立即调用函数（IIFE）
 
 - 函数是一个独立的作用域 可以解决多个 js 文件之间变量名冲突的问题
 
@@ -98,8 +86,8 @@ printf()
 
   ```js
   //形式一
-  ;(function() {})()
+  (function () {})();
 
   //形式二
-  ;(function() {})()
+  (function () {})();
   ```
