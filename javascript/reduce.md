@@ -1,12 +1,3 @@
----
-title: JavaScript Array.prototype.reduce
-date: 2020-10-24
-tags:
-  - JS
-categories:
-  - JS篇
----
-
 ## 前言
 
 以前只知道 reduce 可以拿来做数组求和
