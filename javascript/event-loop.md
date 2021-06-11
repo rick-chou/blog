@@ -1,14 +1,3 @@
----
-title: JavaScript 轮询机制
-date: 2020-06-16
-tags:
-  - JavaScript
-categories:
-  - JS篇
----
-
-## JavaScript 轮询机制
-
 首先，我们来分析一段代码
 
 ```js
@@ -48,23 +37,23 @@ setTimeout
 
 为什么会有这种现象呢
 
-### 引入：
+## 引入
 
 - Event Loop
 
 - Task / MicroTask
 
-#### Event Loop
+## Event Loop
 
 Event Loop 就是事件循环，我们都知道 JavaScript 是一门单线程语言，而例如 Ajax 请求都是耗时的操作，为了阻止页面冻结的情况，JavaScript 有异步的解决方案，而 Event Loop 就是一种解决 JavaScript 单线程运行时不会阻塞的一种机制，也就是上面提到异步的原理。
 
-#### Task
+## Task
 
 Task 队列又称宏任务队列，宏任务队列可以有多个，所有的 JavaScript 主线程上的代码都在**第一个**宏任务队列上
 
 宏任务队列主要是：整体代码`script`，`setTimeout`，`setInterval`、`I/O`、`UI render`
 
-#### MicroTask
+## MicroTask
 
 MicroTask 队列又称微任务队列，注意，和宏任务队列不同的是，微任务队列只有一个。
 
@@ -74,7 +63,7 @@ MicroTask 队列又称微任务队列，注意，和宏任务队列不同的是�
 
 ---
 
-### JS 轮询机制
+## JS 轮询机制
 
 JS 的执行机制(一)：
 
