@@ -1,12 +1,3 @@
----
-title: JavaScript 常见错误类
-date: 2020-10-25
-tags:
-  - JavaScript
-categories:
-  - JS篇
----
-
 ## 背景
 
 最近 在做 JS 笔试题的时候 一直分不清楚每个错误类 所以在查阅资料后 写下了这篇笔记
