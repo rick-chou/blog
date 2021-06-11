@@ -1,13 +1,3 @@
----
-title: JavaScript 重学ES6
-date: 2021-04-20
-tags:
-  - JavaScript
-categories:
-  - JS篇
-description: 重新看了一遍阮一峰老师的 ES6 摘录一些收获
----
-
 ## let const
 
 ### globalThis 顶级对象
@@ -464,4 +454,3 @@ var clock = function* () {
   }
 };
 ```
-
