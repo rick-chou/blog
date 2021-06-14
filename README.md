@@ -20,9 +20,7 @@
 
 **• 它解决了什么问题？**
 
-## Done
-
-### CSS
+## CSS
 
 Sass [https://www.sass.hk/](https://www.sass.hk/)
 
@@ -36,7 +34,9 @@ Tailwind [https://www.tailwindcss.cn/](https://www.tailwindcss.cn/)
 
 🧐 [https://2020.stateofcss.com/en-US/report/](https://2020.stateofcss.com/en-US/report/)
 
-### JS
+## JS
+
+黑马视频 [https://www.bilibili.com/video/BV11t4y1i7ht?p=1] (https://www.bilibili.com/video/BV11t4y1i7ht?p=1)
 
 阮一峰 ECMAScript 6 入门 [https://www.bookstack.cn/read/es6-3rd/sidebar.md](https://www.bookstack.cn/read/es6-3rd/sidebar.md)
 
@@ -54,9 +54,11 @@ Mock 数据 [http://mockjs.com/](http://mockjs.com/)
 
 🎃 [https://2020.stateofjs.com/zh-Hans/](https://2020.stateofjs.com/zh-Hans/)
 
-### TS
+## TS
 
-官网 [https://www.tslang.cn/](https://www.tslang.cn/)
+拉钩教育视频 [https://www.bilibili.com/video/BV14N411Q7WY?p=1](https://www.bilibili.com/video/BV14N411Q7WY?p=1)
+
+官方文档 [https://www.tslang.cn/](https://www.tslang.cn/)
 
 TS 入门教程 [https://ts.xcatliu.com/introduction/what-is-typescript.html](https://ts.xcatliu.com/introduction/what-is-typescript.html)
 
@@ -64,9 +66,13 @@ TS 入门教程 [https://ts.xcatliu.com/introduction/what-is-typescript.html](ht
 
 TS 学习笔记 [https://juejin.cn/post/6872111128135073806](https://juejin.cn/post/6872111128135073806)
 
-### React
+## React
 
-React [https://react.docschina.org/](https://react.docschina.org/)
+小马哥视频 [https://pan.baidu.com/s/1JRzTEtjOhO4qb4rN5MZhaw](https://pan.baidu.com/s/1JRzTEtjOhO4qb4rN5MZhaw) 密码: fi34
+
+极客 React [https://pan.baidu.com/s/1f0DRlVdcApdrbwID69vePw](https://pan.baidu.com/s/1f0DRlVdcApdrbwID69vePw) 密码: f1bq
+
+官方文档 [https://react.docschina.org/](https://react.docschina.org/)
 
 Redux [https://www.redux.org.cn/](https://www.redux.org.cn/)
 
@@ -83,29 +89,33 @@ Dva [https://dvajs.com/](https://dvajs.com/)
 React-Router
 
 - [https://react-guide.github.io/react-router-cn/index.html](https://react-guide.github.io/react-router-cn/index.html)
+
 - [https://reactrouter.com/web/guides/quick-start](https://reactrouter.com/web/guides/quick-start)
 
-Next （SSR 同构） [https://www.nextjs.cn/](https://www.nextjs.cn/)
+Next [https://www.nextjs.cn/](https://www.nextjs.cn/)
 
 Umi [https://umijs.org/zh-CN](https://umijs.org/zh-CN)
 
-### Vue
+## Vue
 
-Vue [https://cn.vuejs.org/](https://cn.vuejs.org/)
+小码哥视频 [https://www.bilibili.com/video/BV15741177Eh?from=search&seid=4113181871041307064] (https://www.bilibili.com/video/BV15741177Eh?from=search&seid=4113181871041307064)
+
+官方文档 [https://cn.vuejs.org/](https://cn.vuejs.org/)
 
 Vue-Router [https://router.vuejs.org/zh/](https://router.vuejs.org/zh/)
 
 Vuex [https://vuex.vuejs.org/zh/](https://vuex.vuejs.org/zh/)
 
-SSR [https://zh.nuxtjs.org/](https://zh.nuxtjs.org/)
+Nuxt [https://zh.nuxtjs.org/](https://zh.nuxtjs.org/)
 
 Awesome（Vue 精选） [https://github.com/vuejs/awesome-vue](https://github.com/vuejs/awesome-vue)
 
-### UI
+## UI
 
 Icon
 
 - [https://www.iconfont.cn/](https://www.iconfont.cn/)
+
 - [https://icomoon.io/](https://icomoon.io/)
 
 Antd [https://ant.design/index-cn](https://ant.design/index-cn)
@@ -122,7 +132,7 @@ Plyr（视频播放器） [https://plyr.io/](https://plyr.io/)
 
 Filepond \(文件上传\) [https://pqina.nl/filepond/](https://pqina.nl/filepond/)
 
-### Node
+## Node
 
 Express [http://expressjs.com/](http://expressjs.com/)
 
@@ -132,7 +142,7 @@ Egg [https://eggjs.org/zh-cn/](https://eggjs.org/zh-cn/)
 
 cheerio\(爬虫\) [https://github.com/cheeriojs/cheerio/wiki/Chinese-README](https://github.com/cheeriojs/cheerio/wiki/Chinese-README)
 
-### Modular
+## Modular
 
 Webpack [https://www.webpackjs.com/](https://www.webpackjs.com/)
 
@@ -140,7 +150,15 @@ Vite [https://cn.vitejs.dev/](https://cn.vitejs.dev/)
 
 Snowpack [https://www.snowpack.dev/](https://www.snowpack.dev/)
 
-### Interview
+## MiniProgram
+
+微信小程序开发者文档 [https://developers.weixin.qq.com/miniprogram/dev/framework/](https://developers.weixin.qq.com/miniprogram/dev/framework/)
+
+Remax [https://remaxjs.org/](https://remaxjs.org/)
+
+Taro [https://taro-docs.jd.com/taro/docs/README](https://taro-docs.jd.com/taro/docs/README)
+
+## Interview
 
 前端面试之道 [http://caibaojian.com/interview-map/](http://caibaojian.com/interview-map/)
 
@@ -152,15 +170,7 @@ Snowpack [https://www.snowpack.dev/](https://www.snowpack.dev/)
 
 javascript-question [https://github.com/lydiahallie/javascript-questions](https://github.com/lydiahallie/javascript-questions)
 
-### MiniProgram
-
-微信小程序开发者文档 [https://developers.weixin.qq.com/miniprogram/dev/framework/](https://developers.weixin.qq.com/miniprogram/dev/framework/)
-
-Remax [https://remaxjs.org/](https://remaxjs.org/)
-
-Taro [https://taro-docs.jd.com/taro/docs/README](https://taro-docs.jd.com/taro/docs/README)
-
-### 3D
+## 3D
 
 Three [http://www.webgl3d.cn/Three.js/](http://www.webgl3d.cn/Three.js/)
 
@@ -168,7 +178,7 @@ Three [http://www.webgl3d.cn/threejs/docs/\#examples/zh/renderers/CSS3DRenderer]
 
 D3 [https://d3js.org/](https://d3js.org/)
 
-### 跨平台开发
+## 跨平台开发
 
 Flutter [https://flutterchina.club/](https://flutterchina.club/)
 
