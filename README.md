@@ -1,6 +1,6 @@
 # Hi~~~
 
-👋 Hi, I’m @LuckyChou
+👋 Hi, I’m 忘川@LuckyChou
 
 👀 I’m interested in FE
 
@@ -9,6 +9,8 @@
 👻 Welcome to my Home –&gt; [https://luckychou.gitee.io/](https://luckychou.gitee.io/)
 
 📝 Mail me –&gt; [944268618@qq.com](mailto:944268618@qq.com)
+
+😬 WeChat –&gt; LuckyChou710
 
 🍉 Star me –&gt; [https://github.com/LuckyChou710](https://github.com/LuckyChou710)
 
@@ -36,7 +38,7 @@ Tailwind [https://www.tailwindcss.cn/](https://www.tailwindcss.cn/)
 
 ## JS
 
-黑马视频 [https://www.bilibili.com/video/BV11t4y1i7ht?p=1](https://www.bilibili.com/video/BV11t4y1i7ht?p=1)
+视频 [https://www.bilibili.com/video/BV11t4y1i7ht?p=1](https://www.bilibili.com/video/BV11t4y1i7ht?p=1)
 
 阮一峰 ECMAScript 6 入门 [https://www.bookstack.cn/read/es6-3rd/sidebar.md](https://www.bookstack.cn/read/es6-3rd/sidebar.md)
 
@@ -68,11 +70,19 @@ TS 学习笔记 [https://juejin.cn/post/6872111128135073806](https://juejin.cn/p
 
 ## React
 
-小马哥视频 [https://pan.baidu.com/s/1JRzTEtjOhO4qb4rN5MZhaw](https://pan.baidu.com/s/1JRzTEtjOhO4qb4rN5MZhaw) 密码: fi34
+视频 [https://pan.baidu.com/s/1JRzTEtjOhO4qb4rN5MZhaw](https://pan.baidu.com/s/1JRzTEtjOhO4qb4rN5MZhaw) 密码: fi34
 
 极客 React [https://pan.baidu.com/s/1f0DRlVdcApdrbwID69vePw](https://pan.baidu.com/s/1f0DRlVdcApdrbwID69vePw) 密码: f1bq
 
+React+TS 开发 UI 库 [https://pan.baidu.com/s/1lEPtMJWzWodLXx-68PL2Mg](https://pan.baidu.com/s/1lEPtMJWzWodLXx-68PL2Mg) 密码: da15
+
 官方文档 [https://react.docschina.org/](https://react.docschina.org/)
+
+React-Router
+
+- [https://react-guide.github.io/react-router-cn/index.html](https://react-guide.github.io/react-router-cn/index.html)
+
+- [https://reactrouter.com/web/guides/quick-start](https://reactrouter.com/web/guides/quick-start)
 
 Redux [https://www.redux.org.cn/](https://www.redux.org.cn/)
 
@@ -86,19 +96,13 @@ Thunk [https://www.npmjs.com/package/redux-thunk](https://www.npmjs.com/package/
 
 Dva [https://dvajs.com/](https://dvajs.com/)
 
-React-Router
-
-- [https://react-guide.github.io/react-router-cn/index.html](https://react-guide.github.io/react-router-cn/index.html)
-
-- [https://reactrouter.com/web/guides/quick-start](https://reactrouter.com/web/guides/quick-start)
-
 Next [https://www.nextjs.cn/](https://www.nextjs.cn/)
 
 Umi [https://umijs.org/zh-CN](https://umijs.org/zh-CN)
 
 ## Vue
 
-小码哥视频 [https://www.bilibili.com/video/BV15741177Eh?from=search&seid=4113181871041307064] (https://www.bilibili.com/video/BV15741177Eh?from=search&seid=4113181871041307064)
+视频 [https://www.bilibili.com/video/BV15741177Eh?from=search&seid=4113181871041307064](https://www.bilibili.com/video/BV15741177Eh?from=search&seid=4113181871041307064)
 
 官方文档 [https://cn.vuejs.org/](https://cn.vuejs.org/)
 
@@ -133,6 +137,8 @@ Plyr（视频播放器） [https://plyr.io/](https://plyr.io/)
 Filepond \(文件上传\) [https://pqina.nl/filepond/](https://pqina.nl/filepond/)
 
 ## Node
+
+视频 [https://pan.baidu.com/s/1E7AD00Z9IwjMeopY7OSz3w](https://pan.baidu.com/s/1E7AD00Z9IwjMeopY7OSz3w) 密码: mu63
 
 Express [http://expressjs.com/](http://expressjs.com/)
 
@@ -169,6 +175,10 @@ Taro [https://taro-docs.jd.com/taro/docs/README](https://taro-docs.jd.com/taro/d
 精选文章 [https://github.com/axuebin/articles/issues/39](https://github.com/axuebin/articles/issues/39)
 
 javascript-question [https://github.com/lydiahallie/javascript-questions](https://github.com/lydiahallie/javascript-questions)
+
+牛客网 [https://www.nowcoder.com/](https://www.nowcoder.com/)
+
+LeetCode [https://leetcode-cn.com/](https://leetcode-cn.com/)
 
 ## 3D
 
