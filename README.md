@@ -194,7 +194,7 @@ LeetCode [https://leetcode-cn.com/](https://leetcode-cn.com/)
 
 ## Blog
 
-Gitbook [https://www.gitbook.com/](https://www.gitbook.com/)
+GitBook [https://www.gitbook.com/](https://www.gitbook.com/)
 
 Hexo [https://hexo.io/zh-cn/index.html](https://hexo.io/zh-cn/index.html)
 
@@ -209,6 +209,8 @@ Pagic [https://pagic.cn/](https://pagic.cn/)
 CodeSandbox [https://codesandbox.io/s/](https://codesandbox.io/s/)
 
 SwitchHosts [https://github.com/oldj/SwitchHosts](https://github.com/oldj/SwitchHosts)
+
+IpAddress [https://www.ipaddress.com/](https://www.ipaddress.com/)
 
 ## 跨平台开发
 
