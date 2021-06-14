@@ -36,7 +36,7 @@ Tailwind [https://www.tailwindcss.cn/](https://www.tailwindcss.cn/)
 
 ## JS
 
-黑马视频 [https://www.bilibili.com/video/BV11t4y1i7ht?p=1] (https://www.bilibili.com/video/BV11t4y1i7ht?p=1)
+黑马视频 [https://www.bilibili.com/video/BV11t4y1i7ht?p=1](https://www.bilibili.com/video/BV11t4y1i7ht?p=1)
 
 阮一峰 ECMAScript 6 入门 [https://www.bookstack.cn/read/es6-3rd/sidebar.md](https://www.bookstack.cn/read/es6-3rd/sidebar.md)
 
