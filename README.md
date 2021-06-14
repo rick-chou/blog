@@ -192,6 +192,24 @@ LeetCode [https://leetcode-cn.com/](https://leetcode-cn.com/)
 
 书栈网 [https://www.bookstack.cn/](https://www.bookstack.cn/)
 
+## Blog
+
+Gitbook [https://www.gitbook.com/](https://www.gitbook.com/)
+
+Hexo [https://hexo.io/zh-cn/index.html](https://hexo.io/zh-cn/index.html)
+
+VuePress [https://vuepress.vuejs.org/zh/](https://vuepress.vuejs.org/zh/)
+
+Pagic [https://pagic.cn/](https://pagic.cn/)
+
+## Tools
+
+语雀 [https://www.yuque.com](https://www.yuque.com)
+
+CodeSandbox [https://codesandbox.io/s/](https://codesandbox.io/s/)
+
+SwitchHosts [https://github.com/oldj/SwitchHosts](https://github.com/oldj/SwitchHosts)
+
 ## 跨平台开发
 
 Flutter [https://flutterchina.club/](https://flutterchina.club/)
