@@ -38,8 +38,6 @@ Tailwind [https://www.tailwindcss.cn/](https://www.tailwindcss.cn/)
 
 ## JS
 
-视频 [https://www.bilibili.com/video/BV11t4y1i7ht?p=1](https://www.bilibili.com/video/BV11t4y1i7ht?p=1)
-
 阮一峰 ECMAScript 6 入门 [https://www.bookstack.cn/read/es6-3rd/sidebar.md](https://www.bookstack.cn/read/es6-3rd/sidebar.md)
 
 现代 JavaScript 教程 [https://zh.javascript.info/](https://zh.javascript.info/)
@@ -66,8 +64,6 @@ D3 [https://d3js.org/](https://d3js.org/)
 
 ## TS
 
-拉钩教育视频 [https://www.bilibili.com/video/BV14N411Q7WY?p=1](https://www.bilibili.com/video/BV14N411Q7WY?p=1)
-
 官方文档 [https://www.tslang.cn/](https://www.tslang.cn/)
 
 TS 入门教程 [https://ts.xcatliu.com/introduction/what-is-typescript.html](https://ts.xcatliu.com/introduction/what-is-typescript.html)
@@ -77,12 +73,6 @@ TS 入门教程 [https://ts.xcatliu.com/introduction/what-is-typescript.html](ht
 TS 学习笔记 [https://juejin.cn/post/6872111128135073806](https://juejin.cn/post/6872111128135073806)
 
 ## React
-
-视频 [https://pan.baidu.com/s/1JRzTEtjOhO4qb4rN5MZhaw](https://pan.baidu.com/s/1JRzTEtjOhO4qb4rN5MZhaw) 密码: fi34
-
-极客 React [https://pan.baidu.com/s/1f0DRlVdcApdrbwID69vePw](https://pan.baidu.com/s/1f0DRlVdcApdrbwID69vePw) 密码: f1bq
-
-React+TS 开发 UI 库 [https://pan.baidu.com/s/1lEPtMJWzWodLXx-68PL2Mg](https://pan.baidu.com/s/1lEPtMJWzWodLXx-68PL2Mg) 密码: da15
 
 官方文档 [https://react.docschina.org/](https://react.docschina.org/)
 
@@ -109,8 +99,6 @@ Next [https://www.nextjs.cn/](https://www.nextjs.cn/)
 Umi [https://umijs.org/zh-CN](https://umijs.org/zh-CN)
 
 ## Vue
-
-视频 [https://www.bilibili.com/video/BV15741177Eh?from=search&seid=4113181871041307064](https://www.bilibili.com/video/BV15741177Eh?from=search&seid=4113181871041307064)
 
 官方文档 [https://cn.vuejs.org/](https://cn.vuejs.org/)
 
@@ -145,8 +133,6 @@ Plyr（视频播放器） [https://plyr.io/](https://plyr.io/)
 Filepond \(文件上传\) [https://pqina.nl/filepond/](https://pqina.nl/filepond/)
 
 ## Node
-
-视频 [https://pan.baidu.com/s/1E7AD00Z9IwjMeopY7OSz3w](https://pan.baidu.com/s/1E7AD00Z9IwjMeopY7OSz3w) 密码: mu63
 
 Express [http://expressjs.com/](http://expressjs.com/)
 
