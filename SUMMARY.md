@@ -63,6 +63,7 @@
 
 - [Node 入门](node/base.md)
 - [模块化](node/modular.md)
+- [Gulp](node/gulp.md)
 - [Express / Koa](node/express-koa.md)
 
 ## Browser
