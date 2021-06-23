@@ -11,6 +11,8 @@ yarn global add gulp-cli
 yarn add gulp -D
 ```
 
+gulp 的任务需要写在根目录下的 `gulpfile.js` 中
+
 ### 执行任务
 
 ```js
