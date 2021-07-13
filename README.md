@@ -1,6 +1,6 @@
 # Hi~~~
 
-👋 Hi, I’m 忘川@LuckyChou
+👋 Hi, I’m 南树@LuckyChou
 
 👀 I’m interested in FE
 
