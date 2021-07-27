@@ -12,7 +12,7 @@
 
 `git pull / push`卡住的可能性有很多
 
-自己亲测发生这种问题的时候 往往是 github 也几乎进不去 `ping github.com` 丢包也很严重
+发生这种问题一般是访问不了 github
 
 这里可以登录 ipaddress.com 查看 github.com 的 ip 然后修改 host 可以借助 switchHosts 快速修改 hosts
 
@@ -20,7 +20,7 @@
 
 因为 gitee 国内速度比 github 快 所以博主使用 gitee 作为自己的图床
 
-但是某一次在使用的时候 却发现了跨域问题？？？？？难道是 gitee 设置了防盗链
+但是某一次在使用的时候 却发现了跨域问题？？？？？
 
 排查之后发现 是因为图片大于 1M gitee 就需要登录校验身份 所以图片需要小于 1M
 
@@ -30,14 +30,14 @@
 | ------------------------- | ------------------------------------------------------------ |
 | 撤销当前分支的所有修改    | git checkout .                                               |
 | 拉取远程分支              | git checkout -b [localbranch]/[remote] [branch]              |
+| 查看所有远程分支          | git branch -a                                                |
+| 删除远程分支              | git push origin --delete [branch]                            |
 | 强制删除分支              | git branch -D [branch]                                       |
 | 将 dev 分支和当前分支合并 | git merge dev                                                |
 | 查看暂存区的文件          | git ls-files                                                 |
 | 删除暂存区里的文件        | git rm --cached [file]                                       |
 | 本地分支关联远程分支      | git branch --set-upstream-to [remote]/[branch] [localbranch] |
 | 回退版本                  | git reset --hard [id]                                        |
-
-<!--more-->
 
 ## git commit 规范
 
@@ -76,6 +76,30 @@ Commit message 都包括三个部分：header，body 和 footer
 | revert      | 回滚某个更早之前的提交                                                           |
 | chore       | 变更构建流程和辅助工具                                                           |
 | test        | 新增测试用例或是更新现有测试                                                     |
+
+1. 每个提交都必须使用类型字段前缀，它由一个名词组成，诸如 feat 或 fix，其后接一个可选的作用域字段，以及一个必要的冒号（英文半角）和空格。
+
+2. 当一个提交为应用或类库实现了新特性时，必须使用 feat 类型。
+
+3. 当一个提交为应用修复 bug 时，必须使用 fix 类型。
+
+4. 作用域字段可以跟随在类型字段后面。作用有必须是一个描述某部分代码的名词，并用圆括号包围，例如：fix(parser):
+
+5. 描述字段必须紧接在类型/作用域前缀的空格之后。描述指的是对代码变更的简短总结，例如：fix:array parsing issue when multiplejspaces were contained in string。
+
+6. 在简短描述之后，可以编写更长的提交正文，为代码变更提供额外的上下文信息。正文必须起始于描述字段结束的一个空行后。
+
+7. 在正文结束的一个空行之后，可以编写一行或或多行脚注。脚注必须包含关于提交的元信息，例如：关联的合并请求、Reviewer、破坏性变更、每条元信息一行。
+
+8. 破坏性变更必须标示在正文区域最开始处，或脚注区域中某一行的开始。一个破坏性变更必须包含大写的文本 BREAKING CHANGE，后面紧跟冒号和空格。
+
+9. 在 BREAKING CHANGE:之后必须提供描述，以描述对 API 的变更。例如：BREAKING CHANGE: enviroment variables now take precedence over cofig files。
+
+10. 在提交说明中，可以使用 feat 和 fix 之外的类型。
+
+11. 工具的实现必须不区分大小写地解析构成约定式提交的信息单元，只有 BREAKING CHANGE 必须是大写的。
+
+12. 可以在类型/作用域前缀之后，:之前，附加!字符，以进一步提醒注意破坏性变更。当有!前缀时，正文或脚注内必须包含 BREAKING CHANGE: description
 
 这里主要的话 还是推荐一款插件去帮助我们规范自己的 commit 就是 husky
 
