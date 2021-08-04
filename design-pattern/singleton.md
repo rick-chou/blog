@@ -14,7 +14,7 @@ const Singleton = (function () {
     }
     // 你的业务逻辑
     // 例如
-    this.name = 'LuckyChou';
+    this.name = 'chou';
     this.age = 18;
 
     return (instance = this);

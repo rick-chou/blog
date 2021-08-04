@@ -48,6 +48,7 @@
 
 - [一点点预备知识](react/javascript.md)
 - [扬帆起航](react/basic.md)
+- [CRA](react/cra.md)
 - [Props-State](react/props-state.md)
 - [CSS 解决方案](react/css.md)
 - [17 为什么改写生命周期](react/lifecycle.md)
@@ -81,7 +82,7 @@
 
 - [ESM / CommonJs](modular/esm&commonjs.md)
 - [Webpack 基础](modular/webpack.md)
-- [Vite原理](modular/vite.md)
+- [Vite 原理](modular/vite.md)
 - [Yarn / Npm](modular/yarn&npm.md)
 - [搭建 Webpack 开发环境](modular/webpack-react-vue.md)
 
