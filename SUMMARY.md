@@ -85,6 +85,7 @@
 - [Vite 原理](modular/vite.md)
 - [Yarn / Npm](modular/yarn&npm.md)
 - [搭建 Webpack 开发环境](modular/webpack-react-vue.md)
+- [Bug](modular/bug.md)
 
 ## Interview
 
