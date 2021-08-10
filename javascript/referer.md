@@ -30,4 +30,4 @@
 
 比如在掘金上 查看我的一篇文章中一张图片的 Request Headers 就可以看到 Referer
 
-<img src="https://gitee.com/LuckyChou/blog-images/raw/master/js/referer.png" alt="referer" />
+<img src="https://gitee.com/LuckyChou/blog-images/raw/master/js/http/referer.png" alt="referer" />
