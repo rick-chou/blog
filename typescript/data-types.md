@@ -87,16 +87,7 @@ let arr3: [number, string];
 ### 函数
 
 ```ts
-/**
- * Named Function
- * Anonymous function
- * 可选参数
- * 默认参数
- * 剩余参数
- * 为函数定义类型
- * 重载
- */
-
+// 为函数定义类型
 type Add = (x: number, y: number) => number;
 
 function add1(x: number, y: number): number {
