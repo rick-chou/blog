@@ -40,9 +40,7 @@
 
 ## Typescript
 
-- [数据类型](typescript/data-type.md)
-- [Class](typescript/class.md)
-- [Interface](typescript/interface.md)
+- [数据类型](typescript/data-types.md)
 
 ## React
 
