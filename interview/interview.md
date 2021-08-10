@@ -20,7 +20,7 @@ Object 的原型对象的 constructor 指向 Object
 
 若到 Object.prototype 还未找到 就返回 undefined
 
-<img src="https://gitee.com/LuckyChou/blog-images/raw/master/js/prototypeChain.png" />
+<img src="https://gitee.com/LuckyChou/blog-images/raw/master/js/context/context11.png" />
 
 ## MVVM
 

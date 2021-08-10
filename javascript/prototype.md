@@ -6,7 +6,7 @@
 
 这也解释了为什么在每个组件中都可以直接使用 Vue 的一些方法 因为这些方法被写在了 Vue 的原型上
 
-![](https://gitee.com/LuckyChou/blog-images/raw/master/js/prototypeChain.png)
+![](https://gitee.com/LuckyChou/blog-images/raw/master/js/context/context11.png)
 
 原型对象被创建时，会自动生成一个 `constructor` 属性，指向创建它的构造函数
 
