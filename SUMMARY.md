@@ -44,7 +44,7 @@
 
 ## React
 
-- [一点点预备知识](react/javascript.md)
+- [JSX](react/jsx.md)
 - [扬帆起航](react/basic.md)
 - [CRA](react/cra.md)
 - [Props-State](react/props-state.md)
