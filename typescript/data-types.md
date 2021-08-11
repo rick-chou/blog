@@ -80,21 +80,25 @@ let arr1: number[];
 // 数组泛型
 let arr2: Array<number>;
 
-// 元组
+// 元组 可以限制元素的类型和个数
 let arr3: [number, string];
+
+// 最令人熟知的可能就是React的useState 它返回了一个元组
+const [state, useState] = React.useState(null);
 ```
 
 ### 函数
 
 ```ts
 // 为函数定义类型
+// 不能使用interface 因为interface只能定义对象
 type Add = (x: number, y: number) => number;
 
 function add1(x: number, y: number): number {
   return x + y;
 }
 
-const add2: Add = function (x: number, y: number): number {
+const add2: Add = (x: number, y: number): number => {
   return x + y;
 };
 
@@ -120,9 +124,9 @@ function add5(x: number, y?: number) {
 }
 
 // 函数重载
-function parse(x: any): any {
-  if (typeof x === 'number') return x;
-  if (typeof x === 'string') return x.length;
+function add(x: any, y: any): any {
+  if (typeof x === 'number' && typeof y === 'number') return x + y;
+  if (typeof x === 'string' && typeof y === 'string') return parseInt(x) + parseInt(y);
 }
 ```
 
@@ -195,21 +199,12 @@ var Lang;
 ### 类
 
 ```ts
-/**
- * 类继承接口
- * public
- * private
- * protected
- * getters/setters
- * static
- * abstract
- */
-
 // 类继承接口
 interface IPerson {
   readonly name: string;
 }
 
+// Person类中需要定义所有IPerson接口中的成员
 class Person implements IPerson {
   // 公开 和不加修饰符 效果一样 表示在任意位置都可以访问
   public nickname: string;
@@ -224,6 +219,7 @@ class Person implements IPerson {
     this.gender = gender;
     this._age = age;
   }
+  // 静态方法 使用类型.调用
   static sayHi() {
     console.log(this.name);
   }
@@ -237,23 +233,30 @@ class Person implements IPerson {
 }
 
 const person = new Person('nanshu', 'man', 18);
-person.name;
-person.nickname;
+person.name; // --> 花匠
+person.nickname; // --> nanshu
 
+// 不能访问gender 因为gender是protected 只能在声明的类和派生类中访问
 // person.gender;  Property 'gender' is protected and only accessible within class 'Person' and its subclasses.
+
+// 不能访问gender 因为age是private 只能在声明的类中访问
 // stu.age;  Property 'age' is private and only accessible within class 'Student'
 
 class Student extends Person {
   constructor(nickname: string, gender: string, age: number) {
     super(nickname, gender, age);
+    // 不能访问父类中的私有成员
     // super.age; Property 'age' is private and only accessible within class 'Person'.
+    
+    // public protected readonly修饰的成员都可以访问
     super.name;
     super.nickname;
     super.gender;
   }
 }
 
-// 抽象类可以包含成员的实现细节 并且可以包含访问修饰符
+// 和接口不同 接口不能包含成员的实现细节 且不能包含修饰符
+// 但是抽象类可以包含成员的实现细节 并且可以包含访问修饰符
 abstract class Animal {
   constructor(public name: string) {
     this.name = name;
@@ -271,9 +274,9 @@ class Dog extends Animal {
 }
 
 const dog = new Dog('小花');
-dog.name; // 小花
-dog.move(); // moving
-dog.move(); // make sound
+dog.name; // --> 小花
+dog.move(); // --> moving
+dog.move(); // --> make sound
 
 // 类当作接口使用
 class Point {
@@ -293,6 +296,10 @@ const pointB: Point3D = { x: 7, y: 1, z: 10 };
 
 ```ts
 // 泛型函数
+// 如果我们想实现一个函数 类似shell中的echo 输入什么就返回什么
+// 但是 我们不知道用户在实际使用的时候 会传入什么类型 当然我们可以使用any 但是这🧐好像很随意
+// 或者我们可以使用函数重载 为每一个类型具体定义 这好像又🤨
+// 这个时候我们就可以使用泛型 
 function echo<T>(arg: T): T {
   return arg;
 }
@@ -304,17 +311,19 @@ class GenericNumber<T> {
 }
 
 // 泛型约束
-
+// 因为编译器不知道泛型 T 中拥有哪些方法 所以如下调用会会被ts警告⚠️
 function loggingIdentity1<T>(arg: T): T {
   // console.log(arg.length);  Property 'length' does not exist on type 'T'.
   return arg;
 }
 
+// 我们可以定义一个接口 让泛型继承这个接口 这样我们就可以安全的使用lenght属性了
 interface Lengthwise {
   length: number;
 }
 
 function loggingIdentity2<T extends Lengthwise>(arg: T): T {
+  // 这个时候就不会被ts警告⚠️了
   console.log(arg.length);
   return arg;
 }
@@ -374,7 +383,8 @@ type Name = string;
 type NameResolver = () => string;
 
 const nickname: Name = 'nanshu';
+const handleNameResolver: NameResolver = () => 'nanshu';
 
-// 不同与interface type不能重复命名
+// 不同与interface type不能重复命名 但是type可以声明基本数据类型
 // type Name = number;  Duplicate identifier 'Name'.
 ```
