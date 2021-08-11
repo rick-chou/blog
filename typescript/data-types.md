@@ -2,19 +2,19 @@
 
 本系列是博主在学习 TS 过程中 阅读如下文档做出的笔记 如果有错误 希望在评论区指出哦 🤩🤩🤩
 
-> TypeScript 中文手册 https://typescript.bootcss.com/
+> <a href="https://typescript.bootcss.com/">TypeScript 中文手册</a>
 
-> TypeScript 入门教程 https://ts.xcatliu.com/
+> <a href="https://ts.xcatliu.com/">TypeScript 入门教程</a>
 
-> 深入理解 TypeScript https://jkchao.github.io/typescript-book-chinese/
+> <a href="https://jkchao.github.io/typescript-book-chinese/">深入理解 TypeScript</a>
 
-> TypeScript 官网 https://www.typescriptlang.org/docs/handbook/intro.html
+> <a href="https://www.typescriptlang.org/docs/handbook/intro.html">TypeScript 官网</a>
 
-> babel https://babeljs.io/
+> <a href="https://babeljs.io/">babel</a>
 
 预计将会更新如下内容
 
-- TS 小册 - 类型系统
+- <a href="https://juejin.cn/post/6994728142845788190">TS 小册 - 类型系统</a> ✅ ✅
 
 - TS 小册 - 高级类型
 
@@ -106,7 +106,6 @@ const add2: Add = (x: number, y: number): number => {
 function add3(x: number, ...y: Array<number>) {
   return x + y.reduce((x, y) => x + y);
 }
-add3(1, 2, 1, 2, 3, 4);
 
 // 默认参数
 // 如果你想要默认参数生效的话 就把默认参数放在参数序列的最后一项吧
@@ -124,9 +123,14 @@ function add5(x: number, y?: number) {
 }
 
 // 函数重载
-function add(x: any, y: any): any {
-  if (typeof x === 'number' && typeof y === 'number') return x + y;
-  if (typeof x === 'string' && typeof y === 'string') return parseInt(x) + parseInt(y);
+function showType(x: any): any {
+  if (typeof x === 'number') {
+    return 'number';
+  } else if (typeof x === 'string') {
+    return 'string';
+  } else {
+    return "I don't know";
+  }
 }
 ```
 
@@ -153,6 +157,13 @@ enum Count {
 }
 
 Count.three; // --> 3
+
+// 减少魔法数字
+enum STATUS {
+  READY = 0,
+  OK = 1
+  FAILED = -1
+}
 
 // 字符串枚举
 enum Lang {
