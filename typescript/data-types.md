@@ -328,7 +328,7 @@ function loggingIdentity1<T>(arg: T): T {
   return arg;
 }
 
-// 我们可以定义一个接口 让泛型继承这个接口 这样我们就可以安全的使用lenght属性了
+// 我们可以定义一个接口 让泛型继承这个接口 这样我们就可以安全的使用length属性了
 interface Lengthwise {
   length: number;
 }
