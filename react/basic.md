@@ -1,10 +1,11 @@
-> 注：本章节的 demo 都以类组件为例 等 hook 章节后都为函数式组件
+> 注：本章节的 demo 都以`类组件 + TS`为例 等下一章 hook 章节后都为函数式组件
+> UI 库 统一使用 `antd`
 
 ## 父子组件通信
 
 ### 父组件 -> 子组件
 
-父 -> 子 比较简单
+父 --> 子 比较简单
 
 父组件直接通过 props 来传递属性
 
@@ -12,85 +13,94 @@
 
 函数式组件直接使用`props.[属性名]`即可
 
-以下 Demo 为 我们在父组件中决定在子组件中 要展示的元素
-
-```jsx
-class Child extends Component {
-  render() {
-    return (
-      <>
-        <p>我是子组件</p>
-        <ul>
-          {this.props.movies.map((movie, index) => {
-            return <li key={index}>{movie}</li>;
-          })}
-        </ul>
-      </>
-    );
-  }
-}
-
-export default class Father extends Component {
-  render() {
-    return (
-      <>
-        <Child movies={['姜子牙', '哪吒', '杨戬']} />
-      </>
-    );
-  }
-}
-```
-
 ### 子组件 -> 父组件
 
 原理和 父 -> 子 类似
 
-在父组件用 props 向子组件传递一个回调函数
+在父组件用 props 向子组件传递一个函数
 
-然后在子组件用`this.props.<函数名>`触发这个回调函数
+然后在子组件用`this.props.<函数名>`触发这个函数
 
-我们继续更改以下以上 Demo 让子组件告诉父组件 我要删除谁
+以下是一个计数器累加的 🌰
 
-```jsx
-class Child extends Component {
+父组件负责管理数据和方法
+
+父组件 --> 子组件 count 变量
+
+子组件 触发 父组件的累加方法
+
+```tsx
+import React, { Component } from 'react';
+import { Button } from 'antd';
+
+interface IProps {
+  count?: number;
+  onClick?: () => void;
+}
+
+interface IState {
+  count: number;
+}
+
+class ChildComponent extends Component<IProps, IState> {
   render() {
-    return (
-      <>
-        <p>我是子组件</p>
-        <ul>
-          {this.props.movies.map((movie, index) => {
-            return (
-              <li key={index} onClick={() => this.handleDeleteClick(index)}>
-                {movie}
-              </li>
-            );
-          })}
-        </ul>
-      </>
-    );
-  }
-
-  handleDeleteClick(index) {
-    this.props.onDelete && this.props.onDelete(index);
+    const { count, onClick } = this.props;
+    return <Button onClick={onClick}>{count}</Button>;
   }
 }
 
-export default class Father extends Component {
+class ParentComponent extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {
+      count: 0,
+    };
+  }
+  handleClick() {
+    this.setState({
+      count: this.state.count + 1,
+    });
+  }
   render() {
     return (
-      <>
-        <Child
-          movies={['姜子牙', '哪吒', '杨戬']}
-          onDelete={(index) => this.handleDeleteMovie(index)}
-        />
-      </>
+      <ChildComponent count={this.state.count} onClick={this.handleClick} />
     );
   }
-
-  handleDeleteMovie(index) {
-    console.log(`子组件要删除的是第${index}项`);
-  }
 }
+
+export default ParentComponent;
+```
+
+如果你执行上述代码的话 你会发现数据可以正常显示 这说明父组件的数据正确的传递给了子组件
+
+但是一旦点击了按钮 页面就会报错 你会看到如下报错信息
+
+> TypeError: Cannot read property 'setState' of undefined
+
+也就是 this 是 undefined
+
+在上一讲我们就说到 在类组件中绑定事件时要注意 this 的绑定
+
+React 并没有帮我们绑定 this 如果我们没有手动绑定 那么它就是 undefined
+
+解决的方法有两种
+
+1. 手动绑定 this 在父组件的构造函数处 手动绑定为方法 绑定 this
+
+```tsx
+constructor(props: IProps) {
+  super(props);
+  this.state = {
+    count: 0,
+  };
+  this.handleClick = this.handleClick.bind(this);
+}
+```
+
+2. 使用箭头函数
+
+```tsx
+<ChildComponent count={this.state.count} onClick={() => this.handleClick()} />
 ```
 
 ## 生命周期函数
