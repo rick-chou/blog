@@ -14,7 +14,7 @@
 
 🍉 Star me –&gt; [https://github.com/LuckyChou710](https://github.com/LuckyChou710)
 
-![](https://gitee.com/LuckyChou/blog-images/raw/master/bg-images/CHOU16.jpg)
+![](https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/bg-images/bg16.jpg)
 
 在选择要系统地学习一个新的 框架/库 之前，首先至少得学会先去思考以下两点：
 
