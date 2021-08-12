@@ -1,9 +1,38 @@
 > 注：本章节的 demo 都以`类组件 + TS`为例 等下一章 hook 章节后都为函数式组件
-> UI 库 统一使用 `antd`
+
+> UI 库 统一使用 `antd` https://ant.design/components/overview-cn/
+
+> 本节的所有代码都在这个 👉<a href="https://github.com/LuckyChou710/ReStart-FE/tree/main/react/react-cra/src/components/basic">仓库</a>
+
+## 初始化项目
+
+使用 webpack
+
+```zsh
+npx create-react-app my-app --template typescript
+
+# or
+
+yarn create react-app my-app --template typescript
+```
+
+使用 vite
+
+```zsh
+npm init vite@latest my-vue-app -- --template react-ts
+
+# or
+
+yarn create vite my-vue-app --template react-ts
+```
+
+配置可以参考 👉<a href="https://github.com/LuckyChou710/ReStart-FE/tree/main/react">仓库 🏠</a>
+
+如果你暂时还不需要集成 typescript 的话 可以去掉 --template typescript
 
 ## 父子组件通信
 
-### 父组件 -> 子组件
+### 父组件 --> 子组件
 
 父 --> 子 比较简单
 
@@ -13,9 +42,9 @@
 
 函数式组件直接使用`props.[属性名]`即可
 
-### 子组件 -> 父组件
+### 子组件 --> 父组件
 
-原理和 父 -> 子 类似
+原理和 父 --> 子 类似
 
 在父组件用 props 向子组件传递一个函数
 
@@ -25,9 +54,11 @@
 
 父组件负责管理数据和方法
 
-父组件 --> 子组件 count 变量
+下面是组件间的通信
 
-子组件 触发 父组件的累加方法
+父组件向子组件传递 count 变量
+
+子组件触发父组件 累加方法
 
 ```tsx
 import React, { Component } from 'react';
@@ -83,6 +114,8 @@ export default ParentComponent;
 
 React 并没有帮我们绑定 this 如果我们没有手动绑定 那么它就是 undefined
 
+关于 React 为什么没有帮我们绑定 this 你可以戳 👉<a href="https://www.zhihu.com/question/300850914">这篇文章</a>
+
 解决的方法有两种
 
 1. 手动绑定 this 在父组件的构造函数处 手动绑定为方法 绑定 this
@@ -107,13 +140,21 @@ constructor(props: IProps) {
 
 主要参考官方的[生命周期图谱](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 
-props state 的改变 和 forceUpdate() 将会重新调用`render()`生命周期函数 具体内容可见下几讲
+具体有关生命周期的内容 我会在下几章中更新
+
+这里 我只提最常用的几个生命周期函数以及它们的用途
 
 - constructor
 
   - 初始化内部的 state
 
   - 为事件绑定 this
+
+- render
+
+  - React 的灵魂 用于描述 UI 和交互
+
+  - props/state/forceUpdate 都会重新调用该生命周期 从而使页面更新
 
 - shouldComponentUpdate
 
@@ -129,115 +170,114 @@ props state 的改变 和 forceUpdate() 将会重新调用`render()`生命周期
 
 ## 状态提升
 
-状态提升只是一个概念性的东西
+状态提升是一个概念性的东西
 
-状态就是指 子组件间共享的一些数据
+状态指 组件间共享的一些数据
 
-提升就是指 将这些状态保存在离它们最近的父组件
+提升指 将这些状态保存在离它们最近的父组件
 
 比如更改主题 我们就需要将主题这个状态存放在根组件下 然后通过 props 一层一层往下传递
 
 ## ref
 
-现在 我们简单的实现一个 DEMO
+我们实现一个简单实现一个 input 的功能
 
-有一个 输入框 和 获取用户名的按钮
+其内部数据由我们的 state 来维护
 
-通过点击按钮 获取用户名
+所以我们直接读 state 的值就是 input 中的值
 
-```jsx
-export default class Example extends Component {
-  constructor(props) {
+```tsx
+import React, { Component } from 'react';
+
+interface IProps {}
+
+interface IState {
+  inputVal: string;
+}
+
+class App extends Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
-
     this.state = {
-      username: '',
+      inputVal: '',
     };
   }
+  handleInputChange(e: any) {
+    this.setState({
+      inputVal: (e.target as HTMLInputElement).value,
+    });
+  }
+  render() {
+    return (
+      <input
+        value={this.state.inputVal}
+        onChange={(e) => this.handleInputChange(e)}
+      />
+    );
+  }
+}
 
+export default App;
+```
+
+现在我们直接通过 dom 去获取 input 的值
+
+React 给我们提供了 ref 属性 通过这个属性 我们可以获取到元素的实例
+
+```tsx
+import React, { Component } from 'react';
+
+interface IProps {}
+
+interface IState {}
+
+class App extends Component<IProps, IState> {
+  private inputRef: React.RefObject<HTMLInputElement>;
+  constructor(props: IProps) {
+    super(props);
+    this.state = {};
+    this.inputRef = React.createRef();
+  }
   render() {
     return (
       <>
+        {/* 方式一 dom在current属性里 */}
         <input
-          name="username"
-          value={this.state.username}
-          onChange={(e) => this.handleUsernameChange(e)}
+          ref={this.inputRef}
+          onChange={() => console.log(this.inputRef.current)}
         />
-        <button onClick={() => this.showName()}>GET NAME</button>
+
+        {/* 方式二 dom直接在创建的ref里 */}
+        <input
+          ref={(inputRef) => (this.inputRef = inputRef as any)}
+          onChange={() => console.log(this.inputRef)}
+        />
       </>
     );
   }
-
-  handleUsernameChange(e) {
-    this.setState({
-      username: e.target.value,
-    });
-  }
-
-  showName() {
-    alert(`U NAME IS ${this.state.username}`);
-  }
 }
+export default App;
 ```
 
-到此为止 我们所有的数据 都是来自于组件内部维护的 state
+两者的区别是
 
-那么我们能否直接通过 标签自身 来实现这个功能呢
+- 前者 其实例在 current 属性下
 
-React 向我们提供了 **ref** 可以来获取 dom
-
-ref 主要有三种实现方式可以来获取 dom
-
-```jsx
-constructor(props) {
-    super(props)
-
-    this.usernameRef = React.createRef()
-  }
-
-  render() {
-    return (
-      <>
-        {/* ref 后可以等于 字符串/对象/函数 */}
-        {/* 方式一 字符串 */}
-        {/* 此方法不推荐 在后续版本中可能会被移除 */}
-        <input ref="usernameRef" />
-
-        {/* 方式二 对象 */}
-        <input ref={this.usernameRef} />
-
-        {/* 方式三 函数 */}
-        <input ref={(_usernameRef) => (this._usernameRef = _usernameRef)} />
-        <button onClick={() => this.showName()}>GET NAME</button>
-      </>
-    )
-  }
-```
-
-方式二 和 方式三的区别是
-
-- 通过`React.createRef()`创建 其实例在 current 属性下
 - 而通过函数创建 其实例就是我们所命名的那个属性
 
-我们可以通过打印 this 来看一下 三者之间的区别（当然 第一种已经不推荐）
-
-```
-  context: {}
-  props: {}
-  refs: {usernameRef: input}  // 方式一
-  state: null
-  updater: {isMounted: ƒ, enqueueSetState: ƒ, enqueueReplaceState: ƒ, enqueueForceUpdate: ƒ}
-  usernameRef: {current: input} // 方式二
-  _reactInternalInstance: {_processChildContext: ƒ}
-  _reactInternals: FiberNode {tag: 1, key: null, stateNode: Example, elementType: ƒ, type: ƒ, …}
-  _usernameRef: input // 方式三
-```
-
-**写在最后 在生产中 千万不要这样去操作 dom**
+**写在最后 在生产环境中 千万不要这样去操作 dom**
 
 **所有可以使用声明式完成的功能都不要使用命令式**
 
 **除非我们需要实现 聚焦 动画 等 必须要获取到 dom 的操作**
+
+## 受控组件/非受控组件
+
+受控组件和非受控组件一般都是针对表单元素来说的 因为它们有自己的 value 属性 可以管理自己的状态
+
+受控的意思是指元素的状态由外部数据来维护 可理解为数据驱动视图 就是上述例子中的前者
+
+非受控的意思是指元素的状态由自己来维护 可理解为 jq 操作 dom 来拿数据 就是上述例子中通过 ref 来操作
 
 ## context
 
@@ -245,49 +285,69 @@ constructor(props) {
 
 然后 App 组件下有一个 HeaderWrapper 组件
 
-HeaderWrapper 组件 内部 又有一个 Nav 组件
+HeaderWrapper 组件内部 又有一个 Header 组件
 
-那么 如果我们共享 App 组件 中的数据 到 Nav 组件
+那么 如果我们想把 App 组件中的数据 到 Header 组件
 
-就要 经过 HeaderWrapper 组件 传递到 Nav 组件
+数据流就要经过 HeaderWrapper 这个组件
 
-传统的代码如下
+但是这个组件是不需要 Header 组件需要的那个 props 的
 
-我们可以用 `{...this.props}` 的写法 将 props 传递给子组件
+尤其是当你使用了类型约束时 你会需要为传递数据的中间组件 编写它们不需要的 props 约束 😳
 
-```jsx
-class HeaderWrapper extends Component {
+如果我们层层传递 那么代码如下
+
+```tsx
+import React, { Component } from 'react';
+
+interface IProps {
+  header?: string;
+}
+
+interface IState {
+  header?: string;
+}
+
+class App extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {
+      header: '这是Header组件需要的内容',
+    };
+  }
   render() {
-    return (
-      <>
-        <Nav {...this.props} />
-      </>
-    );
+    return <HeaderWrapper header={this.state.header} />;
   }
 }
 
-class Nav extends Component {
+class HeaderWrapper extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {};
+  }
   render() {
-    return <>name: {this.props.name}</>;
+    return <Header {...this.props} />;
   }
 }
 
-export default class App extends Component {
+class Header extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {};
+  }
   render() {
-    return (
-      <div>
-        <HeaderWrapper name={'chou'} />
-      </div>
-    );
+    return <h1>{this.props.header}</h1>;
   }
 }
+
+export default App;
 ```
 
-但是 HeaderWrapper 组件 可能不需要这一层的数据 但是 我们在传递数据中却要将数据传递给它
+好吧 这只是经过了一层 我们已经感觉到了麻烦 如果是 🤔
 
-这时 React 给我们提供了一个属性 **context** 用来解决
+这时 React 给我们提供了一个属性 **context** 用来解决跨组件通信的问题
 
-常用 API
+常用 API 有
 
 - React.createContext(defaultValue)
 
@@ -297,110 +357,292 @@ export default class App extends Component {
 
 - Consumer
 
-```jsx
-// 第一步 我们创建一个context对象 可以传入一个默认值
-const UserContext = React.createContext({
-  name: 'defaultName',
+```tsx
+import React, { Component } from 'react';
+
+interface IProps {}
+
+interface IState {}
+
+// step1 创建一个context 可以创建多个
+const HeaderContext = React.createContext({
+  header: '这是Header组件需要的内容',
 });
 
-class HeaderWrapper extends Component {
+class App extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {};
+  }
   render() {
     return (
-      <>
-        <Nav {...this.props} />
-        <List />
-      </>
+      <HeaderContext.Provider value={{ header: '这是Header组件需要的内容' }}>
+        <HeaderWrapper />
+        <FunHeader />
+      </HeaderContext.Provider>
     );
   }
 }
 
-class Nav extends Component {
-  // 第二步 在需要 使用的地方 使用contextType
-  static contextType = UserContext;
-  render() {
-    return (
-      <>
-        <div>Nav</div>
-      </>
-    );
+// 此时 我们的HeaderWrapper组件就是干净的 不再需要传递它不需要的props
+// 但是 如果需要 该组件也可以在context中拿到值
+class HeaderWrapper extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {};
   }
-  componentDidMount() {
-    console.log(this);
+  render() {
+    return <Header {...this.props} />;
   }
 }
 
-// 如果是函数式组件 需要使用这种特殊写法
-// 我们可以打印出value 来观察它确实拿到了context中的数据
-function List() {
+class Header extends Component<IProps, IState> {
+  // step3 在需要使用的地方 将contentType赋值成我们需要的那个context
+  static contextType = HeaderContext;
+  constructor(props: IProps) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    // step 4 使用 🥰
+    return <h1>{this.context.header}</h1>;
+  }
+}
+
+// 如果是函数式组件 需要使用下述写法
+function FunHeader() {
   return (
-    <UserContext.Consumer>
-      {(value) => {
-        console.log(value);
-      }}
-    </UserContext.Consumer>
+    <HeaderContext.Consumer>
+      {(value) => <h1>{value.header}</h1>}
+    </HeaderContext.Consumer>
   );
 }
 
-export default class Example extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name: 'chou',
-    };
-  }
-
-  render() {
-    return (
-      // 第三步 用Provider包裹需要共享数据的组件
-      <UserContext.Provider value={this.state}>
-        <HeaderWrapper />
-      </UserContext.Provider>
-    );
-  }
-}
+export default App;
 ```
 
-但是 在实际开发中 我们不会使用 context
+但是 在实际开发中 我们一般不会使用 context
 
-在下一章我就会介绍到 在开发中 用来管理状态的 **Redux**
+在生成环境下 我们一般会使用 redux / mobx
 
-而它的模式 就和 context 类似
+有关 context 的发展历程 你可以看 👉<a href="https://react.docschina.org/docs/legacy-context.html#updating-context">这里</a>
 
 ## 合成事件
 
-React 中 绑定事件的 onClick 等等 其实是 React 中的合成事件
+React 中的绑定事件 onClick 等等 是 React 中的合成事件
 
 它和原生的 onclick 事件 不同 主要是用于抹平各浏览器之间的差异
 
-同时 React 不只是期望运行在 Web 环境 也期望运行在客户端 ios Android 等
-
-所以 React 重新封装了这些事件
-
-用一套代码 来适用所有场景
-
-## event
+因为 React 不只是期望运行在 Web 环境 也期望运行在客户端 ios Android 等
 
 在绑定事件时 传入的第一个参数默认就是 React 中的 event 对象
 
 同样的 React 也封装了这个对象 为了适合所有开发场景下的使用
 
-```jsx
-export default class Example extends Component {
+## dangerouslySetInnerHTML
+
+假设有以下代码 我们想要渲染出 tag 中的 dom 元素
+
+直接渲染的话 它会被当成字符串 渲染在页面上
+
+我们需要使用 dangerouslySetInnerHTML 告诉 React 这是一个 dom 元素
+
+但是也存在副作用 正如它的名字 dangerously 一样
+
+不合时宜的使用 可能会你的页面遭受 XSS 攻击
+
+所以忘掉这个属性吧 😛
+
+```tsx
+import React, { Component } from 'react';
+
+interface IProps {}
+
+interface IState {
+  tag: string;
+}
+
+class App extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {
+      tag: '<h2>HELLO REACT</h2>',
+    };
+  }
   render() {
     return (
-      <div>
-        <button onClick={(e) => this.getEvent(e)}>Get Event</button>
-      </div>
+      <>
+        {/* 页面中显示 <h2>HELLO REACT</h2> */}
+        {this.state.tag}
+
+        {/* 页面正确解析h2标签 */}
+        <div dangerouslySetInnerHTML={{ __html: this.state.tag }}></div>
+      </>
     );
   }
+}
 
-  getEvent(e) {
-    console.log(e);
-    // SyntheticBaseEvent {_reactName: "onClick", _targetInst: null, type: "click", nativeEvent: MouseEvent, target: button, …}
+export default App;
+```
+
+## Fragments
+
+所有的 JSX 必须要有一个根元素包裹
+
+如果你不想创建额外的元素 那么你就可以使用 Fragments 来包裹它们
+
+该元素不会创建任何额外的 dom 节点 所以你对该组件的任何操作都会失效
+
+你也可以使用简写 `<>jsx</>`
+
+## StrictMode
+
+使用脚手架创建项目时 默认会在跟标签外面包裹`StrictMode`
+
+和`Fragment`一样 `StrictMode`不会创建任何 UI 元素 正如字面意思一样 它主要用于
+
+- 识别不安全的生命周期
+
+- 使用过时的 ref 的 API
+
+- 检查意外的副作用
+
+  - 开发环境下会调用两次 constructor
+
+- 识别废弃的 findDOMNode 方法
+
+- 检测过时的 context API
+
+## 错误边界
+
+错误边界依赖 `componentDidCatch` 这个生命周期函数 所以目前只有类组件能够实现错误边界
+
+错误边界能够帮助我们在页面出错的情况下 降级 UI 而不至于页面崩溃
+
+<details>
+<summary>下面贴一段官网的 demo</summary>
+
+```tsx
+import React from 'react';
+
+interface IProps {}
+
+interface IErrorState {
+  error: any;
+  errorInfo: any;
+}
+
+interface ICountState {
+  counter: number;
+}
+
+class ErrorBoundary extends React.Component<IProps, IErrorState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = { error: null, errorInfo: null };
+  }
+
+  componentDidCatch(error: any, errorInfo: any) {
+    // Catch errors in any components below and re-render with error message
+    console.log('error:', error);
+    console.log('errorInfo:', errorInfo);
+    this.setState({
+      error: error,
+      errorInfo: errorInfo,
+    });
+    // You can also log error messages to an error reporting service here
+  }
+
+  render() {
+    if (this.state.errorInfo) {
+      // Error path
+      return (
+        <div>
+          <h2>Something went wrong.</h2>
+          <details style={{ whiteSpace: 'pre-wrap' }}>
+            {this.state.error && this.state.error.toString()}
+            <br />
+            {this.state.errorInfo.componentStack}
+          </details>
+        </div>
+      );
+    }
+    // Normally, just render children
+    return this.props.children;
   }
 }
+
+class BuggyCounter extends React.Component<IProps, ICountState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = { counter: 0 };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(({ counter }) => ({
+      counter: counter + 1,
+    }));
+  }
+
+  render() {
+    if (this.state.counter === 5) {
+      // Simulate a JS error
+      throw new Error('I crashed!');
+    }
+    return <h1 onClick={this.handleClick}>{this.state.counter}</h1>;
+  }
+}
+
+function App() {
+  return (
+    <div>
+      <p>
+        <b>
+          This is an example of error boundaries in React 16.
+          <br />
+          <br />
+          Click on the numbers to increase the counters.
+          <br />
+          The counter is programmed to throw when it reaches 5. This simulates a
+          JavaScript error in a component.
+        </b>
+      </p>
+      <hr />
+      <ErrorBoundary>
+        <p>
+          These two counters are inside the same error boundary. If one crashes,
+          the error boundary will replace both of them.
+        </p>
+        <BuggyCounter />
+        <BuggyCounter />
+      </ErrorBoundary>
+      <hr />
+      <p>
+        These two counters are each inside of their own error boundary. So if
+        one crashes, the other is not affected.
+      </p>
+      <ErrorBoundary>
+        <BuggyCounter />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <BuggyCounter />
+      </ErrorBoundary>
+    </div>
+  );
+}
+
+export default App;
 ```
+
+</details>
+## Render Props
+
+## Render Props
+
+> render prop 是一个用于告知组件需要渲染什么内容的函数 prop
+
+> https://react.docschina.org/docs/render-props.html
 
 ## 高阶组件
 
@@ -420,56 +662,62 @@ export default class Example extends Component {
 
 - 可以渲染劫持
 
-```jsx
-import React from 'react';
+```tsx
+import React, { Component } from 'react';
 
-const NavBar = ThemeHOC(
-  class extends React.Component {
-    render() {
-      return (
-        <>
-          <p style={{ color: this.props.theme }}>NavBar</p>
-        </>
-      );
-    }
+interface IProps {
+  theme?: string;
+}
+
+interface IState {
+  theme?: string;
+}
+
+class App extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {};
   }
-);
-
-const Message = LifeHOC(
-  class extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        username: 'chou',
-      };
-    }
-    render() {
-      return (
-        <>
-          <p>Message</p>
-        </>
-      );
-    }
-
-    componentDidMount() {
-      console.log('我是原来的componentDidMount，我执行了');
-    }
+  render() {
+    return (
+      <>
+        <HeaderWrapper />
+        <ArticleWrapper />
+      </>
+    );
   }
-);
+}
 
-// 增强props
-function ThemeHOC(WrappedComponent) {
+class Header extends Component<IProps, IState> {
+  render() {
+    return <p style={{ color: this.props.theme }}>NavBar</p>;
+  }
+}
+
+class Article extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    return <p>Article</p>;
+  }
+}
+
+// 增强props  泛型T表示接收组件的props 因为我们需要注入新的props 所以T需要继承拥有新属性的接口
+function ThemeHOC<T extends IProps>(Component: React.ComponentType<T>) {
   return class extends React.Component {
     render() {
-      return <WrappedComponent theme={'red'} />;
+      // 为组件注入theme属性
+      return <Component {...(this.props as T)} theme={'red'} />;
     }
   };
 }
 
 // 劫持生命周期方法 props state render方法
-function LifeHOC(WrappedComponent) {
-  return class extends WrappedComponent {
-    constructor(props) {
+function LifeHOC<T>(Component: React.ComponentType<T>) {
+  return class extends React.Component {
+    constructor(props: T) {
       super(props);
 
       // 劫持到原组件的实例 并可以修改它
@@ -482,210 +730,48 @@ function LifeHOC(WrappedComponent) {
       // 可操作state
       // 可以渲染劫持
     }
+    render() {
+      return <Component {...(this.props as T)} />;
+    }
   };
 }
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <>
-        <NavBar />
-        <Message name={'chou'} />
-      </>
-    );
-  }
-}
+const HeaderWrapper = ThemeHOC(Header);
+const ArticleWrapper = LifeHOC(Article);
+
+export default App;
 ```
 
-## 受控组件/非受控组件
+## 类型检查
 
-受控组件的意思 主要是针对表单这些元素
+如果你的项目还未使用 typescript 又想约束类型的话
 
-其 value 由 state 来维护 但是也会造成每一个表单都需要编写事件去更新数据的麻烦
-
-非受控组件 则是 表单的数据由表单自己去维护
-
-主要是 通过 ref 来实现
-
-官方主要推荐受控组件的方式
-
-## dangerouslySetInnerHTML
-
-假设有以下代码 我们想要渲染出 tag 中原有的样式
-
-直接渲染的话 它会被当成字符串 渲染在页面上
-
-需要使用 dangerouslySetInnerHTML
-
-但是也存在副作用 正如它的名字 dangerously 一样
-
-不合时宜的使用 可能会你的页面遭受 XSS 攻击
+你大概会使用到这个库 `prop-types`
 
 ```jsx
-export default class Example extends Component {
-  constructor(props) {
-    super(props);
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-    this.state = {
-      tag: '<h2>HELLO REACT</h2>',
-    };
-  }
+export default class App extends Component {
+  static propTypes = {
+    nickname: PropTypes.string.isRequired,
+    age: PropTypes.number,
+  };
 
-  render() {
-    return (
-      <>
-        {/* 页面中显示 <h2>HELLO REACT</h2> */}
-        {this.state.tag}
+  static defaultProps = {
+    nickname: 'nanshu',
+    age: 18,
+  };
 
-        {/* 页面正确解析h2标签 */}
-        <div dangerouslySetInnerHTML={{ __html: this.state.tag }}></div>
-      </>
-    );
-  }
-}
-```
-
-## 动手实现 Vue 中的 slot
-
-第一版 所有嵌套在组件内部的子组件 都会在`props.children`这个属性内
-
-我们可以通过 `props.children[index]` 来拿对应位置的组件
-
-缺点：使用者 必须 **按顺序** 传入组件
-
-```jsx
-class TabBar extends Component {
   render() {
     return (
       <div>
-        <div className="tab-bar">
-          <Fragment className="tab-bar-img">{this.props.children[0]}</Fragment>
-          <Fragment className="tab-bar-title">
-            {this.props.children[1]}
-          </Fragment>
-          <Fragment className="tab-bar-more">{this.props.children[2]}</Fragment>
-        </div>
+        <h1>{this.props.nickname}</h1>
+        <h1>{this.props.age}</h1>
       </div>
     );
   }
 }
-
-export default class Example extends Component {
-  render() {
-    return (
-      <>
-        <TabBar>
-          <span>头像</span>
-          <span>标题</span>
-          <span>更多</span>
-        </TabBar>
-      </>
-    );
-  }
-}
 ```
 
-Vue 中有具名组件的概念 我们继续改进代码来实现吧
-
-```jsx
-class SlotSwapper extends Component {
-  render() {
-    const { leftSlot, midSlot, rightSlot } = this.props;
-    return (
-      <>
-        <span className="leftSlot">{leftSlot}</span>
-        <span className="midSlot">{midSlot}</span>
-        <span className="rightSlot">{rightSlot}</span>
-      </>
-    );
-  }
-}
-
-export default class Example extends Component {
-  render() {
-    return (
-      <SlotSwapper
-        leftSlot={<span>这是左边的插槽</span>}
-        midSlot={<span>这是中间的插槽</span>}
-        rightSlot={<span>这是右边的插槽</span>}
-      />
-    );
-  }
-}
-```
-
-我们可以将 JSX 作为 props 传入给子组件
-
-然后在子组件解构 这样就可以拿到每一个对应的 slot 而不用去考虑顺序的问题
-
-## 动手实现 Vue 中的 v-show
-
-Vue 中 有两种显示隐藏元素的指令 分别是
-
-- v-show (元素并没有被移除)
-- v-if / v-else (元素被移除了)
-
-而我们在 React 中 用条件渲染 时 默认就是使用了 v-if 这种模式
-
-如果这个操作是频繁的 大量的 创建元素 和 销毁元素 无疑是浪费性能的
-
-下面是简单的 条件渲染的 DEMO
-
-```jsx
-export default class Example extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isShow: true,
-      text: 'HIDE',
-    };
-  }
-
-  render() {
-    return (
-      <>
-        {this.state.isShow && <div>NOW U SEE ME</div>}
-        <button onClick={() => this.handleHideClick()}>
-          {this.state.text}
-        </button>
-      </>
-    );
-  }
-
-  handleHideClick() {
-    this.setState({
-      isShow: !this.state.isShow,
-      text: this.state.isShow ? 'SHOW' : 'HIDE',
-    });
-  }
-}
-```
-
-现在我们动手来改造上面这段代码 让它具有 v-show 这种功能
-
-思路：我们可以动态决定组件的 style
-
-```jsx
-<div style={{ display: this.state.isShow ? 'block' : 'none' }}>
-  NOW U SEE ME
-</div>
-```
-
-## StrictMode
-
-使用 create-react-app 脚手架创建项目时 默认会在跟标签外面包裹`StrictMode`
-
-和`Fragment`一样 `StrictMode`不会创建任何 UI 元素 正如字面意思一样 它主要用于
-
-- 识别不安全的生命周期
-
-- 使用过时的 ref 的 API
-
-- 检查意外的副作用
-
-  - 开发环境下会调用两次 constructor
-
-- 识别废弃的 findDOMNode 方法
-
-- 检测过时的 context API
+但是`prop-types`只做 warning 层面的警告 ⚠️ 它不会打断我们的程序
