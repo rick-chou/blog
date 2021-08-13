@@ -197,6 +197,8 @@ React.createElement(
 );
 ```
 
+<hr />
+
 createElement 中并没有十分复杂的涉及算法或真实 DOM 的逻辑，它的每一个步骤几乎都是在格式化数据
 
 也就是处理成我们耳熟能详的`虚拟DOM`，关于`虚拟DOM` 我们都知道它解决了大量 DOM 操作带来的性能问题
@@ -208,6 +210,14 @@ createElement 中并没有十分复杂的涉及算法或真实 DOM 的逻辑，�
 React 在早期的时候 `react` 和 `react-dom` 这两个包是在一起的 从 React15 开始 才开始分离 各司其职
 
 这也是 RN 诞生的时候 这也可见一斑 `react-dom` 的作用
+
+<hr />
+
+至此 `createElement` 完成了它的任务 那就是格式化数据
+
+接下来 将由`ReactDOM.render` 接入处理好的数据 然后将它挂在真正的 dom 节点上
+
+至此 你的页面便出现了
 
 ```js
 ReactDOM.render(

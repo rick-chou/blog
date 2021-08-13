@@ -101,9 +101,7 @@ export default class App extends React.Component {
 
 所以函数组件是一个更加匹配其设计理念、也更有利于逻辑拆分与重用的组件表达形式
 
-## 内置 hooks
-
-### useState
+## useState
 
 ```tsx
 import React, { useState } from 'react';
@@ -140,7 +138,7 @@ const Counter: React.FunctionComponent = () => {
 export default Counter;
 ```
 
-### useReducer
+## useReducer
 
 ```tsx
 /**
@@ -213,7 +211,7 @@ export default function App() {
 }
 ```
 
-### useEffect
+## useEffect
 
 ```tsx
 /**
@@ -268,7 +266,7 @@ const App: FC = () => {
 export default App;
 ```
 
-### useContext
+## useContext
 
 ```tsx
 /**
@@ -317,7 +315,7 @@ export default function App() {
 }
 ```
 
-### useRef
+## useRef
 
 ```tsx
 /**
@@ -356,7 +354,7 @@ const App: FC = () => {
 export default App;
 ```
 
-### useCallback
+## useCallback
 
 在之前的章节中 我们用 shouldComponentUpdate 实现过性能优化
 
@@ -458,7 +456,7 @@ const Parent = () => {
 export default Parent;
 ```
 
-### useMemo
+## useMemo
 
 ```tsx
 /**
@@ -598,6 +596,8 @@ export default function App() {
   );
 }
 ```
+
+## Hooks 使用注意点
 
 ## 总结
 

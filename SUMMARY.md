@@ -75,6 +75,7 @@
 
 - [单例模式](design-pattern/singleton.md)
 - [策略模式](design-pattern/strategy.md)
+- [发布订阅](design-pattern/subscriber.md)
 
 ## Modular
 

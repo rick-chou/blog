@@ -12,6 +12,12 @@ render()
 componentWillUnmount()
 ```
 
+再早些，还有 getDefaultProps 和 getInitState 这两个方法，
+
+它们都是 React.createClass() 模式下初始化数据的方法。
+
+由于这种写法在 ES6 普及后已经不常见，这里不再详细展开。
+
 ## React 16
 
 [React16 生命周期图谱](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
