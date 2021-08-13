@@ -1,16 +1,10 @@
 ## 背景
 
-- 类组件需要继承 class，函数组件不需要
-- 类组件可以访问生命周期方法，函数组件不能
-- 类组件中可以获取到实例化后的 this，并基于这个 this 做各种各样的事情，而函数组件不可以
-- 类组件中可以定义并维护 state（状态），而函数组件不可以 （hook 之后改变了这种情况）
-- ......
+在 React 16.8 之前 函数式组件又被称为无状态组件
 
-类组件的状态 一般由组件内部维护 这样就会造成组件的复用性很差
+因为函数在每次执行执行的时候 都会重新执行内部的代码 导致函数无法维护自身内部的状态 例如
 
-而函数式组件 又无法保存状态 比如如下代码
-
-```javascript
+```js
 function add(n) {
   const result = 0;
   return result + 1;
@@ -22,18 +16,38 @@ add(1); //1
 
 我们无法在函数中保存 result 的状态 因为每一次执行函数时 都会重新初始化 result
 
+我们来看看 16.8 之前 类组件和函数式组件有哪些差别
+
+- 类组件需要继承 class，函数组件不需要
+
+- 类组件可以访问生命周期方法，函数组件不能
+
+- 类组件中可以获取到实例化后的 this，并基于这个 this 做各种各样的事情，而函数组件不可以
+
+- 类组件中可以定义并维护 state（状态），而函数组件不可以
+
+- ......
+
+类组件的状态 一般由组件内部维护 这样就会造成组件的复用性很差
+
+前几章中 我提到了 HOC 和 Render Props
+
+究其根本 它们都是尽可能的为了优雅的实现代码的复用
+
+但是 这些名词的背后无疑是繁重的学习成本
+
+而函数式组件 又无法保存状态
+
 这个时候 hook 就横空出世了 它想要解决的问题就是
 
 让函数式组件拥有类似类组件的功能
 
-说得更具体一点，函数组件更加契合 React 框架的设计理念
-
 我们来看一个简单的 demo
 
 ```jsx
-import React from 'react';
+import React, { Component } from 'react';
 
-class ProfilePageClass extends React.Component {
+class ProfilePageClassComponent extends Component {
   showMessage = () => {
     alert('Followed ' + this.props.user);
   };
@@ -47,7 +61,7 @@ class ProfilePageClass extends React.Component {
   }
 }
 
-function ProfilePageFunction(props) {
+function ProfilePageFunComponent(props) {
   const showMessage = () => {
     alert('Followed ' + props.user);
   };
@@ -61,7 +75,7 @@ function ProfilePageFunction(props) {
 
 export default class App extends React.Component {
   state = {
-    user: 'lucky',
+    user: 'nanshu',
   };
   render() {
     return (
@@ -72,18 +86,17 @@ export default class App extends React.Component {
             value={this.state.user}
             onChange={(e) => this.setState({ user: e.target.value })}
           >
-            <option value="lucky">lucky</option>
+            <option value="nanshu">nanshu</option>
             <option value="chou">chou</option>
-            <option value="ramires">ramires</option>
           </select>
         </label>
         <h1>Welcome to {this.state.user}’s profile!</h1>
         <p>
-          <ProfilePageFunction user={this.state.user} />
+          <ProfilePageFunComponent user={this.state.user} />
           <b> (function)</b>
         </p>
         <p>
-          <ProfilePageClass user={this.state.user} />
+          <ProfilePageClassComponent user={this.state.user} />
           <b> (class)</b>
         </p>
         <p>Can you spot the difference in the behavior?</p>
@@ -93,33 +106,76 @@ export default class App extends React.Component {
 }
 ```
 
-我们通过 setTimeout 将预期中的渲染推迟了 3s，打破了 this.props 和渲染动作之间的这种时机上的关联
+代码有点长 但是它做的事情很简单
+
+不管是类组件还是函数式组件都只是输出父组件给它的 props
+
+但是我们通过 setTimeout 将预期中的渲染推迟了 3s，打破了 this.props 和渲染动作之间的这种时机上的关联
 
 进而导致类组件在渲染时捕获到的是一个错误的、修改后的 this.props
 
-而函数式组件可以确保在任何时机下读取到的 props，都是最初捕获到的那个 props
+**因为虽然 props 本身是不可变的，但 this 却是可变的，this 上的数据是可以被修改的**
+
+this.props 的调用每次都会获取最新的 props 确保数据实时性
+
+**而函数式组件可以确保在任何时机下读取到的 props，都是最初捕获到的那个 props**
 
 所以函数组件是一个更加匹配其设计理念、也更有利于逻辑拆分与重用的组件表达形式
 
+<hr />
+
+了解了为什么需要 hook 后 我们来看看 👀 有哪些 React 已经帮我们封装好的 hook 吧
+
 ## useState
+
+- useState 填补了函数式组件内部不能保存状态的空白
+
+- 更新 useState 中保存的状态时 都是走的异步更新 对同一个属性的多次更新 会被合并 只取最新的一次
+
+- 使用回调函数更新状态时 可以拿到最新的 state
+
+我们来对比一下类组件中的 setState
+
+假如我们执行了一次 this.setState 那么组件大概会走如下流程
+
+this.setState --> shouldComponentUpdate --> componentWillUpdate --> render --> componentDidUpdate
+
+设想一下 如果我们每次执行 this.setState React 都要做出上述响应
+
+那么 大概没有几次 你的页面就会出现卡顿了 所以 React 做了批量更新
+
+但是在 hook 中 所有的更新都是异步的
+
+然而在 类组件中 如果你使用 setTimeout/Promise 这些异步的方法包裹 setState 的话 它会让这些更新摆脱 React 的控制 从而看上去表现出了同步的样子
+
+但是请注意 ⚠️ 无论是在函数式组件还是类组件中 更新状态永远是异步的
+
+这意味着你无法马上获取到最新的状态 如果需要的话 请使用回调函数的方式
+
+关于批量更新 可以参考 github 上的<a href="https://github.com/reactwg/react-18/discussions/21">discussions</a>
+
+文中提到了在即将到来的 React18 中将会默认开始批量更新
+
+包括在类组件中 如果我们使用 setTimeout/Promise 的这些情况 现在 React 也都能对它们进行控制 从而使类组件和函数式组件的表现趋于一致
 
 ```tsx
 import React, { useState } from 'react';
-import { Statistic, Button } from 'antd';
-import { LikeOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 
-const Counter: React.FunctionComponent = () => {
+const Counter: React.FC = () => {
   const [count, setCount] = useState<number>(0);
+  const [otherState, setOtherState] = useState<number>(0);
 
-  const addCountSync = () => {
-    setCount(count + 1);
+  // 普通调用
+  const addCount = () => {
+    setOtherState(otherState + 1);
     setCount(count + 1);
     setCount(count + 1);
     setCount(count + 1);
   };
-
-  const addCountAsync = () => {
-    setCount((preState) => preState + 1);
+  // 回调函数
+  const addCountByCallback = () => {
+    setOtherState((preState) => preState + 1);
     setCount((preState) => preState + 1);
     setCount((preState) => preState + 1);
     setCount((preState) => preState + 1);
@@ -127,27 +183,35 @@ const Counter: React.FunctionComponent = () => {
 
   return (
     <>
-      <Statistic value={count} prefix={<LikeOutlined />} />
-      <Button onClick={() => setCount(count + 1)}>ADD COUNTER</Button>
-      <Button onClick={() => addCountSync()}>ADD COUNTER SYNC</Button>
-      <Button onClick={() => addCountAsync()}>ADD COUNTER ASYNC</Button>
+      <p>{`count:${count}`}</p>
+      <p>{`other:${otherState}`}</p>
+      {/* 会合并成一个 每次只 +1 */}
+      <Button onClick={addCount}>我要打三个</Button>
+      {/* 每次都会取到最新的值 每次 +3  */}
+      <Button onClick={addCountByCallback}>我也要打三个</Button>
     </>
   );
 };
-
 export default Counter;
 ```
 
+上述的代码表示 不同的 state 之间互不影响 但是对同一个 state 的多次操作会导致批量更新
+
 ## useReducer
 
-```tsx
-/**
- * useReducer
- * 和redux没有关系 组件之间不共享数据
- * 是useState的一种替代方案
- * 对于复杂的业务 使用useReducer比useState会有更好的可读性
- */
+说完 useState 再来看看 useReducer
 
+两者都是函数式组件中对状态管理的手段
+
+前者可看成是后者的一种实现
+
+- 和 redux 没有关系 组件之间不共享数据
+
+- 是 useState 的一种替代方案
+
+- 对于复杂的业务 使用 useReducer 比 useState 会有更好的可读性
+
+```tsx
 import React, { useReducer } from 'react';
 import { Button } from 'antd';
 
@@ -211,54 +275,43 @@ export default function App() {
 }
 ```
 
+执行代码后 你会发现 不同组件之间的 state 互不影响
+
 ## useEffect
 
-```tsx
-/**
- * useEffect
- * 允许函数组件执行副作用操作 在一定程度上弥补了生命周期的缺席
- * 可以接收两个参数，分别是回调函数与依赖数组 useEffect(callBack, [])
- * 第一个参数 函数形式 可实现等同于componentDidMount shouldComponentUpdate componentWillUnmount
- * 并且可以返回一个函数 用来消除副作用 类似componentWillUnmount 可以做一些事件的解绑 定时器的关闭等
- * 第二个参数 数组 状态依赖项 实现性能优化 如果传[] 则等同于不开启shouldComponentUpdate
- */
+- 允许函数组件执行副作用操作 在一定程度上弥补了生命周期的缺席
 
+- 可以接收两个参数，分别是回调函数与依赖数组 useEffect(callBack, [])
+
+- 第一个参数 函数形式 可实现等同于 componentDidMount shouldComponentUpdate componentWillUnmount
+
+- 并且可以返回一个函数 用来消除副作用 类似 componentWillUnmount 可以做一些事件的解绑 定时器的关闭等
+
+- 第二个参数 数组 状态依赖项 实现性能优化 如果传[] 则等同于不开启 shouldComponentUpdate
+
+```tsx
 import React, { FC, useEffect, useState } from 'react';
 
-import { Button, Tag } from 'antd';
+import { Button, message } from 'antd';
 
 const App: FC = () => {
-  const [state, setState] = useState<Number[]>([]);
-  const [tag, setTag] = useState<string>('Tag');
+  const [state, setState] = useState<number>(0);
+
   useEffect(() => {
-    console.log('state更新了');
+    message.info('render');
+    const timer = setTimeout(() => {});
 
     return () => {
-      console.log('componentWillUnmount');
+      clearTimeout(timer);
+      message.info('消除副作用');
     };
   }, [state]);
+
   return (
     <div>
-      <Button
-        onClick={() =>
-          setState((prevState) => [
-            ...prevState,
-            Math.trunc(Math.random() * 10),
-          ])
-        }
-      >
-        change state
-      </Button>
-      <Button onClick={() => setTag('new Tag')}>change tag</Button>
-
-      <Tag color="orange">{tag}</Tag>
-      {state.map((item, idx) => {
-        return (
-          <Tag color="orange" key={idx}>
-            {item}
-          </Tag>
-        );
-      })}
+      <Button onClick={() => setState(state + 1)}>{state}</Button>
+      <br />
+      <br />
     </div>
   );
 };
@@ -268,15 +321,15 @@ export default App;
 
 ## useContext
 
-```tsx
-/**
- * useContext
- * 可以在子组件之间共享数据
- * 1)在组件外创建context对象 const AppContext = React.createContext({})
- * 2)父组件内使用context对象下的Provider 并赋值
- * 3)在子组件内过去context对象 React.useContext(AppContext)
- */
+- 可以在子组件之间共享数据
 
+- 在组件外创建 context 对象 const AppContext = React.createContext({})
+
+- 父组件内使用 context 对象下的 Provider 并赋值
+
+- 在子组件内过去 context 对象 React.useContext(AppContext)
+
+```tsx
 import React from 'react';
 
 interface ITheme {
@@ -317,36 +370,26 @@ export default function App() {
 
 ## useRef
 
-```tsx
-/**
- * useRef
- * 获取结点
- * 保存数据
- */
+- 获取元素结点
 
-import { Button, Input } from 'antd';
+- 保存数据 （永远指向最初的那个值）
+
+```tsx
 import React, { FC, useRef, useState } from 'react';
+import { Button, Input } from 'antd';
 
 const App: FC = () => {
   const [count, setCount] = useState<number>(0);
   const numRef = useRef<number>(count);
   const domRef = useRef<HTMLInputElement | null>(null);
-  const antdRef = useRef<Input | null>(null);
-  const showRef = () => {
-    console.log(domRef.current, antdRef.current);
-  };
 
   return (
     <div>
-      <input defaultValue="h5" ref={domRef} />
-      <Input defaultValue="antd" ref={antdRef} style={{ width: 200 }}></Input>
-      <Button onClick={() => showRef()}>showRef</Button>
-
+      <input defaultValue="useRef" ref={domRef} />
       <p>count : {count}</p>
-
-      {/* numRef的值始终引用最初的那个count */}
+      {/* numRef的值始终引用最初的那个count 不会随着count的变化而变化*/}
       <p>numRef : {numRef.current}</p>
-      <Button onClick={() => setCount(count + 1)}>+1</Button>
+      <Button onClick={() => setCount(count + 1)}>count+1</Button>
     </div>
   );
 };
@@ -354,76 +397,63 @@ const App: FC = () => {
 export default App;
 ```
 
-## useCallback
+## useCallback && useMemo
 
-在之前的章节中 我们用 shouldComponentUpdate 实现过性能优化
+在函数式组件中使用 memo 包裹我们的组件 可以帮助我们对前后的 props 进行一个浅比较
 
-也用过 PureComponent 和 memo 来实现
-
-在使用 memo 的时候 React 内部使用的是浅层比较
-
-对于函数和对象 其实不管怎样都是不会相等的
-
-```javascript
-() => {} === () => {} // false
-{} === {} // false
-[] === [] // false
-1 === 1 // true
-'1' === '1' // true
+```jsx
+const App = memo((props) => {
+  return 'UI';
+});
 ```
 
-所以假设 我们在父组件中将**引用数据类型**当作 props 传递给子组件时
+但是如果 props 是引用类型 那么此时 memo 就会失效
 
-这时候 子组件的 memo 就会失效
+我们可以使用 useCallBack 和下面提到 useMemo 来使我们的引用类型变成可记忆的
 
-而在 hook 中 对于函数 我们可以用 useCallback 将函数包装
+两者的关系如下 useMemo 的能力边界大于 useCallBack 但是两者在某些情况下可以相互转换
 
-对于对象 我们可以使用 useMemo 将对象包装
+> useCallback(fn, deps) is equivalent to useMemo(() => fn, deps) -- React 官网
 
-注：滥用 useCallback 不仅不会优化性能 还会造成性能浪费
+`useCallback(() => {}, [])`
+
+useCallback 接受两个如参
+
+第一个参数 是一个函数
+
+第二个参数 是一个数组 是这个函数的依赖项 只有依赖项更新 函数才会重新执行
 
 ```tsx
-/**
- * useCallback
- * 有一个父组件，其中包含子组件，子组件接收一个函数作为props；
- * 通常而言，如果父组件更新了，子组件也会执行更新；但是大多数场景下，更新是没有必要的，
- * 我们可以借助useCallback来返回函数，然后把这个函数作为props传递给子组件；这样，子组件就能避免不必要的更新
- * useCallback(()=>{},[])
- * 第一个参数 是一个函数
- * 第二个参数 是一个数组 是这个函数的依赖项 只有依赖项更新 函数才会重新执行
- */
-
-import { Button } from 'antd';
-import React, { useState, useCallback, memo } from 'react';
+import React, { useState, useCallback, memo, useEffect } from 'react';
+import { Button, message } from 'antd';
 
 interface IProps {
   getSum: () => number;
 }
 
-const Child1 = memo(({ getSum }: IProps) => {
-  console.log('我是子组件 在父组件中没使用useCallback');
-  return (
-    <div>
-      <Button onClick={getSum}>没使用useCallback</Button>
-    </div>
-  );
+const ComponentWithoutUseCallback = memo(({ getSum }: IProps) => {
+  useEffect(() => {
+    message.info('ComponentWithoutUseCallback');
+  }, [getSum]);
+
+  return null;
 });
 
-const Child2 = memo(({ getSum }: IProps) => {
-  console.log('我是子组件 在父组件中使用了useCallback');
-  return (
-    <div>
-      <Button onClick={getSum}>使用了useCallback</Button>
-    </div>
-  );
+const ComponentWithUseCallback = memo(({ getSum }: IProps) => {
+  useEffect(() => {
+    message.info('ComponentWithUseCallback');
+  }, [getSum]);
+
+  return null;
 });
 
 const Parent = () => {
   const [num, setNum] = useState(0);
   const [max, setMax] = useState(100);
 
-  const getSum1 = () => {
-    console.log('getSum1方法执行了');
+  // 只要父组件更新 子组件就会更新
+  const methodsWithoutUseCallback = () => {
+    message.info('methodsWithoutUseCallback');
     let sum = 0;
     for (let i = 0; i < max; i++) {
       sum += i;
@@ -431,8 +461,9 @@ const Parent = () => {
     return sum;
   };
 
-  const getSum2 = useCallback(() => {
-    console.log('getSum2方法执行了');
+  // 只有当max更新时 函数才会重新执行 子组件才会更新
+  const methodsWithUseCallback = useCallback(() => {
+    message.info('methodsWithUseCallback');
     let sum = 0;
     for (let i = 0; i < max; i++) {
       sum += i;
@@ -442,105 +473,11 @@ const Parent = () => {
 
   return (
     <div>
-      <p>sum : {getSum1()}</p>
-      <p>sum : {getSum2()}</p>
       <p>num : {num}</p>
       <Button onClick={() => setNum(num + 1)}>change num</Button>
       <Button onClick={() => setMax((pre) => pre * 2)}>change max</Button>
-      <Child1 getSum={getSum1} />
-      <Child2 getSum={getSum2} />
-    </div>
-  );
-};
-
-export default Parent;
-```
-
-## useMemo
-
-```tsx
-/**
- * useMemo
- * 有一个父组件，其中包含子组件，子组件接收一个对象作为props；
- * 通常而言，如果父组件更新了，子组件也会执行更新；但是大多数场景下，更新是没有必要的，
- * 我们可以借助useMemo来返回函数，然后把这个对象作为props传递给子组件；这样，子组件就能避免不必要的更新
- * useMemo(()=>({}),[])
- * 第一个参数 是一个函数 返回一个对象
- * 第二个参数 是一个数组 包含了这个对象的依赖项 只有依赖项更新 函数才会重新执行
- */
-
-import { Button } from 'antd';
-import React, { useState, useMemo, memo } from 'react';
-
-interface IProps {
-  age?: number;
-  stu?: { name: string; age: number };
-}
-
-// 接收的是基本数据类型 memo生效
-const Child = memo(({ age }: IProps) => {
-  console.log('props为基本数据类型的子组件渲染了');
-  return (
-    <div>
-      <h1>props为基本数据类型</h1>
-      <h2>age:{age}</h2>
-    </div>
-  );
-});
-
-// 父组件中没有使用useMemo 子组件的memo失效
-const Child1 = memo(({ stu }: IProps) => {
-  console.log('props为引用数据类型 未使用useMemo');
-  return (
-    <div>
-      <h1>props为引用数据类型 未使用useMemo</h1>
-      <h2>
-        {stu?.name}:{stu?.age}
-      </h2>
-    </div>
-  );
-});
-
-// 父组件中使用了useMemo 子组件的memo生效
-const Child2 = memo(({ stu }: IProps) => {
-  console.log('props为引用数据类型 使用useMemo');
-  return (
-    <div>
-      <h1>props为引用数据类型 使用useMemo</h1>
-      <h2>
-        {stu?.name}:{stu?.age}
-      </h2>
-    </div>
-  );
-});
-
-const Parent = () => {
-  const [count, setCount] = useState(0);
-  const [age, setAge] = useState(18);
-  const [name, setName] = useState('lucky');
-
-  const stu1 = {
-    name,
-    age,
-  };
-
-  const stu2 = useMemo(
-    () => ({
-      name,
-      age,
-    }),
-    [age]
-  );
-
-  return (
-    <div>
-      <Child age={age} />
-      <Child1 stu={stu1} />
-      <Child2 stu={stu2} />
-      <h1>{count}</h1>
-      <Button onClick={() => setCount(count + 1)}>change count</Button>
-      <Button onClick={() => setAge(age + 1)}>change age</Button>
-      <Button onClick={() => setName('lucky chou')}>change name</Button>
+      <ComponentWithoutUseCallback getSum={methodsWithoutUseCallback} />
+      <ComponentWithUseCallback getSum={methodsWithUseCallback} />
     </div>
   );
 };
@@ -555,7 +492,7 @@ export default Parent;
 ```jsx
 import React, { useEffect, useState } from 'react';
 
-const useLogger = (componentName) => {
+const useLogger = (componentName: string) => {
   useEffect(() => {
     console.log(`${componentName}组件被创建了`);
 
@@ -568,21 +505,13 @@ const useLogger = (componentName) => {
 const Header = () => {
   useLogger('Header');
 
-  return (
-    <div>
-      <h2>Header</h2>
-    </div>
-  );
+  return <h2>Header</h2>;
 };
 
 const Footer = () => {
   useLogger('Footer');
 
-  return (
-    <div>
-      <h2>Footer</h2>
-    </div>
-  );
+  return <h2>Footer</h2>;
 };
 
 export default function App() {
@@ -598,6 +527,12 @@ export default function App() {
 ```
 
 ## Hooks 使用注意点
+
+hook 的本质是链表 React 在执行 hook 的时候 是按顺序执行的
+
+如果将 hook 放在条件/判断语句中 那么就会打破它的执行顺序 产生意想不到的结果
+
+所以 请将你的 hook 放在最顶层进行使用
 
 ## 总结
 
@@ -634,4 +569,4 @@ componentDidUpdate() {
 
   - Render Props
 
-- 函数组件从设计思想上来看，更加契合 React 的理念。
+- 函数组件从设计思想上来看，更加契合 React 的理念
