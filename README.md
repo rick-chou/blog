@@ -82,7 +82,7 @@ React-Router
 
 - [https://reactrouter.com/web/guides/quick-start](https://reactrouter.com/web/guides/quick-start)
 
-Redux [https://www.redux.org.cn/](https://www.redux.org.cn/)
+Redux [https://redux.js.org/](https://redux.js.org/)
 
 Rematch [https://rematch.gitbook.io/handbook/](https://rematch.gitbook.io/handbook/)
 
