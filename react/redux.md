@@ -1,14 +1,18 @@
-## 安装
+Store: 它是一个单一的数据源，而且是只读的
 
-```bash
-yarn add redux
-```
+Action: 是“动作”的意思，它是对变化的描述
 
-如果安装过程很慢 可以切换淘宝镜像
+Reducer: 它负责对变化进行分发和处理，最终将新的数据返回给 Store
 
-```bash
-npm config set registry https://registry.npm.taobao.org
-```
+appleMiddleware
+
+bindActionCreators
+
+combineReducers
+
+compose
+
+creatorStore
 
 ## Redux 简介
 
