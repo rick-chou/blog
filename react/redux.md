@@ -1,318 +1,257 @@
-Store: 它是一个单一的数据源，而且是只读的
+本文参考如下文档
 
-Action: 是“动作”的意思，它是对变化的描述
+> <a href="https://redux.js.org/">Redux 官方文档</a>
 
-Reducer: 它负责对变化进行分发和处理，最终将新的数据返回给 Store
-
-appleMiddleware
-
-bindActionCreators
-
-combineReducers
-
-compose
-
-creatorStore
+> <a href="https://www.redux.org.cn/">Redux 中文文档</a>
 
 ## Redux 简介
 
-![](https://gitee.com/LuckyChou/blog-images/raw/master/react/redux.png)
+<img src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/react/redux/redux7.png" />
 
-Redux 是一套管理公共状态的第三方工具 虽然不是 React 官方开发 但已经成为 React 管理状态事实上的标准
+Redux 由 Flux 演变而来 是一套管理公共状态的第三方工具
 
-类似于 Vue 的 Vuex
+> 关于 Flux 思想 可参考 <a href="http://www.ruanyifeng.com/blog/2016/01/flux.html">阮一峰的网络日志</a>
+
+虽然不是 React 官方开发 但已经成为 React 管理状态事实上的标准
 
 ### Redux 工作流程
 
-- 事件内定义 action 并 dispatch 出去
+<img src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/react/redux/redux9.png" />
 
-- reducer 接收到 action 进行操作 返回一个新的 state 给 store
+- View 视图层内派发 action `(dispatch(action))`
 
-- store 接收到新的 state 数据发生改变
+- Reducer 接收到 action 进行分发和处理 返回一个新的 state 给 store
 
-- 页面通过 store.subscribe 订阅 store 更新页面
+- Store 接收到新的 state 数据发生改变
 
-我们将 Redux 的整个工作流程类比成一个借书的流程
+- View 视图层 通过 store.subscribe 订阅 store 更新页面
 
-可以看成是如下的操作
+具体流程可见下图
 
-### Store
+<img src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/react/redux/redux11.png" />
 
-图书馆管理员
+<img src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/react/redux/redux12.png" />
 
-他有一本记录借书的本子 reducer
+### 三大原则
 
-上面写了借书有关的信息 action
+#### 单一数据源
 
-![](https://gitee.com/LuckyChou/blog-images/raw/master/react/redux-store.png)
+虽然 Redux 源于 Flux 架构 但是它并不是完全按照 Flux 架构去设计的
 
-### React Components
+例如 Flux 架构中 允许有多个 store 但是 Redux 中只允许有一个 store 存在
 
-借书的人
+所有的 state 都被存在了唯一的一个 store 中
 
-### Action Creators
+这也就确保了数据的`可追踪`和`可预测`
 
-借书人发起借书的申请
+#### 不可变数据
 
-```javascript
-{
-  type: BORROW_BOOKS,
-  text: 'I want to borrow a book'
-}
-```
+不要尝试直接修改 store 中的数据 这将会使你的应用发生不可预测的结果
 
-**改变 store 中数据唯一的方法就是 component 提交 action**
+唯一改变 state 的方法就是触发 action
 
-reducer 中根据 action 中的 type 值来区分请求 并执行具体的操作
+这样 每次你的修改都会返回一个新的 store
 
-### Reducer
+Redux 就可以记录每一次 store 的变化 从而实现调试等功能
 
-图书管管理员的笔记 记录着各种借书还书的记录
+#### 使用纯函数
 
-```javascript
-export default (state = defaultState, action) => {
-  switch (action.type) {
-    case BORROW_BOOKS:
-      // 不能修修改state 只能返回一个新的state
-        const newState = JSON.parse(JSON.stringify(state))
-        // do Something......
-        return newState
-      })
-    default:
-      return state
-  }
-}
-```
+> 此函数在相同的输入值时，需产生相同的输出。函数的输出和输入值以外的其他隐藏信息或状态无关，也和由 I/O 设备产生的外部输出无关。
+> 该函数不能有语义上可观察的函数副作用，诸如“触发事件”，使输出设备输出，或更改输出值以外物件的内容等。 ------ 维基百科
 
-原则：reducer 中不能修改 state 只能返回一个新的 state
+Reducer 只是一些纯函数 这意味着 Reducer 的结果将只受 Action 控制
 
-为了防止在操作中不小心修改 state 对象 我们可以引入`immutable.js`库
+再回过头来看 Redux 的官方定义
 
-## Demo && Comment
+> A Predictable State Container for JS Apps ----- Redux 官方
 
-现在我们用 Redux 写一个 Comment 的 Demo
+我们会发现 这三大原则其实都只在一件事 就是 Predictable 可预测的
 
-### Redux DevTools
+## Store: 它是一个单一的数据源，而且是只读的
 
-在开始改造我们的项目前 我们再安装一个 chrome 插件
+<img src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/react/redux/redux6.png" />
 
-它可以使我们的 Redux 调试 变的极为方便
+## Action: 是“动作”的意思，它是对变化的描述
 
-在创建 store 的方法中传入第二个参数
+<img src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/react/redux/redux3.png" />
 
-`window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()`
+## Reducer: 它负责对变化进行分发和处理，最终将新的数据返回给 Store
 
-```javascript
-const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+<img src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/react/redux/redux5.png" />
+
+## API
+
+### creatorStore
+
+创建 store 对象
+
+### appleMiddleware
+
+使用中间件 在下一讲中间件中会提到
+
+### bindActionCreators
+
+该 Api 用于将 action 和 dispatch 绑定 从而使组件可以无感知 Redux 的存在
+
+```js
+const { dispatch } = useDispatch();
+const _bindActionCreators = bindActionCreators(
+  {
+    // 定义好的一些actionCreators
+    addCounter,
+    subCounter,
+  },
+  dispatch
 );
+
+// 这样就可以派发一个action了
+_bindActionCreators.addCounter();
 ```
 
-再次启动项目 即可在浏览器调试工具中看到有 redux 选项
+### combineReducers
 
-好啦 准备工作都完成啦 接下来 我们开始吧
+当我们的页面变得越来越复杂的时候 可能我们需要针对模块拆分不同的 Store
 
-我们要实现的例子很简单就是借助 redux 来管理我们的用户名和列表
+这个 Api 就可以帮我们重新组合这些 Store 变成一个 Store
 
-### 创建 store
+<img src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/react/redux/redux4.png" />
 
-我们在项目中创建 store 文件夹
+### connect
 
-在目录下新建
+用于将 Store 和 Action 映射到组件的 props 上
 
-```
-├─ Home
-  ├─ actionCreators.ts
-  ├─ reducers.ts
-  ├─ actionTypes.ts
-├─ Article
-  ├─ actionCreators.ts
-  ├─ reducers.ts
-  ├─ actionTypes.ts
-```
+<img src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/react/redux/redux1.png" />
 
-#### index.ts
+### compose
 
-我们在这个文件中创建 store 并引入 redux 库中给我们提供的`combineReducers`工具函数来合并这两个 reducers
+compose 是函数式编程中的方法 用来从右到左来组合多个函数
 
-```javascript
-import { createStore, combineReducers } from 'redux';
-import home from './home/reducers';
-import article from './article/reducers';
+本文只做 Redux 的入门 所以 compose 这个函数可以在函数式编程中深究
 
-const rootReducer = combineReducers({
-  home,
-  article,
-});
+## Redux DevTools
 
-export default createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-```
+这是一个 Chrome 的插件 可以让我们更好的调试我们的 Redux
 
-`createStore`中第一个参数传入 reducer
+<img src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/react/redux/redux2.png" />
 
-第二个参数可以传入 enhancer 这里我们传入 Redux DevTools 有关的参数
+## react-redux
 
-#### reducer.js
+这是一个用于将你的组件和 Redux 更方便连接的组件库
 
-reducer 用于处理每一个来自组件派发的 action 它将决定每一次 dispatch 后 store 如何变化
-
-这里以 home 页面改变 name 的 action 为例子
-
-```typescript
-import { SET_USER_NAME } from './actionTypes';
-import { IAction } from '@type/index';
-
-const defaultState = {
-  username: 'chou',
-};
-
-export default (state = defaultState, action: IAction) => {
-  switch (action.type) {
-    case SET_USER_NAME:
-      return { ...state, username: action.username };
-    default:
-      return state;
-  }
-};
-```
-
-其中 defaultState 为数据的默认值
-
-reducer 文件中只做一件事 就是处理 component 中提交的 action 请求
-
-它导出一个方法
-
-第一个参数 state 为 store 中的旧数据
-
-第二个参数 action 为 component 提交的改变 store 的 action 请求
-
-再次重申：reducer 可以接受 store 中的数据
-
-但是绝不能修改 store 中的数据
-
-我们可以在操作前拷贝一份 store 中数据
-
-然后再对这份数据进行修改 最后 return 出去
-
-#### actionTypes.js
-
-管理着我们所有 action 的 type
-
-```javascript
-export const SUBMIT_COMMENT_VALUE = 'submit_comment_value';
-export const DELETE_COMMENT_ITEM = 'delete_comment_item';
-```
-
-#### actionCreators.js
-
-统一管理着我们创建 action 的方法
-
-```typescript
-export const SET_USER_NAME = 'SET_USER_NAME';
-```
-
-如果为使用 react-redux 连接库
-
-那么你大概会需要用到以下三个 api
-
-- store.dispatch
-- store.getState
-- store.subscribe
-
-它们分别用来派发 action 获取 store 和监听 store 的变化
-
-我们一般会将 store.getState 放在构造函数中用于初始化时获取 store
-
-然后使用 store.subscribe 这个方法监听 store 的变化 并更新 store 保持组件中的 store 时刻与最新的一致
-
-demo 如下
-
-```typescript
-constructor(props) {
-    super(props)
-    this.state = store.getState()
-    this.handleStoreChange = this.handleStoreChange.bind(this)
-    store.subscribe(this.handleStoreChange)
-  }
-```
-
-但是为了方便使用 我们一般会再引入一个第三方库 `react-redux`
-
-使用这个库可以让我们的组件与 store 之间的连接更为顺畅
-
-使用起来也很简单
-
-首先 我们在根组件处 调用 Provider
+使用 如下
 
 ```tsx
-import React from 'react';
-import RouterTemp from '@router/temp';
-import { RouteConfigComponentProps } from 'react-router-config';
-import { Provider } from 'react-redux';
-import store from '@store/redux/index';
-const index = (props: RouteConfigComponentProps) => {
+import { Provider, useDispatch, useSelector } from 'react-redux';
+
+<Provider store={store}>
+  <A />
+  <B />
+  <C />
+</Provider>;
+```
+
+如此一来 A B C 组件便都有能力获取到 Store 中的数据了
+
+具体的用法 可以看接下来的 Demo
+
+## Demo
+
+这里我用一个计数器的 🌰 来快速过一遍 Redux
+
+首先 创建我们的 store
+
+```ts
+// 导入核心API 创建Store
+import { createStore } from 'redux';
+
+interface IStore {
+  count: number;
+}
+
+interface IAction {
+  type: string;
+  [key: string]: any;
+}
+
+// 定义我们的 Action Type
+enum ACTION_TYPE {
+  ADD_COUNTER = 'ADD_COUNTER',
+  SUB_COUNTER = 'SUB_COUNTER',
+}
+
+// 对外暴露 Action Creators 用于组件调用
+export const addCounter = (payload: number) => ({
+  type: ACTION_TYPE.ADD_COUNTER,
+  payload,
+});
+
+export const subCounter = (payload: number) => ({
+  type: ACTION_TYPE.SUB_COUNTER,
+  payload,
+});
+
+// 创建一个初始化的Store
+const initStore: IStore = {
+  count: 0,
+};
+
+// 创建Reducer 用于管理 View 派发过来的 Action
+const reducer = (store = initStore, action: IAction) => {
+  switch (action.type) {
+    case ACTION_TYPE.ADD_COUNTER:
+      return { ...store, count: store.count + action.payload };
+    case ACTION_TYPE.SUB_COUNTER:
+      return { ...store, count: store.count - action.payload };
+    default:
+      return store;
+  }
+};
+
+// 创建 Store 这里我们还开启了 Redux DEVTools
+export const store = createStore(
+  reducer,
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
+);
+```
+
+视图层的代码如下
+
+```tsx
+import { useState } from 'react';
+import { Button, Input } from 'antd';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { store, addCounter, subCounter, IStore } from './store';
+
+function Counter() {
+  // 获取 Store 中的数据
+  const { count } = useSelector((store: IStore) => store);
+  const dispatch = useDispatch();
+  const [payload, setPayload] = useState<number>(1);
+
+  return (
+    <>
+      <Input
+        value={payload}
+        onChange={(v) => setPayload(parseInt(v.target.value))}
+      />
+      <Button onClick={() => dispatch(addCounter(payload))}>+</Button>
+      <Button>{count}</Button>
+      <Button onClick={() => dispatch(subCounter(payload))}>-</Button>
+    </>
+  );
+}
+
+export default function Root() {
   return (
     <Provider store={store}>
-      <RouterTemp routerName="/store" renderRoutes={props!.route!.routes} />
+      <Counter />
     </Provider>
   );
-};
-export default index;
-```
-
-然后在需要用到 store 的组件中 使用 react-redux 提供的高阶组件 connect 导出我们的组件即可
-
-mapStateToProps 和 mapDispatchToProps 两个函数需要我们去实现 它们用于将 store 和 dispatch 映射到我们组件的 props 中
-
-demo 如下
-
-```tsx
-import React from 'react';
-import { connect } from 'react-redux';
-import * as ACTIONS from '@store/redux/home/actionCreators';
-import { Button } from 'antd';
-
-interface IProps {
-  username: string;
-  setUsername: (username: string) => void;
 }
-
-const Home = (props: IProps) => {
-  return (
-    <div>
-      <h1>Home</h1>
-      <h2>{props.username}</h2>
-      <Button onClick={() => props.setUsername('lucky')}>change name</Button>
-    </div>
-  );
-};
-
-const mapStateToProps = (state: any) => ({
-  username: state.home.username,
-});
-
-const mapDispatchToProps = (dispatch: any) => ({
-  setUsername: (payload: string) => dispatch(ACTIONS.setUsername(payload)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
 ```
-
-## 补充
-
-- immutable.js
-- combineReducers
-
-immutable.js 可以防止我们对 state 进行修改 破坏了 State 是只读的这个原则
-
-具体的 API 可参考[官网](https://immutable-js.github.io/immutable-js/)
 
 ## 思考
 
-本文中的 demo 都是同步代码 如果我们在发送 action 的时候 需要执行一些异步操作 这个时候应该怎么办呢
+本文中的 reducers 都是同步代码 如果我们在发送 action 的时候 需要执行一些异步操作 这个时候应该怎么办呢
 
-reducer 中是否可以处理异步操作呢？？？
+reducer 中是否可以处理异步操作呢 ？？？
