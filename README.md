@@ -6,11 +6,9 @@
 
 🌱 I’m currently learning Typescript && React && Node
 
-👻 Welcome to my Home –&gt; [https://luckychou.gitee.io/](https://luckychou.gitee.io/)
+👻 Welcome to my Home –&gt; [juejin](https://juejin.cn/user/1574156383563496)
 
 📝 Mail me –&gt; [944268618@qq.com](mailto:944268618@qq.com)
-
-😬 WeChat –&gt; LuckyChou710
 
 🍉 Star me –&gt; [https://github.com/LuckyChou710](https://github.com/LuckyChou710)
 
