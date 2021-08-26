@@ -1,122 +1,104 @@
 ## 背景
 
-redux 中的数据流大致是
+上文中 我们介绍了 Redux 的基本用法 但是我们在 Reducer 中都是同步代码
 
-UI —————> action（plain）—————> reducer —————> state —————> UI
+承接上文计数器的 🌰 如果我们想在 Reducer 中将用定时器将每个操作延迟 1s
 
-action 是一个原始 js 对象（plain object）且 reducer 是一个纯函数
+<a href="https://luckychou.gitbook.io/blog/react/redux">上文传送门</a>
 
-**但是如果存在副作用，比如 ajax 异步请求等等，那么应该怎么做？**
+代码如下
 
-我们需要实现的功能也很简单 就是继续上一讲的 demo 完善 article 中的 reducer
-
-article 组件中派发一个 get_list 的 action 然后我们需要在 store 中更新网络请求回来后的 lists
-
-首先我们在 reducer 中处理网络请求看看行不行的通
-
-```typescript
-import * as TYPES from './actionTypes';
-import { IAction } from '@type/index';
-import API from '@utils/api';
-const defaultState = {
-  list: [],
-};
-
-export default (state = defaultState, action: IAction) => {
+```ts
+// 创建Reducer 用于管理 View 派发过来的 Action
+const reducer = (store = initStore, action: IAction) => {
   switch (action.type) {
-    case TYPES.GET_LIST: {
-      API.getList().then((list) => {
-        console.log(list);
-        return { ...state, list };
+    case ACTION_TYPE.ADD_COUNTER: {
+      let { count } = store;
+      setTimeout(() => {
+        count = count + action.payload;
       });
+      return { ...store, count };
     }
+    case ACTION_TYPE.SUB_COUNTER:
+      return { ...store, count: store.count - action.payload };
     default:
-      return state;
+      return store;
   }
 };
 ```
 
-通过点击按钮 我们确实可以看到控制台上打印出了 我们在 reducer 中发送网络请求后的打印语句
+我们用定时器来模拟 真实场景下的一些 api 操作
 
-但是查看 devtools 我们会发现 store 并没有更新
+上文中 我们提到 Redux 有三大原则 它们都只为做一件事
 
-也就是说 reducer 中所有改变 store 的方法走的都是同步的代码
+让 Redux 的每一步操作都变得`可预测`
 
-这也不难理解 因为这会让我们的 store 变的更加可控 它不会因为异步操作的某个回掉函数在不知道什么时候改变了 store
+但是我们无法确定 我们在 Reducer 中书写的异步操作会在什么时候触发 从而改变 Store
 
-但是 如果我们就是要发送请求 针对这种场景 我们该如果去实现呢
+这将会是 Redux 的 Store 变得难以预测
 
-这个时候就可以引入中间件来帮助我们完成异步操作
+我们再来回顾一下 Redux 中的数据流
 
-redux 增加中间件处理副作用后的数据流大致如下
+UI —————> action（plain）—————> reducer —————> state —————> UI
+
+**其实 action 是一个原始 js 对象（plain object）且 reducer 是一个纯函数**
+
+所以 如果想要实现异步操作 这些具有副作用的行为时 就需要在 action 和 reducer 中间再架设一层处理异步逻辑的中间层
+
+这就是中间件 加入中间件后 Redux 数据流如下
 
 UI —————> action(side function) —————> middleware —————> action(plain) —————> reducer —————> state —————> UI
 
-本文就主要介绍两种中间件 **redux-thunk** 和 **redux-saga**
+下面主要介绍两种中间件 **redux-thunk** 和 **redux-saga**
 
 ## redux-thunk
 
-### 引入
+改造后的代码如下 省去无关代码
 
-store 下的入口文件 index
-
-```typescript
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+```ts
+// 导入核心API 创建Store
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import home from './home/reducers';
-import article from './article/reducers';
 
-const rootReducer = combineReducers({
-  home,
-  article,
+export const _subCounter = (payload: number) => ({
+  type: ACTION_TYPE.SUB_COUNTER,
+  payload,
 });
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const subCounter = (payload: number) => {
+  return (dispatch: any, getState: any) =>
+    setTimeout(() => {
+      let { count } = getState();
+      count = count + payload;
+      dispatch(_subCounter(count));
+    }, 1000);
+};
+
+// 创建一个初始化的Store
+const initStore: IStore = {
+  count: 0,
+};
+
+// 创建Reducer 用于管理 View 派发过来的 Action
+const reducer = (store = initStore, action: IAction) => {
+  switch (action.type) {
+    case ACTION_TYPE.SUB_COUNTER:
+      return { ...store, count: action.payload };
+    default:
+      return store;
+  }
+};
+
+const composeEnhancers =
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancer = composeEnhancers(applyMiddleware(thunkMiddleware));
 
-export default createStore(rootReducer, enhancer);
+// 创建 Store 这里我们还开启了 Redux DEVTools
+export const store = createStore(reducer, enhancer);
 ```
 
-然后是 actionCreators
-
-```javascript
-// 这是箭头函数的语法 用来返回一个对象
-() => ({})
-// 如果不使用简写 就需要写成如下这种样子 这两种写法是等价的
-() => {
-  return {}
-}
-```
-
-```typescript
-import * as ACTIONS from './actionTypes';
-import API from '@utils/api';
-import { Dispatch } from 'redux';
-
-export const getList = () => ({
-  type: ACTIONS.GET_LIST,
-});
-
-export const setList = (list: Array<any>) => ({
-  type: ACTIONS.SET_LIST,
-  list,
-});
-
-export const getListSync = (list: Array<any>) => ({
-  type: ACTIONS.GET_LIST_ASYNC,
-  list,
-});
-
-export const getListAsync = () => {
-  return async (dispatch: Dispatch) => {
-    const { list } = await API.getList();
-    dispatch(getListSync(list));
-  };
-};
-```
-
-其他所有地方都按正常使用即可 在组件内我们使用的是进行了异步操作的那个函数
+其他地方正常使用即可
 
 通过 thunk 我们可以在 dispatch 前拦截 action
 
@@ -132,60 +114,90 @@ export const getListAsync = () => {
 
 在 saga 中 side effect 都移到了 saga.js 文件中 不再和 actionCreator 杂糅在一起
 
-例如如下 saga.js 文件
-
-```javascript
-import { takeEvery, put } from 'redux-saga/effects';
-import axios from 'axios';
-import { getName } from './actionCreators';
-
-// 执行副作用的函数
-function* fetchGetName(action) {
-  const res = yield axios.get('/__mock__.json');
-  const name = res.data.data;
-  yield put(getName(name));
-}
-
-// 监听GET_NAME_VALUE action 在dispatch前执行fetchGetName 最后包装成原始action
-function* mySaga() {
-  yield takeEvery('GET_NAME_VALUE_ASYNC', fetchGetName);
-}
-
-export default mySaga;
-```
-
-我们的 actionCreator 还是纯净的文件
-
-```javascript
-import { GET_NAME_VALUE } from './actionTypes';
-
-export const getName = (name) => ({
-  type: GET_NAME_VALUE,
-  name,
-});
-```
+重新用 saga 管理我们的计数器
 
 再来看看 saga 怎么和 store 建立联系
-
-```javascript
-import { createStore, applyMiddleware, compose } from 'redux';
-import reducer from './reducer';
-import createSagaMiddleware from 'redux-saga';
-import mySaga from './sagas';
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const sagaMiddleware = createSagaMiddleware();
-
-const enhancer = composeEnhancers(applyMiddleware(sagaMiddleware));
-
-const store = createStore(reducer, enhancer);
-
-sagaMiddleware.run(mySaga);
-
-export default store;
-```
 
 注意 触发 action 和触发 saga 的 type 不能同名 不然会导致 saga 一直执行 action
 
 然后在业务组件中 我们 dispatch 的 type 应是 saga 对应的 type
+
+## rematch
+
+关于 rematch 的介绍 可以参考[传送门](https://rematch.gitbook.io/handbook/mu-de)
+
+rematch 可以简化传统的 redux 使我们免去写 actionType actionCreator
+
+我们用 rematch 来实现计数器的 🌰
+
+首先是 store
+
+```js
+const count = {
+  state: {
+    count: 0,
+  },
+  reducers: {
+    setCount(state, count) {
+      return { ...state, count };
+    },
+  },
+  // 可以在这里处理副作用 例如发起网络请求
+  effects: (dispatch) => ({
+    async increment(payload, rootState) {
+      let { count } = rootState.count;
+      count += payload;
+      dispatch.count.setCount(count);
+    },
+  }),
+};
+
+export default count;
+```
+
+如果我们有多个 store 我们就可以在一个文件中统一管理我们的 store
+
+```javascript
+export { default as count } from './count';
+export { default as total } from './total';
+export ...
+```
+
+init 函数会帮助我们创建一个 store 同时它会帮助我们自动开启 redux devtools 调试工具
+
+```javascript
+import { init } from '@rematch/core';
+import * as models from './model';
+
+export const store = init({ models });
+```
+
+业务组件
+
+```jsx
+import React from 'react';
+import { Provider, useSelector, useDispatch } from 'react-redux';
+import { store } from './models';
+
+const Counter = () => {
+  const counter = useSelector((state) => state.count);
+  const dispatch = useDispatch();
+  return (
+    <>
+      <div>{counter.num}</div>
+      <button onClick={() => dispatch.count.increment(1)}>+1</button>
+      <button onClick={() => dispatch.count.increment(10)}>+10</button>
+    </>
+  );
+};
+
+export default function View() {
+  return (
+    <Provider store={store}>
+      <Counter />
+    </Provider>
+  );
+}
+```
+
+## redux toolkits
