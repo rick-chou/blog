@@ -23,6 +23,7 @@
 - [This](javascript/this.md)
 - [JS 事件](javascript/event.md)
 - [ES6 笔记](javascript/es6.md)
+- [parseInt](javascript/radix.md)
 - [Reduce](javascript/reduce.md)
 - [Prototype](javascript/prototype.md)
 - [Bind / Call / Apply](javascript/bind-call-apply.md)
