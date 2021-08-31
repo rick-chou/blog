@@ -43,6 +43,7 @@
 
 - [数据类型](typescript/data-types.md)
 - [高级类型](typescript/advanced-types.md)
+- [关键字 & 内置类型](typescript/keywords.md)
 
 ## React
 
