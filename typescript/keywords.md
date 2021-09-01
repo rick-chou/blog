@@ -209,7 +209,7 @@ type Readonly<T> = {
 
 ### Pick
 
-从 T 中筛选
+从 T 中筛选属性为 K 的集合
 
 ```ts
 type Pick<T, K extends keyof T> = {
@@ -239,7 +239,7 @@ type C = {
 
 ### Record
 
-用 union 类型 K 构建一个对象类型
+它用来生成一个属性为 K，类型为 T 的类型集合
 
 ```ts
 type Record<K extends keyof any, T> = {
@@ -261,7 +261,7 @@ type B = {
 };
 ```
 
-如果 union type 中是类型 不是值 则会生成对应类型的索引签名 但只能是 string ｜ number ｜ symbol
+如果 K 中是类型 不是值 则会生成对应类型的索引签名 但只能是 string ｜ number ｜ symbol
 
 举个 🌰
 
@@ -290,19 +290,70 @@ type Exclude<T, U> = T extends U ? never : T;
 type Extract<T, U> = T extends U ? T : never;
 ```
 
+上述两个类型 刚好相反 实现的原理也很简单
+
+举个 🌰 吧
+
+```ts
+export interface A {
+  name: string;
+  age: number;
+}
+
+export interface B {
+  age: number;
+}
+
+type C = Extract<A, B>; // --> type C = A
+type D = Extract<B, A>; // --> type D = never
+
+type E = Exclude<A, B>; // --> type E = never
+type F = Exclude<B, A>; // --> type F = B
+```
+
 ### Omit
+
+构建一个新类型 T 排除 T 中的 K 属性
+
+如果 T 为值 则排除对应的属性名
+
+如果 T 为类型 则排除对应类型的属性
 
 ```ts
 type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
 ```
 
+举个 🌰
+
+```ts
+interface A {
+  name: string;
+  age: number;
+}
+
+type B = Omit<A, string>; // --> 排除了 A 中所有 string 类型的属性 所以 B 为{}
+```
+
+```ts
+interface A {
+  name: string;
+  age: number;
+}
+
+type B = Omit<A, 'name'>; // --> 排除了 A 中 name 属性 所有 B 为 { age: number }
+```
+
 ### NonNullable
+
+约束类型不能为 null 和 undefined
 
 ```ts
 type NonNullable<T> = T extends null | undefined ? never : T;
 ```
 
 ### Parameters
+
+获取一个函数的参数类型，返回的是一组包含类型的数组
 
 ```ts
 type Parameters<T extends (...args: any) => any> = T extends (
@@ -312,14 +363,41 @@ type Parameters<T extends (...args: any) => any> = T extends (
   : never;
 ```
 
+举个 🌰
+
+```ts
+function foo(p1: string, p2: number) {}
+
+type params = Parameters<typeof foo>; // --> type params = [p1: string, p2: number]
+```
+
 ### ConstructorParameters
+
+获取构造函数中的参数类型
 
 ```ts
 type ConstructorParameters<T extends abstract new (...args: any) => any> =
   T extends abstract new (...args: infer P) => any ? P : never;
 ```
 
+举个 🌰
+
+```ts
+class A {
+  private name;
+  private age;
+  constructor(name: string, age: number) {
+    this.age = age;
+    this.name = name;
+  }
+}
+
+type B = ConstructorParameters<typeof A>;
+```
+
 ### ReturnType
+
+获取函数的返回值
 
 ```ts
 type ReturnType<T extends (...args: any) => any> = T extends (
@@ -329,11 +407,59 @@ type ReturnType<T extends (...args: any) => any> = T extends (
   : any;
 ```
 
+举个 🌰
+
+```ts
+function returnSomething() {
+  return 'string';
+}
+
+function* task() {
+  // 这里的 result 在TS中是没有拿到正确的函数返回类型的，大家可以试一下
+  const result = yield returnSomething();
+}
+```
+
+这时 我们就可以使用 `ReturnType`
+
+```ts
+function returnSomething() {
+  return 'string';
+}
+
+function* task() {
+  // 这里的 result 就可以拿到正确的返回值
+  const result: ReturnType<typeof returnSomething> = yield returnSomething();
+}
+```
+
 ### InstanceType
+
+获取类的实例类型 和用类直接去约束类型一样
 
 ```ts
 type InstanceType<T extends abstract new (...args: any) => any> =
   T extends abstract new (...args: any) => infer R ? R : any;
+```
+
+举个 🌰
+
+```ts
+class A {
+  name: string;
+  age: number;
+  constructor(name: string, age: number) {
+    this.age = age;
+    this.name = name;
+  }
+}
+
+type B = InstanceType<typeof A>; // --> type B = A
+
+const obj: B = {
+  name: 'nanshu',
+  age: 18,
+};
 ```
 
 此外还有一些限制 string 形式的工具类型
