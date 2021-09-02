@@ -25,7 +25,7 @@ type PersonKeys = keyof Person; //  --> "age" | "name"
 type PlayerKey = keyof Player; //  --> "age" | "name"
 ```
 
-TODO
+![](https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/ts/ts4.png)
 
 ### typeof
 
@@ -153,7 +153,7 @@ doSomething('string'); // TypeError: params.xxx is not a function
 
 isString1 判断后的结果会返回一个 string 的保护类型
 
-TODO
+![](https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/ts/ts1.png)
 
 而 isString2 因为 params 是 any 会绕过 ts 的检查
 
@@ -420,6 +420,8 @@ function* task() {
 }
 ```
 
+![](https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/ts/ts2.png)
+
 这时 我们就可以使用 `ReturnType`
 
 ```ts
@@ -432,6 +434,8 @@ function* task() {
   const result: ReturnType<typeof returnSomething> = yield returnSomething();
 }
 ```
+
+![](https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/ts/ts3.png)
 
 ### InstanceType
 
