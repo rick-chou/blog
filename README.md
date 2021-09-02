@@ -4,11 +4,11 @@
 
 👀 I’m interested in FE
 
-🌱 I’m currently learning Typescript && React && Node
+🌱 I’m currently learning React && Typescript && Node && Go
 
 👻 Welcome to my Home –&gt; [juejin](https://juejin.cn/user/1574156383563496)
 
-📝 Mail me –&gt; [944268618@qq.com](mailto:944268618@qq.com)
+📝 Mail me –&gt; [luckychou209@gmail.com](mailto:luckychou209@gmail.com)
 
 🍉 Star me –&gt; [https://github.com/LuckyChou710](https://github.com/LuckyChou710)
 
@@ -128,7 +128,7 @@ Element Plus [https://element-plus.gitee.io/\#/zh-CN](https://element-plus.gitee
 
 Plyr（视频播放器） [https://plyr.io/](https://plyr.io/)
 
-Filepond \(文件上传\) [https://pqina.nl/filepond/](https://pqina.nl/filepond/)
+Filepond (文件上传) [https://pqina.nl/filepond/](https://pqina.nl/filepond/)
 
 ## Node
 
@@ -138,7 +138,7 @@ Koa [https://koa.bootcss.com/](https://koa.bootcss.com/)
 
 Egg [https://eggjs.org/zh-cn/](https://eggjs.org/zh-cn/)
 
-cheerio\(爬虫\) [https://github.com/cheeriojs/cheerio/wiki/Chinese-README](https://github.com/cheeriojs/cheerio/wiki/Chinese-README)
+cheerio(爬虫) [https://github.com/cheeriojs/cheerio/wiki/Chinese-README](https://github.com/cheeriojs/cheerio/wiki/Chinese-README)
 
 ## Modular
 
