@@ -1,5 +1,9 @@
 ## 背景
 
+## 手动实现中间层
+
+TODO
+
 上文中 我们介绍了 Redux 的基本用法 但是我们在 Reducer 中都是同步代码
 
 承接上文计数器的 🌰 如果我们想在 Reducer 中将用定时器将每个操作延迟 1s
@@ -199,5 +203,3 @@ export default function View() {
   );
 }
 ```
-
-## redux toolkits
