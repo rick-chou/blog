@@ -1,8 +1,4 @@
-## 背景
-
-## 手动实现中间层
-
-TODO
+## 中间件
 
 上文中 我们介绍了 Redux 的基本用法 但是我们在 Reducer 中都是同步代码
 
@@ -53,7 +49,42 @@ UI —————> action（plain）—————> reducer —————> s
 
 UI —————> action(side function) —————> middleware —————> action(plain) —————> reducer —————> state —————> UI
 
-下面主要介绍两种中间件 **redux-thunk** 和 **redux-saga**
+既然 知道了数据流 我们就可以手动来实现一个中间层
+
+我们可以 dispatch(中间件函数) 然后在中间件函数中处理数据 最后 return 一个干净的纯函数
+
+举个 🌰 以下是我新建的一个 middleware.ts
+
+```ts
+import { addCounter } from './store';
+import { wait } from '@/utils';
+
+export const addCounterAsync = (payload: number) => {
+  wait(1000);
+  return addCounter(payload);
+};
+```
+
+wait 是我写的一个工具函数 用来暂停程序 模拟异步请求
+
+```ts
+const wait = (delay: number) => {
+  var start = new Date().getTime();
+  while (new Date().getTime() - start < delay) {
+    continue;
+  }
+};
+```
+
+然后在组件中 我们就可以用 `addCounterAsync` 代替 `addCounter` 即可
+
+```tsx
+<Button onClick={() => dispatch(addCounterAsync(payload))}>+</Button>
+```
+
+当然 社区上早已有了很多处理异步 action 的库
+
+下面主要介绍两种中间件 **redux-thunk** 和 **redux-saga** 然后安利一下**rematch**
 
 ## redux-thunk
 
@@ -118,13 +149,108 @@ export const store = createStore(reducer, enhancer);
 
 在 saga 中 side effect 都移到了 saga.js 文件中 不再和 actionCreator 杂糅在一起
 
-重新用 saga 管理我们的计数器
+saga 的体系庞大完整 但是也相对复杂 还是用一个计数器的 🌰 来康康 saga 的使用
 
-再来看看 saga 怎么和 store 建立联系
+首先是我们的 store 文件
 
-注意 触发 action 和触发 saga 的 type 不能同名 不然会导致 saga 一直执行 action
+```ts
+import { createStore, applyMiddleware, compose } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import mySaga from './saga';
 
-然后在业务组件中 我们 dispatch 的 type 应是 saga 对应的 type
+export interface IStore {
+  count: number;
+}
+
+export interface IAction {
+  type: string;
+  [key: string]: any;
+}
+
+// 定义我们的 Action Type
+export enum ACTION_TYPE {
+  ADD_COUNTER = 'ADD_COUNTER',
+  SUB_COUNTER = 'SUB_COUNTER',
+  ADD_COUNTER_ASYNC = 'ADD_COUNTER_ASYNC',
+  SUB_COUNTER_ASYNC = 'SUB_COUNTER_ASYNC',
+}
+
+// 注意这边的type类型 和saga文件中takeEvery函数中的类型一致
+export const increment = (payload: number) => ({
+  type: ACTION_TYPE.ADD_COUNTER_ASYNC,
+  payload,
+});
+
+export const decrement = (payload: number) => ({
+  type: ACTION_TYPE.SUB_COUNTER_ASYNC,
+  payload,
+});
+
+// 创建一个初始化的Store
+const initStore: IStore = {
+  count: 0,
+};
+
+const reducer = (store = initStore, action: IAction) => {
+  switch (action.type) {
+    case ACTION_TYPE.ADD_COUNTER:
+      return { ...store, count: store.count + action.payload };
+    case ACTION_TYPE.SUB_COUNTER:
+      return { ...store, count: store.count - action.payload };
+    default:
+      return store;
+  }
+};
+
+// 启用redux devtools
+const composeEnhancers =
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+// 创建saga中间件对象
+const sagaMiddleware = createSagaMiddleware();
+
+// 注册中间件
+const enhancer = composeEnhancers(applyMiddleware(sagaMiddleware));
+
+// 创建 Store 这里我们还开启了 Redux DEVTools
+export const store = createStore(reducer, enhancer);
+
+// 必须放在createStore后 再启动saga
+sagaMiddleware.run(mySaga);
+```
+
+然后是 saga 文件
+
+```ts
+import { takeEvery, put, delay } from 'redux-saga/effects';
+import { ACTION_TYPE } from './store';
+
+// 执行副作用的函数
+function* increment(action: any) {
+  // 延迟一秒 模拟异步 可以在这里用try catch语法块返回成功/失败的action
+  yield delay(1000);
+  yield put({
+    type: ACTION_TYPE.ADD_COUNTER,
+    payload: action.payload,
+  });
+}
+
+function* decrement(action: any) {
+  yield delay(1000);
+  yield put({
+    type: ACTION_TYPE.SUB_COUNTER,
+    payload: action.payload,
+  });
+}
+
+function* mySaga() {
+  // 组件中发起action的type应该和这里的一致
+  yield takeEvery(ACTION_TYPE.ADD_COUNTER_ASYNC, increment);
+  yield takeEvery(ACTION_TYPE.SUB_COUNTER_ASYNC, decrement);
+}
+
+export default mySaga;
+```
 
 ## rematch
 
