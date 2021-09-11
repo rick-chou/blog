@@ -1,3 +1,5 @@
+> https://github.com/nuysoft/Mock/wiki/Getting-Started
+
 ## 生成随机 json
 
 ```js
