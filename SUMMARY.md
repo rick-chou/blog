@@ -61,6 +61,7 @@
 - [Router 路由管理](react/router.md)
 - [轻巧快艇 Hooks](react/hooks.md)
 - [SSR](react/ssr.md)
+- [DIY](react/diy.md)
 - [React生态](react/react.md)
 
 ## Node
