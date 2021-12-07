@@ -1,5 +1,3 @@
-<img src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/js/http/cache.jpg" />
-
 ## PWA 定义
 
 首先 带大家看一下什么是 PWA
@@ -14,7 +12,7 @@
 
 如果你用 PC 端点开后 可以发现 浏览器的 url 一栏多了一个按钮 效果如下
 
-<img src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/js/pwa/pwa13.png" />
+<img src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/js/pwa/pwa13.png" width="100%"/>
 
 如果你是 android 手机的话 也许你会看到如下的效果
 
