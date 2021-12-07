@@ -369,6 +369,29 @@ const networkFirst = async (req) => {
 
 <img src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/js/pwa/pwa9.png" />
 
+## 消息推送
+
+因为引入 PWA 后 用户可能访问的是过期的缓存内容
+
+所以我们可以调用消息推送的 API 来告诉用户
+
+```js
+// 提示授权
+if (Notification.permission === 'default') {
+  Notification.requestPermission();
+}
+
+if (!navigator.onLine) {
+  new Notification('提示', { body: '你当前没有网络，访问的是缓存' });
+}
+
+window.addEventListener('online', () => {
+  new Notification('提示', {
+    body: '你已经连上网络，请刷新页面，访问最新的数据',
+  });
+});
+```
+
 ## PWA 应用
 
 最后简单 说一下 PWA 可以有哪些应用
@@ -378,3 +401,7 @@ const networkFirst = async (req) => {
 就是运用了上述的 Cache then network 缓存策略
 
 在网络不好的情况下 可以先给用户呈现 Web App 大致的样子 而不是白屏
+
+```
+
+```
