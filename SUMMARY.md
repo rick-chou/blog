@@ -71,7 +71,7 @@
 - [模块化](node/modular.md)
 - [Gulp](node/gulp.md)
 - [Express / Koa](node/express-koa.md)
-- [CLI](node/yep-gym-cli.mg)
+- [CLI](node/yep-gym-cli.md)
 
 ## Browser
 
