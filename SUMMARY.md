@@ -39,8 +39,6 @@
 - [装饰器](javascript/decorator.md)
 - [Mock](javascript/mockjs.md)
 - [PWA](javascript/pwa.md)
-- [微前端入门](javascript/micro-fe.md)
-- [qiankun](javascript/qiankun.md)
 
 ## Typescript
 
@@ -73,6 +71,7 @@
 - [模块化](node/modular.md)
 - [Gulp](node/gulp.md)
 - [Express / Koa](node/express-koa.md)
+- [CLI](node/yep-gym-cli.mg)
 
 ## Browser
 
