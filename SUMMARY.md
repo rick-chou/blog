@@ -39,6 +39,7 @@
 - [装饰器](javascript/decorator.md)
 - [Mock](javascript/mockjs.md)
 - [PWA](javascript/pwa.md)
+- [正则](javascript/regExp.md)
 
 ## Typescript
 
