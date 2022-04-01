@@ -1,10 +1,14 @@
+> 本站点更多会放一些 Sticky Node / 随笔 /......
+
+> （一些学习笔记已经过时）最新的学习笔记都托管在 [juejin](https://juejin.cn/user/1574156383563496) 上了
+
 # Hi~~~
 
 👋 Hi, I’m 南树@LuckyChou
 
 👀 I’m interested in FE
 
-🌱 I’m currently learning React && Typescript && Node && Go
+🌱 I’m currently learning React && Typescript && Node && Go && Python
 
 👻 Welcome to my Home –&gt; [juejin](https://juejin.cn/user/1574156383563496)
 
@@ -26,9 +30,9 @@ Sass [https://www.sass.hk/](https://www.sass.hk/)
 
 Less [https://less.bootcss.com/](https://less.bootcss.com/)
 
-兼容性查询 [https://caniuse.com/\#home](https://caniuse.com/#home)
-
 PostCSS [https://www.postcss.com.cn/](https://www.postcss.com.cn/)
+
+兼容性查询 [https://caniuse.com/\#home](https://caniuse.com/#home)
 
 Tailwind [https://www.tailwindcss.cn/](https://www.tailwindcss.cn/)
 
@@ -42,7 +46,7 @@ Tailwind [https://www.tailwindcss.cn/](https://www.tailwindcss.cn/)
 
 Lodash [https://www.lodashjs.com/](https://www.lodashjs.com/)
 
-Http [https://www.axios-http.cn/](https://www.axios-http.cn/)
+Request [https://www.axios-http.cn/](https://www.axios-http.cn/)
 
 Mock 数据 [http://mockjs.com/](http://mockjs.com/)
 
@@ -74,7 +78,11 @@ TS 学习笔记 [https://juejin.cn/post/6872111128135073806](https://juejin.cn/p
 
 官方文档 [https://react.docschina.org/](https://react.docschina.org/)
 
+新官方文档 [https://reactjs.bootcss.com/](https://reactjs.bootcss.com/)
+
 React-Router
+
+- [https://reactrouter.com/](https://reactrouter.com/)
 
 - [https://react-guide.github.io/react-router-cn/index.html](https://react-guide.github.io/react-router-cn/index.html)
 
@@ -104,33 +112,58 @@ Vue-Router [https://router.vuejs.org/zh/](https://router.vuejs.org/zh/)
 
 Vuex [https://vuex.vuejs.org/zh/](https://vuex.vuejs.org/zh/)
 
+Pinia [https://pinia.vuejs.org/](https://pinia.vuejs.org/)
+
 Nuxt [https://zh.nuxtjs.org/](https://zh.nuxtjs.org/)
 
 Awesome（Vue 精选） [https://github.com/vuejs/awesome-vue](https://github.com/vuejs/awesome-vue)
 
 ## UI
 
-Icon
+### Icon
 
 - [https://www.iconfont.cn/](https://www.iconfont.cn/)
 
 - [https://icomoon.io/](https://icomoon.io/)
 
-Antd [https://ant.design/index-cn](https://ant.design/index-cn)
+### React
 
-Antv [https://antv.gitee.io/zh/](https://antv.gitee.io/zh/)
+- ANT DESIGN [https://ant.design/index-cn](https://ant.design/index-cn)
+ 
+- ANT DESIGN PRO [https://pro.ant.design/zh-CN](https://pro.ant.design/zh-CN)
+ 
+- Ant Design Mobile [https://mobile.ant.design/](https://mobile.ant.design/)
 
-BizCharts [https://bizcharts.net/](https://bizcharts.net/)
+- Antv [https://antv.gitee.io/zh/](https://antv.gitee.io/zh/)
+ 
+- Ant Design Charts [https://charts.ant.design/zh](https://charts.ant.design/zh)
+
+- BizCharts [https://bizcharts.net/](https://bizcharts.net/)
+
+### Vue
+
+- Element Plus [https://element-plus.gitee.io/\#/zh-CN](https://element-plus.gitee.io/#/zh-CN)
+ 
+- Vant (Mobile) [https://youzan.github.io/vant/#/en-US](https://youzan.github.io/vant/#/en-US)
+
+### Tailwind
+
+- tailwind components [https://tailwindui.com/](https://tailwindui.com/)
+
+- kitwind [https://kitwind.io/](https://kitwind.io/)
+
+
+### Other
 
 Echarts [https://echarts.apache.org/zh/index.html](https://echarts.apache.org/zh/index.html)
-
-Element Plus [https://element-plus.gitee.io/\#/zh-CN](https://element-plus.gitee.io/#/zh-CN)
 
 Plyr（视频播放器） [https://plyr.io/](https://plyr.io/)
 
 Filepond (文件上传) [https://pqina.nl/filepond/](https://pqina.nl/filepond/)
 
 ## Node
+
+Node [http://nodejs.cn/](http://nodejs.cn/)
 
 Express [http://expressjs.com/](http://expressjs.com/)
 
@@ -139,6 +172,10 @@ Koa [https://koa.bootcss.com/](https://koa.bootcss.com/)
 Egg [https://eggjs.org/zh-cn/](https://eggjs.org/zh-cn/)
 
 cheerio(爬虫) [https://github.com/cheeriojs/cheerio/wiki/Chinese-README](https://github.com/cheeriojs/cheerio/wiki/Chinese-README)
+
+Sequelize(orm) [https://www.sequelize.com.cn/](https://www.sequelize.com.cn/)
+
+Joy(参数校验) [https://github.com/sideway/joi](https://github.com/sideway/joi)
 
 ## Modular
 
@@ -186,9 +223,13 @@ VuePress [https://vuepress.vuejs.org/zh/](https://vuepress.vuejs.org/zh/)
 
 Pagic [https://pagic.cn/](https://pagic.cn/)
 
+dumi [https://d.umijs.org/zh-CN](https://d.umijs.org/zh-CN)
+
 ## Tools
 
 语雀 [https://www.yuque.com](https://www.yuque.com)
+
+Apifox [https://www.apifox.cn/](https://www.apifox.cn/)
 
 CodeSandbox [https://codesandbox.io/s/](https://codesandbox.io/s/)
 
