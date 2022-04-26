@@ -2,17 +2,54 @@
 
 # Hi~~~
 
-👋 Hi, I’m 南树@LuckyChou
+<div align="center">
+<h1>👋 Hi, I’m 南树@LuckyChou</h1>
+  
+<br />
 
-👀 I’m interested in FE
+<a href="https://github.com/LuckyChou710/nanshu-ui">
+  <img
+    height="80"
+    width="80"
+    alt=""
+    src="https://cdn.jsdelivr.net/gh/LuckyChou710/nanshu-assets/png/icon3.png"
+  />
+  <img
+    height="80"
+    width="80"
+    alt=""
+    src="https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/icon/icon5.png"
+  />
+  <img
+    height="80"
+    width="80"
+    alt=""
+    src="https://cdn.jsdelivr.net/gh/LuckyChou710/nanshu-assets/png/icon27.png"
+  />
+</a>
 
-🌱 I’m currently learning React && Typescript && Node && Go && Python
+<br />
+<br />
 
-👻 Welcome to my Home –&gt; [juejin](https://juejin.cn/user/1574156383563496)
+<br />
+  
+掘金主页 [juejin](https://juejin.cn/user/1574156383563496) ( 更新中 🏠 )
 
-📝 Mail me –&gt; [luckychou209@gmail.com](mailto:luckychou209@gmail.com)
+个人博客 [blog](https://luckychou.gitbook.io/blog/)( 停止维护 ⚠️ )
 
-🍉 Star me –&gt; [https://github.com/LuckyChou710](https://github.com/LuckyChou710)
+学习笔记 [code-traveling](https://github.com/LuckyChou710/code-traveling) ( codeing 🧑‍💻 )
+
+个人网站 [fe-tutorial](http://124.223.71.181:3000/) ( 施工中 🚧 )
+
+个人 UI [@nanshu/ui](http://124.223.71.181:3002/) ( 建设中 👷 )
+
+一些些 [npm package](https://www.npmjs.com/~chou209)( 扩展中 🏗 )
+
+<br />
+  
+<br />
+
+</div>
 
 ![](https://cdn.jsdelivr.net/gh/LuckyChou710/blog-images/bg-images/bg16.jpg)
 
@@ -127,13 +164,13 @@ Awesome（Vue 精选） [https://github.com/vuejs/awesome-vue](https://github.co
 ### React
 
 - ANT DESIGN [https://ant.design/index-cn](https://ant.design/index-cn)
- 
+
 - ANT DESIGN PRO [https://pro.ant.design/zh-CN](https://pro.ant.design/zh-CN)
- 
+
 - Ant Design Mobile [https://mobile.ant.design/](https://mobile.ant.design/)
 
 - Antv [https://antv.gitee.io/zh/](https://antv.gitee.io/zh/)
- 
+
 - Ant Design Charts [https://charts.ant.design/zh](https://charts.ant.design/zh)
 
 - BizCharts [https://bizcharts.net/](https://bizcharts.net/)
@@ -141,7 +178,7 @@ Awesome（Vue 精选） [https://github.com/vuejs/awesome-vue](https://github.co
 ### Vue
 
 - Element Plus [https://element-plus.gitee.io/\#/zh-CN](https://element-plus.gitee.io/#/zh-CN)
- 
+
 - Vant (Mobile) [https://youzan.github.io/vant/#/en-US](https://youzan.github.io/vant/#/en-US)
 
 ### Tailwind
@@ -149,7 +186,6 @@ Awesome（Vue 精选） [https://github.com/vuejs/awesome-vue](https://github.co
 - tailwind components [https://tailwindui.com/](https://tailwindui.com/)
 
 - kitwind [https://kitwind.io/](https://kitwind.io/)
-
 
 ### Other
 
